@@ -17,7 +17,7 @@
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <script src="sidenav_init.js"></script>
+        <script src="materialize_init.js"></script>
 
     </head>
     <body>  
@@ -25,7 +25,7 @@
         <header>
             <nav>
                 <div class="nav-wrapper">
-                    <a href="#!" class="brand-logo">Logo</a>
+                    <a href="#!" class="brand-logo">RowAndGo!</a>
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="index.php">HOME</a></li>

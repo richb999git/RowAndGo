@@ -32,7 +32,7 @@
                     <div class="row">
                         <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
                             <input id="user-email" type="text" class="validate" name="mailuid" value="'.$userEmail.'" required>
-                            <label for="user-email">Username/Email</label>
+                            <label for="user-email">Email</label>
                         </div>
                     </div>
 
