@@ -54,26 +54,26 @@
         echo '
             <div class="row">
                 <br/>
-                <form class="col s8 m5 l4" action="includes/signup.inc.php" method="post">
+                <form class="col s10 m5 l4" action="includes/signup.inc.php" method="post">
                 
 
 
                     <div class="row">
-                        <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
+                        <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
                             <input id="email" type="email" class="validate" name="mail" value="'.$email.'" required>
                             <label for="email">Email</label>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
+                        <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
                             <input id="username" type="text" class="validate" name="uid" value="'.$username.'" required>
                             <label for="username">Full name</label>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
+                        <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
                             <input id="club" type="text" class="validate" name="club" value="'.$club.'">
                             <label for="club">Club</label>
                         </div>
@@ -81,28 +81,28 @@
 
 
                     <div class="row">
-                        <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
+                        <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
                             <input id="password" type="password" class="validate" name="pwd" required>
                             <label for="password">Password</label>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
+                        <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
                             <input id="password-repeat" type="password" class="validate" name="pwd-repeat" required>
                             <label for="password-repeat">Repeat Password</label>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
+                        <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
                             <input id="dob" type="text" class="datepicker" name="dob">
                             <label for="dob">Date of birth</label>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
+                        <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
                             <p>
                             <label>';
 
@@ -158,7 +158,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
+                        <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
                             <button class="btn btn100" type="submit" name="signup-submit">SIGN UP</button>
                         </div>
                     </div>
