@@ -1,0 +1,26 @@
+body {
+    
+}
+#SignUpTitle {
+    margin-bottom: 0px;
+    text-align: center;
+}
+.errorSignUp {
+    color: red;
+    text-align: center;
+    margin-bottom: -10px;
+}
+.successSignUp {
+    color: green;
+    text-align: center;
+    margin-bottom: -10px;
+}
+.marginReduce20 {
+    margin-bottom: -20px !important; /* used on Materialize inputs to reduce spacing */
+}
+.btn100 {
+    width: 100%; /* used on Materialize buttons */
+}
+.brand-logo {
+    margin-left: 5px; /* move logo off the edge */
+}
