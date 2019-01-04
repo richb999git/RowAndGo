@@ -17,7 +17,7 @@ if (isset($_POST["signup-submit"])) {
         exit();
     }
     else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header("Location: ../signup.php?error=invalidmail=".$username."&club=".$club."&weight=".$weight."&gender=".$gender."&dob=".$dob);
+        header("Location: ../signup.php?error=invalidmail&uid=".$username."&club=".$club."&weight=".$weight."&gender=".$gender."&dob=".$dob);
         exit();
     }
     else if ($password !== $passwordRepeat) {
@@ -39,7 +39,7 @@ if (isset($_POST["signup-submit"])) {
             mysqli_stmt_bind_param($stmt, "s", $email); // was username
             mysqli_stmt_execute($stmt);
             mysqli_stmt_store_result($stmt);
-            $resultCheck = mysqli_stmt_num_rows($stmt);
+            $resultCheck = mysqli_stmt_num_rows($stmt); // checking if email already exists. If not then add the user.
             if ($resultCheck > 0) {
                 header("Location: ../signup.php?error=emailtaken&uid=".$username."&mail=".$email."&club=".$club."&weight=".$weight."&gender=".$gender."&dob=".$dob);
                 exit();

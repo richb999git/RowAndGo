@@ -25,20 +25,20 @@
         <header>
             <nav>
                 <div class="nav-wrapper">
-                    <a href="#!" class="brand-logo">RowAndGo!</a>
-                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <a href="index.php" class="brand-logo">RowAndGo!</a>
+                    <a href="#.php" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="index.php">HOME</a></li>
-                        <li><a href="#">MENU 1</a></li>
-                        <li><a href="#">MENU 2</a></li>
-                        <li><a href="#">CONTACT</a></li>
+                        <li><a href="addScore.php">ADD SCORE</a></li>
+                        <li><a href="seeLog.php">SEE LOG</a></li>
+                        <li><a href="contact.php">CONTACT</a></li>
                         <li>
 
                         <?php
                             if (isset($_SESSION["userId"])) {
                                 echo '
                                     <a href="includes/logout.inc.php" class="btn" >LOGOUT</a>
-                                    <a class="right">Logged in as: '.$_SESSION["userUid"].'<a>';
+                                    <a class="right">Logged in as: '.$_SESSION["userEmail"].'<a>';
                                 }
                                 else {
                                     echo '<a href="signup.php" class="btn" >SIGN UP</a>
@@ -53,9 +53,9 @@
 
                     <ul class="sidenav" id="mobile-demo">
                         <li><a href="index.php">HOME</a></li>
-                        <li><a href="#">MENU 1</a></li>
-                        <li><a href="#">MENU 2</a></li>
-                        <li><a href="#">CONTACT</a></li>
+                        <li><a href="addScore.php">ADD SCORE</a></li>
+                        <li><a href="seeLog.php">SEE LOG</a></li>
+                        <li><a href="contact.php">CONTACT</a></li>
                         <li>
 
                         <?php

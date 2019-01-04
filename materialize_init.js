@@ -8,3 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
   var options = {format: "dd-mmm-yyyy", yearRange: 60};
   var instances = M.Datepicker.init(elems, options);
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('select');
+  var instances = M.FormSelect.init(elems, {} );
+});

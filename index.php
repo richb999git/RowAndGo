@@ -12,6 +12,11 @@
             //}
         ?>
         
+        <div>
+            <a class="waves-effect waves-light btn">Add Erg Score</a>
+            <a class="waves-effect waves-light btn">See Erg Score Log</a>       
+        </div>        
+
     </main>
 
 <?php
