@@ -13,3 +13,21 @@
     overflow-wrap: break-word;
     word-break: break-word;
 }
+
+.tableStyle1 {
+    min-width: 960px; 
+    margin: 0 auto;
+    font-size: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+    .tableStyle1 {
+        font-size: 80%;
+    }
+}
+  
+@media only screen and (orientation: landscape) {
+    .tableStyle1 {
+        font-size: 100%;
+    }
+  }

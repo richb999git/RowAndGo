@@ -11,7 +11,7 @@
         just use as a testing file for now -->
             <h4>Calendar View</h4>
 
-            <table style="min-width: 960px; margin: 0 auto;" class="striped" >
+            <table class="striped tableStyle1" >
                 <thead>
                     <tr>
                         <th>Date</th>
