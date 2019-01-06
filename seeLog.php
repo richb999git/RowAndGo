@@ -11,7 +11,7 @@
         just use as a testing file for now -->
             <h4>Calendar View</h4>
 
-            <table class="striped" >
+            <table style="min-width: 750px" class="striped" >
                 <thead>
                     <tr>
                         <th>Date</th>
@@ -118,75 +118,9 @@
                 </tbody>
             </table>
 
-            <div class="row">
-                <div class="col m12">
-                    <div class="col m1">Date</div>
-                    <div class="col m1">Event</div>
-                    <div class="col m1">Time/Dist</div>
-                    <div class="col m1">Split</div>
-                    <div class="col m2">Name</div>
-                    <div class="col m2">Club</div>
-                    <div class="col m1">Gender</div>
-                    <div class="col m1">Weight</div>
-                    <div class="col m2">Age Cat</div>
-                
-            </div>
+            
 
-            <div class="row">
-                <div class="col m12">
-                    <div class="col m1">29/12/18</div>
-                    <div class="col m1">120 minutes</div>
-                    <div class="col m1">28000m</div>
-                    <div class="col m1">2:02.8</div>
-                    <div class="col m2">Richard Braunton</div>
-                    <div class="col m2">Greenbank Falmouth</div>
-                    <div class="col m1">Male</div>
-                    <div class="col m1">Light</div>
-                    <div class="col m2">D</div>
-                
-            </div>
-
-            <div class="row">
-                <div class="col m12">
-                    <div class="col m1">29/12/18</div>
-                    <div class="col m1">2000mR24</div>
-                    <div class="col m1">07:02.4</div>
-                    <div class="col m1">1:45.6</div>
-                    <div class="col m2">Jim Gubbins</div>
-                    <div class="col m2">Boston Lightweights</div>
-                    <div class="col m1">Male</div>
-                    <div class="col m1">Light</div>
-                    <div class="col m1">Senior</div>
-                
-            </div>
-
-            <div class="row">
-                <div class="col m12">
-                    <div class="col m1">7/12/18</div>
-                    <div class="col m1">60 minutes</div>
-                    <div class="col m1">15000m</div>
-                    <div class="col m1">2:00.0</div>
-                    <div class="col m2">Richard Braunton</div>
-                    <div class="col m2">Greenbank Falmouth</div>
-                    <div class="col m1">Male</div>
-                    <div class="col m1">Light</div>
-                    <div class="col m1">D</div>
-                
-            </div>
-
-            <div class="row">
-                <div class="col m12">
-                    <div class="col s1">11111</div>
-                    <div class="col s1">222</div>
-                    <div class="col s1">333</div>
-                    <div class="col s1">444</div>
-                    <div class="col s2">555</div>
-                    <div class="col s2">666</div>
-                    <div class="col s1">777</div>
-                    <div class="col s1">888</div>
-                    <div class="col s1">999</div>
-
-            </div>
+            
 
         </main>
     ';
