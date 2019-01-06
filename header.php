@@ -3,12 +3,13 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr" xml:lang="en"> <!-- prevents Chrome thinking pages are in Luxembourgish! -->
     <head>
         <meta charset="utf-8">
-        <meta name="description" content="">
+        <meta name="description">
         <meta name=viewport content="width=device-width, initial-scale=1">
         <title></title>
+        <link rel="stylesheet" href="stylesheet.css">
         <link rel="stylesheet" href="loginStyle.css">
 
         

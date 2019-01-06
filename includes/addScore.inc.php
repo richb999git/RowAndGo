@@ -52,9 +52,13 @@ if (isset($_POST["log-submit"])) {
         header("Location: ../addScoreMain.php?error=invaliddate&event1=".$event1."&scoreMinutes=".$scoreMinutes."&scoreSeconds=".$scoreSeconds."&scoreDistance=".$scoreDistance."&distOrTime=".$distOrTime."&rate=".$rate);
         exit(); 
     }
-    else {
-        if ($rate == "Free rate") { $rate = 0;}     
-    }
+    
+    if ($rate != "Free rate") {
+        $event1 = $event1."R".$rate;
+    } else {
+        $rate = 0; 
+    }    
+    
     // need to get user's id so I can save to results table as PersonId - $_SESSION["userId"]
     $sql = "SELECT * FROM rowusers WHERE emailUsers=?"; // need to double check the user exists
         $stmt = mysqli_stmt_init($conn);

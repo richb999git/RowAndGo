@@ -1,0 +1,13 @@
+.tdWidth {
+    max-width: 150px;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.tdWidth:hover {
+    max-width: 150px;
+    white-space: unset;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}

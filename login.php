@@ -32,19 +32,19 @@
                     <div class="row">
                         <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
                             <input id="user-email" type="text" class="validate" name="mailuid" value="'.$userEmail.'" required>
-                            <label for="user-email">Email</label>
+                            <label for="user-email"><i class="material-icons">email</i> Email</label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
-                            <input id="password" type="password" class="validate" name="pwd" required>
-                            <label for="password">Password</label>
+                            <input id="password" type="password" class="validate" name="pwd" required>                       
+                            <label for="password"><i class="material-icons">lock_open</i> Password</label></i>
                             <br/><br/><br/>
                             <button class="btn btn100" type="submit" name="login-submit">LOGIN</button>
                         </div>
                     </div>
-
+                
                 </form>
             </div>
             '

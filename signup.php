@@ -61,21 +61,21 @@
                     <div class="row">
                         <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
                             <input id="email" type="email" class="validate" name="mail" value="'.$email.'" required>
-                            <label for="email">Email</label>
+                            <label for="email"><i class="material-icons">email</i> Email</label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
                             <input id="username" type="text" class="validate" name="uid" value="'.$username.'" required>
-                            <label for="username">Full name</label>
+                            <label for="username"><i class="material-icons">person_outline</i> Full name</label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
                             <input id="club" type="text" class="validate" name="club" value="'.$club.'">
-                            <label for="club">Club</label>
+                            <label for="club"><i class="material-icons">people</i> Club</label>
                         </div>
                     </div>
 
@@ -83,21 +83,21 @@
                     <div class="row">
                         <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
                             <input id="password" type="password" class="validate" name="pwd" required>
-                            <label for="password">Password</label>
+                            <label for="password"><i class="material-icons">lock_outline</i> Password</label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
                             <input id="password-repeat" type="password" class="validate" name="pwd-repeat" required>
-                            <label for="password-repeat">Repeat Password</label>
+                            <label for="password-repeat"><i class="material-icons">lock</i> Repeat Password</label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
                             <input id="dob" type="text" class="datepicker" name="dob">
-                            <label for="dob">Date of birth</label>
+                            <label for="dob"><i class="material-icons">date_range</i> Date of birth</label>
                         </div>
                     </div>
 
