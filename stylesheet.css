@@ -28,6 +28,6 @@
   
 @media only screen and (orientation: landscape) {
     .tableStyle1 {
-        font-size: 100%;
+        font-sizefffffffffffffff: 100%; /* don't hink this is needed now. Was for mobile orientation zooming issue. */
     }
   }

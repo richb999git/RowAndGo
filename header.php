@@ -7,10 +7,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="description">
-        <meta name=viewport content="width=device-width, initial-scale=1 user-scalable=no or maximum/minimum-scale=1">
+
+        <!-- stops auto resizing on mobile when moving to lanscape -->
+        <meta name=viewport content="width=device-width, initial-scale=1 user-scalable=yes, maximum-scale=1.2, minimum-scale=0.8"> 
+        
         <title></title>
-
-
         
         <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
