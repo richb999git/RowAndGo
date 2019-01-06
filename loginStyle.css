@@ -18,6 +18,9 @@ body {
 .marginReduce20 {
     margin-bottom: -20px !important; /* used on Materialize inputs to reduce spacing */
 }
+.marginReduce40 {
+    margin-bottom: -40px !important; /* used on Materialize inputs to reduce spacing */
+}
 .btn100 {
     width: 100%; /* used on Materialize buttons */
 }

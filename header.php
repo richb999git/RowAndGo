@@ -9,7 +9,7 @@
         <meta name="description">
 
         <!-- stops auto resizing on mobile when moving to lanscape -->
-        <meta name=viewport content="width=device-width, initial-scale=1 user-scalable=yes, maximum-scale=1.5, minimum-scale=0.7"> 
+        <meta name=viewport content="width=device-width, initial-scale=1 user-scalable=yes, maximum-scale=1.6, minimum-scale=0.6 "> 
         
         <title></title>
         

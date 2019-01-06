@@ -36,6 +36,14 @@
             if (isset($_GET["rate"])) {
                 $rate = $_GET["rate"]; // if page returned because of error
             }
+            $dynamic = "";
+            if (isset($_GET["dynamic"])) {
+                $dynamic = $_GET["dynamic"]; // if page returned because of error
+            }
+            $weight = "";
+            if (isset($_GET["weight"])) {
+                $weight = $_GET["weight"]; // if page returned because of error
+            }
 
             echo '<h4 id="SignUpTitle">Add Erg Score - '.$distOrTime.'</h4>';
 
@@ -154,7 +162,7 @@
 
             echo '
                             <div class="row">    
-                                <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
+                                <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce40">
                                     <select name="rate" required>';
                                     
             if ($rate != "" && $rate != "Free rate") {
@@ -184,12 +192,79 @@
                                 <label>Free rate or capped?</label>
                             </div>
                         </div>
+                        
+                        <div class="row">
+                        <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce40">
+                            <p>
+                            <label>';
+            
+            if ( $dynamic != "Dynamic" ) {
+                echo '
+                                        <input name="dynamic" type="radio" value="Standard" checked/>
+                                        <span>Standard Erg</span>
+                                    </label>
+        
+                                    <label>
+                                        <input name="dynamic" type="radio" value="Dynamic" />
+                                        <span>Dynamic Erg</span>
+                                    </label>';
+        
+                } else {
+                    echo '
+                                        <input name="dynamic" type="radio" value="Standard"/>
+                                        <span>Standard Erg</span>
+                                    </label>
+        
+                                    <label>
+                                        <input name="dynamic" type="radio" value="Dynamic" checked />
+                                        <span>Dynamic Erg</span>
+                                    </label>';                
+                }
+            echo '
+                        
+                            </p>
+                        </div>
+                        </div>
 
                         <div class="row">
-                            <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
-                                <button class="btn btn100" type="submit" name="log-submit">LOG SCORE</button>
-                            </div>
+                        <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
+                            <p>
+                            <label>';
+            
+            if ( $weight != "Light" ) {
+                echo '
+                                        <input name="weight" type="radio" value="Heavy" checked/>
+                                        <span>Heavy weight</span>
+                                    </label>
+        
+                                    <label>
+                                        <input name="weight" type="radio" value="Light" />
+                                        <span>Light weight</span>
+                                    </label>';
+        
+                } else {
+                    echo '
+                                        <input name="weight" type="radio" value="Heavy"/>
+                                        <span>Heavy weight</span>
+                                    </label>
+        
+                                    <label>
+                                        <input name="weight" type="radio" value="Light" checked />
+                                        <span>Light weight</span>
+                                    </label>';                
+                }
+            echo '
+                        
+                            </p>
                         </div>
+                        </div>
+
+
+                            <div class="row">
+                                <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
+                                    <button class="btn btn100" type="submit" name="log-submit">LOG SCORE</button>
+                                </div>
+                            </div>
 
                     </form>
             </div>
