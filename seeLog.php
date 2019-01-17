@@ -232,7 +232,7 @@
 
 
 ////////////////--------------------------------------------------------------
-    //echo "sql = ".$sql;
+    echo "sql = ".$sql;
 
     
     //$sortDir == "DESC" ? $sortDir = 0: $sortDir = 1;
@@ -246,6 +246,7 @@
     $result = mysqli_query($conn, $sql);  // <<<<<<< Need to use prepared statements? Is sql injection a risk? No user text can be entered.
     ////////////////////////////////////////////// check for error and handle  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     $noOfLines = mysqli_num_rows($result);
+    echo "noOfLines=".$noOfLines;
     $linesPerPage = 15;
     $page = 1;
     if(isset($_GET["page"])) {
