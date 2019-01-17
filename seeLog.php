@@ -5,8 +5,10 @@
 <img width=50% src="pics/header2.jpg" alt="rowing 8 header">
 
 <?php
+    echo "first statement in the php block";
     if (isset($_SESSION["userId"])) {
-
+    
+    echo "before dbh require";
     require "/includes/dbh.inc.php";
     echo "after dbh require";
 
