@@ -2,7 +2,7 @@
     require "header.php";
 ?>
 
-<img width=100% src="pics/header2.jpg" alt="rowing 8 header">
+<img width=50% src="pics/header2.jpg" alt="rowing 8 header">
 
 <?php
     if (isset($_SESSION["userId"])) {
