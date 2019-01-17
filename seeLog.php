@@ -8,6 +8,7 @@
     if (isset($_SESSION["userId"])) {
 
     require "/includes/dbh.inc.php";
+    echo "after dbh require";
 
     if(isset($_POST["whichErgs"])) {        // from report choice page
         $whichErgs = $_POST["whichErgs"];   // Mine, Club, All
@@ -72,6 +73,8 @@
         $sortType = "rowusers.club";
     }
 
+    echo "after sort types";
+
 ///////////////    FILTERS    //////////////////////////////////////////////
 
     $male = 99; // default 99 = no filter
@@ -117,6 +120,8 @@
             $dynamicString = "dynamic1!=99"; 
         }
     }
+
+    echo "after filter types";
 
     // filters
     $where = "WHERE ".$weightString." AND ".$maleString." AND ".$eventTypeString." AND ".$dynamicString;
@@ -229,7 +234,7 @@
     */
 
 
-
+    echo "before sql is shown";
 
 ////////////////--------------------------------------------------------------
     echo "sql = ".$sql;
