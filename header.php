@@ -27,14 +27,15 @@
     <body>  
 
         <header>
+
             <nav>
                 <div class="nav-wrapper">
-                    <a href="index.php" class="brand-logo">RowAndGo!</a>
+                    <a href="index.php" class="brand-logo"><img height="20px" src="pics/rowing_double.png"/>RowAndGo!</a>
                     <a href="#.php" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="index.php">HOME</a></li>
                         <li><a href="addScore.php">ADD SCORE</a></li>
-                        <li><a href="seeLog.php">SEE LOG</a></li>
+                        <li><a href="viewScores.php">VIEW SCORES</a></li>
                         <li><a href="contact.php">CONTACT</a></li>
                         <li>
 
@@ -42,7 +43,7 @@
                             if (isset($_SESSION["userId"])) {
                                 echo '
                                     <a href="includes/logout.inc.php" class="btn" >LOGOUT</a>
-                                    <a class="right">Logged in as: '.$_SESSION["userEmail"].'<a>';
+                                    <a class="right">Logged in as: '.$_SESSION["userEmail"].'<a>'; 
                                 }
                                 else {
                                     echo '<a href="signup.php" class="btn" >SIGN UP</a>
@@ -58,7 +59,7 @@
                     <ul class="sidenav" id="mobile-demo">
                         <li><a href="index.php">HOME</a></li>
                         <li><a href="addScore.php">ADD SCORE</a></li>
-                        <li><a href="seeLog.php">SEE LOG</a></li>
+                        <li><a href="viewScores.php">VIEW SCORES</a></li>
                         <li><a href="contact.php">CONTACT</a></li>
                         <li>
 
@@ -83,6 +84,7 @@
             </nav>
         </header>
 
+        
         
     </body>
 </html>

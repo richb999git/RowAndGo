@@ -64,7 +64,12 @@ if (isset($_POST["log-submit"])) {
         $event1 = $event1."R".$rate;
     } else {
         $rate = 0; 
-    }    
+    }   
+    
+    // add gender, weight, erg type (dynamic/std) to event1
+    // later need to add (J)unior and Masters age categories (and SENior). e.g. J15, VTD = masters D, SEN but will have to add a filter
+    // J11 to J18, U23, SEN, VTA to VTP
+    $event1 .= $_SESSION["male"].$weight.$dynamic."SEN"; // SEN will be for default age category until worked in
     
     // need to get user's id so I can save to results table as PersonId - $_SESSION["userId"]
     $sql = "SELECT * FROM rowusers WHERE emailUsers=?"; // need to double check the user exists
@@ -79,6 +84,9 @@ if (isset($_POST["log-submit"])) {
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
             if ($row = mysqli_fetch_assoc($result)) {
+                // Update would be "UPDATE results SET (idPerson = ?, date1 = ?, eventType = ?, ........ WHERE idResult = ?)
+                // Delete would be "DELETE FROM results WHERE idResults = ?"
+                // Delete would have mysqlistmt_bind_param("i", $idResult)
                 $sql = "INSERT INTO results (idPerson, date1, eventType, event1, rate, scoreDistance, scoreTime, dynamic1, weight1, ageCat) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 $stmt = mysqli_stmt_init($conn);
                 if (!mysqli_stmt_prepare($stmt, $sql)){

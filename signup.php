@@ -3,9 +3,10 @@
 ?>
 
     <main>
-        
+    <img width=100% src="pics/header2.jpg" alt="">    
         <h4 id="SignUpTitle">SIGN UP</h4>
-        <?php
+        
+<?php
             $username = "";
             if (isset($_GET["uid"])) {
                 $username = $_GET["uid"];
@@ -165,6 +166,7 @@
 
                 </form>
             </div>
+            <br>
             '
         ?>
     </main>

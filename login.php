@@ -3,7 +3,7 @@
 ?>
 
     <main>
-        
+    <img width=100% src="pics/header2.jpg" alt="">    
         <h4 id="SignUpTitle">LOGIN</h4>
         <?php
             $userEmail = "";
@@ -47,6 +47,7 @@
                 
                 </form>
             </div>
+            <br><br><br>
             '
         ?>
     </main>

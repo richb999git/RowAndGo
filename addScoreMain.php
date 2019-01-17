@@ -3,7 +3,7 @@
 ?>
 
     <main>
-
+    <img width=100% src="pics/header2.jpg" alt="rowing 8 header">
     <?php
 
         $distOrTime = "";
@@ -58,10 +58,10 @@
             echo ' 
                 <div class="row">
                         <br/>
-                        <form class="col s8 m5 l4" action="includes/addScore.inc.php" method="post">
+                        <form class="col s10 m6 l4" action="includes/addScore.inc.php" method="post">
 
                             <div class="row">
-                                <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
+                                <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce20">
                                     <input id="ergDate" type="text" class="datepicker" name="ergDate" required>
                                     <label for="ergDate">Date of Erg score</label>
                                 </div>
@@ -70,7 +70,7 @@
             if ($distOrTime == "distance") {
                 echo '
                             <div class="row">
-                                <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
+                                <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce20">
                                     <select name="event1" required>';
                                     
             if ($event1 != "") {
@@ -103,7 +103,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
+                            <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce20">
                                 <div class="input-field col s6">
                                     <input id="timeMin" type="number" class="validate" name="timeMin" value='.$timeMin.' min=0 required />
                                     <label for="timeMin">Score - minutes</label>
@@ -118,7 +118,7 @@
             } else {
                 echo '
                             <div class="row">
-                                <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
+                                <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce20">
                                     <select name="event1" required>';  
 
                 if ($event1 != "") {
@@ -152,7 +152,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
+                                <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce20">
                                     <input id="distance" type="number" class="validate" name="distance" value="'.$scoreDistance.'" required>
                                     <label for="distance">Score in metres</label>
                                 </div>
@@ -162,7 +162,7 @@
 
             echo '
                             <div class="row">    
-                                <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce40">
+                                <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce40">
                                     <select name="rate" required>';
                                     
             if ($rate != "" && $rate != "Free rate") {
@@ -194,29 +194,29 @@
                         </div>
                         
                         <div class="row">
-                        <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce40">
+                        <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce40">
                             <p>
                             <label>';
             
             if ( $dynamic != "Dynamic" ) {
                 echo '
-                                        <input name="dynamic" type="radio" value="Standard" checked/>
+                                        <input name="dynamic" class="with-gap" type="radio" value="Standard" checked/>
                                         <span>Standard Erg</span>
                                     </label>
         
                                     <label>
-                                        <input name="dynamic" type="radio" value="Dynamic" />
+                                        <input name="dynamic" class="with-gap" type="radio" value="Dynamic" />
                                         <span>Dynamic Erg</span>
                                     </label>';
         
                 } else {
                     echo '
-                                        <input name="dynamic" type="radio" value="Standard"/>
+                                        <input name="dynamic" class="with-gap" type="radio" value="Standard"/>
                                         <span>Standard Erg</span>
                                     </label>
         
                                     <label>
-                                        <input name="dynamic" type="radio" value="Dynamic" checked />
+                                        <input name="dynamic" class="with-gap" type="radio" value="Dynamic" checked />
                                         <span>Dynamic Erg</span>
                                     </label>';                
                 }
@@ -227,29 +227,29 @@
                         </div>
 
                         <div class="row">
-                        <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
+                        <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce20">
                             <p>
                             <label>';
             
             if ( $weight != "Light" ) {
                 echo '
-                                        <input name="weight" type="radio" value="Heavy" checked/>
+                                        <input name="weight" class="with-gap" type="radio" value="Heavy" checked/>
                                         <span>Heavy weight</span>
                                     </label>
         
                                     <label>
-                                        <input name="weight" type="radio" value="Light" />
+                                        <input name="weight" class="with-gap" type="radio" value="Light" />
                                         <span>Light weight</span>
                                     </label>';
         
                 } else {
                     echo '
-                                        <input name="weight" type="radio" value="Heavy"/>
+                                        <input name="weight" class="with-gap" type="radio" value="Heavy"/>
                                         <span>Heavy weight</span>
                                     </label>
         
                                     <label>
-                                        <input name="weight" type="radio" value="Light" checked />
+                                        <input name="weight" class="with-gap" type="radio" value="Light" checked />
                                         <span>Light weight</span>
                                     </label>';                
                 }
@@ -261,7 +261,7 @@
 
 
                             <div class="row">
-                                <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
+                                <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce20">
                                     <button class="btn btn100" type="submit" name="log-submit">LOG SCORE</button>
                                 </div>
                             </div>

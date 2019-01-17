@@ -1,4 +1,16 @@
+body {
 
+}
+
+main {
+
+}
+
+
+.reportTitle {
+    margin-left: 5px;
+    font-size: 20px;
+}
 
 .tdWidth {
     max-width: 150px;
@@ -18,16 +30,120 @@
     min-width: 960px; 
     margin: 0 auto;
     font-size: 100%;
+    margin-left: 0px;
+    padding-left: 17px;
 }
+
+@media only screen and (min-width: 801px) {
+    #super4 {
+        width: 50%;
+    }
+}
+
 
 @media only screen and (max-width: 600px) {
     .tableStyle1 {
-        font-size: 80%;
+        font-size: 80%;       
+    }
+    #super4 {
+        width: 90%;
     }
 }
   
 @media only screen and (orientation: landscape) {
-    .tableStyle1 {
-        font-sizefffffffffffffff: 100%; /* don't hink this is needed now. Was for mobile orientation zooming issue. */
+    .tableStyle1 {        
     }
-  }
+}
+
+#reportDropdowns {
+    float: right;
+    margin-top: 4px;
+    margin-right: 4px;
+}
+
+#reportDropdowns2 {
+    float: right;
+    margin-top: -12px;
+    margin-right: 4px;
+}
+
+
+/* make materialize css pagination smaller */
+.pagination li {
+height: 25px; /* was 30px */
+}
+
+.pagination li a {
+font-size: 0.8rem; /* was 1.2rem */
+line-height: 20px; /* was 30px */
+}
+
+.pagination li i {
+font-size: 1.5rem;  /* was 2rem */
+}
+  
+.btn-small { /*overide materialize*/
+    width: 150px;
+    padding: 0;
+}
+  
+@media only screen and (max-width: 600px) {
+    .btn-small {
+        font-size: 70%;
+        width: 110px;
+    }
+
+}
+  
+.sortedCol {
+    text-decoration: underline;
+    font-weight: bolder;
+    text-decoration-style: double;
+}
+
+.largerFont {
+    font-size: 150% !important;
+}
+
+.radBox {
+    border: solid;
+    border-radius: 3px;
+}
+
+#editDel {
+    width: 8px; 
+}
+
+#dateCol {
+    width: 7em;
+}
+
+
+/* login styling */
+#SignUpTitle {
+    margin-bottom: 0px;
+    text-align: center;
+}
+.errorSignUp {
+    color: red;
+    text-align: center;
+    margin-bottom: -10px;
+}
+.successSignUp {
+    color: green;
+    text-align: center;
+    margin-bottom: -10px;
+}
+.marginReduce20 {
+    margin-bottom: -20px !important; /* used on Materialize inputs to reduce spacing */
+}
+.marginReduce40 {
+    margin-bottom: -40px !important; /* used on Materialize inputs to reduce spacing */
+}
+.btn100 {
+    width: 100%; /* used on Materialize buttons */
+}
+.brand-logo {
+    margin-left: 5px; /* move logo off the edge */
+}
+/* login styling -end*/
