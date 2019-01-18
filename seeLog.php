@@ -10,7 +10,7 @@ echo '<img width=100% src="pics/header2.jpg" alt="rowing 8 header">';
     
     echo "before dbh require";
 
-    require "/includes/dbh.inc.php";
+    require "includes/dbh.inc.php";
 /*
 //////////////////////////////////////////////// test ////////////////////////////////////////
 
