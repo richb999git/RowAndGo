@@ -10,6 +10,7 @@
             //else {
             //    echo "<p>You are logged out!</p>";
             //}
+
             if (isset($_GET["error"])) {
                 
                 if ($_GET["error"] == "notloggedin") {
@@ -35,10 +36,10 @@
 
             echo '
                 <div class="center-align">
-                    <img width=100% widtht=1000px  src="pics/r2.jpg" alt="">
-                    <h4>Enter your scores and see how you improve!</h4>
+                    <img width=100% src="pics/r2.jpg" alt="personRowing">
+                    <h4>Log your training scores and compare with other rowers!</h4>
                 </div>
-            '
+            ';
             
 
         ?>

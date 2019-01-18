@@ -1,53 +1,11 @@
 <?php
     require "header.php";
 
-
-echo '<img width=100% src="pics/header2.jpg" alt="rowing 8 header">';
-
-
-    echo "first statement in the php block";
+    echo '<img width=100% src="pics/header2.jpg" alt="rowing 8 header">';
+    
     if (isset($_SESSION["userId"])) {
-    
-    echo "before dbh require";
 
-    require "includes/dbh.inc.php";
-/*
-//////////////////////////////////////////////// test ////////////////////////////////////////
-
-
-    echo "in dbh require";
-    //Get Heroku ClearDB connection information
-    if (!empty(getenv("CLEARDB_DATABASE_URL"))) { // or "" or NULL
-        $cleardb_url  = parse_url(getenv("CLEARDB_DATABASE_URL"));
-        $servername   = $cleardb_url["host"];
-        $dBUsername   = $cleardb_url["user"];
-        $dBPassword   = $cleardb_url["pass"];
-        $dBName       = substr($cleardb_url["path"],1);
-        echo "in if. in heroku db settings";
-    }
-    else {  
-        $servername = "localhost";
-        $dBUsername = "root";
-        $dBPassword = "";
-        $dBName = "loginsystem";
-        echo "in if. in localhost db settings";
-    }
-    
-    $conn = mysqli_connect($servername, $dBUsername, $dBPassword, $dBName);
-    echo "after db connection";
-    if (!$conn) {
-        echo "CONNECTION FAILED";
-        die("Connection failed: ".mysqli_connect_error());
-        echo "CONNECTION FAILED - AFTER DIE";
-    }
-    
-    echo "END of require section - connection must be good";
-
-
-//////////////////////////////////////////////// test ////////////////////////////////////////
-*/
-
-    echo "after dbh require";
+    require "includes/dbh.inc.php"; // don't include a / before folder name (works on localhost but not heroku)
 
     if(isset($_POST["whichErgs"])) {        // from report choice page
         $whichErgs = $_POST["whichErgs"];   // Mine, Club, All
@@ -112,7 +70,7 @@ echo '<img width=100% src="pics/header2.jpg" alt="rowing 8 header">';
         $sortType = "rowusers.club";
     }
 
-    echo "after sort types";
+    
 
 ///////////////    FILTERS    //////////////////////////////////////////////
 
@@ -160,7 +118,7 @@ echo '<img width=100% src="pics/header2.jpg" alt="rowing 8 header">';
         }
     }
 
-    echo "after filter types";
+    
 
     // filters
     $where = "WHERE ".$weightString." AND ".$maleString." AND ".$eventTypeString." AND ".$dynamicString;
@@ -273,10 +231,8 @@ echo '<img width=100% src="pics/header2.jpg" alt="rowing 8 header">';
     */
 
 
-    echo "before sql is shown";
-
 ////////////////--------------------------------------------------------------
-    echo "sql = ".$sql;
+    //echo "sql = ".$sql;
 
     
     //$sortDir == "DESC" ? $sortDir = 0: $sortDir = 1;
@@ -290,7 +246,7 @@ echo '<img width=100% src="pics/header2.jpg" alt="rowing 8 header">';
     $result = mysqli_query($conn, $sql);  // <<<<<<< Need to use prepared statements? Is sql injection a risk? No user text can be entered.
     ////////////////////////////////////////////// check for error and handle  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     $noOfLines = mysqli_num_rows($result);
-    echo "noOfLines=".$noOfLines;
+
     $linesPerPage = 15;
     $page = 1;
     if(isset($_GET["page"])) {

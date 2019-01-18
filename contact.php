@@ -32,9 +32,9 @@
 ?>   
 
             <br/>
-            <h4>Enter your training scores and compare to other rowers!</h4>
+            <h4>Enter your training scores and compare with other rowers!</h4>
             <br>
-            <p>If you have any problems please email me at richb999@tiscali.co.uk</p>
+            <p>If you have any problems please email me at <a href="mailto:richb999@tiscali.co.uk">richb999@tiscali.co.uk</a></p>
             <br/>
         </div>
         

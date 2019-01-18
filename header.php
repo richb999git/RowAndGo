@@ -21,7 +21,7 @@
         <script src="materialize_init.js"></script>
 
         <link rel="stylesheet" href="stylesheet.css">
-        <link rel="stylesheet" href="loginStyle.css">
+        <link rel="shortcut icon" href="pics/favRowAndGoIcon3.png" type="image/x-icon">
 
     </head>
     <body>  
