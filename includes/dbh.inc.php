@@ -26,6 +26,6 @@ if (!$conn) {
     echo "CONNECTION FAILED - AFTER DIE";
 }
 
-echo "CONNECTION FAILED - AFTER DIE";
+echo "END of require section - connection must be good";
 
 ?>

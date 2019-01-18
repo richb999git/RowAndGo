@@ -48,6 +48,9 @@ main {
     #super4 {
         width: 90%;
     }
+    #dateCol, #eventCol, #timeDistCol, #splitCol, #dynStdCol  { /* squeeze first few columns so mobiles show a bit more in portrait. */
+        width: 7em;
+    }
 }
   
 @media only screen and (orientation: landscape) {
@@ -89,10 +92,9 @@ font-size: 1.5rem;  /* was 2rem */
   
 @media only screen and (max-width: 600px) {
     .btn-small {
-        font-size: 70%;
-        width: 110px;
+        font-size: 65%;
+        width: 100px;
     }
-
 }
   
 .sortedCol {
@@ -114,9 +116,7 @@ font-size: 1.5rem;  /* was 2rem */
     width: 8px; 
 }
 
-#dateCol {
-    width: 7em;
-}
+
 
 
 /* login styling */
@@ -147,3 +147,7 @@ font-size: 1.5rem;  /* was 2rem */
     margin-left: 5px; /* move logo off the edge */
 }
 /* login styling -end*/
+
+#menuLogo {
+    font-size: 22px;
+}

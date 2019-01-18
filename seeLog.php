@@ -1,17 +1,17 @@
 <?php
     require "header.php";
-?>
 
-<img width=50% src="pics/header2.jpg" alt="rowing 8 header">
 
-<?php
+echo '<img width=100% src="pics/header2.jpg" alt="rowing 8 header">';
+
+
     echo "first statement in the php block";
     if (isset($_SESSION["userId"])) {
     
     echo "before dbh require";
 
-    //require "/includes/dbh.inc.php";
-
+    require "/includes/dbh.inc.php";
+/*
 //////////////////////////////////////////////// test ////////////////////////////////////////
 
 
@@ -45,7 +45,7 @@
 
 
 //////////////////////////////////////////////// test ////////////////////////////////////////
-
+*/
 
     echo "after dbh require";
 
@@ -423,20 +423,20 @@
     $filterQString = '&male='.$male.'&weight='.$weight.'&eventType='.$eventType.'&dynamic='.$dynamic.'&whichErgs='.$whichErgs.'&reportType='.$reportType;              
     
     if ($sortType == "date1") {
-        echo '<th><a href="'.$_SERVER["PHP_SELF"].'?dateSort='.!$dateSort.$filterQString.'" class="sortedCol">Date</th>';
+        echo '<th id="dateCol"><a href="'.$_SERVER["PHP_SELF"].'?dateSort='.!$dateSort.$filterQString.'" class="sortedCol">Date</th>';
     } else {
-        echo '<th><a href="'.$_SERVER["PHP_SELF"].'?dateSort='.!$dateSort.$filterQString.'" >Date</th>';
+        echo '<th id="dateCol"><a href="'.$_SERVER["PHP_SELF"].'?dateSort='.!$dateSort.$filterQString.'" >Date</th>';
     } 
     
     if ($sortType == $EVENTSORT) {
-        echo '<th><a href="'.$_SERVER["PHP_SELF"].'?eventSort='.!$eventSort.$filterQString.'" class="sortedCol">Event</th>';
+        echo '<th id="eventCol"><a href="'.$_SERVER["PHP_SELF"].'?eventSort='.!$eventSort.$filterQString.'" class="sortedCol">Event</th>';
     } else {
-        echo '<th><a href="'.$_SERVER["PHP_SELF"].'?eventSort='.!$eventSort.$filterQString.'" >Event</th>';
+        echo '<th id="eventCol"><a href="'.$_SERVER["PHP_SELF"].'?eventSort='.!$eventSort.$filterQString.'" >Event</th>';
     }
 
-    echo '              <th>Time/Dist</th>
-                        <th>/500m</th>
-                        <th>Std/Dyn</th>';
+    echo '              <th id="timeDistCol">Time/Dist</th>
+                        <th id="splitCol">/500m</th>
+                        <th id="dynStdCol">Std/Dyn</th>';
      
     if ($sortType == "rowusers.uidUsers") {
         echo '<th><a href="'.$_SERVER["PHP_SELF"].'?nameSort='.!$nameSort.$filterQString.'" class="sortedCol">Name</th>';
@@ -494,7 +494,7 @@
             echo '<a id="'.$row["idResults"].'" href="#" class="tooltipped" data-position="top" data-tooltip="Edit/Delete"><i class="tiny material-icons">edit</i></a>';
         }                
         echo '          </td>
-                        <td id="dateCol" >'.$row["date1"].'</td>
+                        <td>'.$row["date1"].'</td>
                         <td>'.$event1String.'</td>
                         <td>'.$score.'</td>
                         <td>'.floatToDateFormat($split).'</td>

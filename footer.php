@@ -2,7 +2,7 @@
     <div class="container">
     <div class="row">
         <div class="col l6 s12">
-        <h5 class="white-text"><img height="17px" src="pics/rowing_double.png"/>RowAndGo!</h5>
+        <h5 class="white-text"><img height="17px" src="pics/rowing_double.png"/>Row&Go!</h5>
         <p class="grey-text text-lighten-4">MIT License</p>
         </div>
         <div class="col l4 offset-l2 s12">

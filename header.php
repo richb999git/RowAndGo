@@ -30,7 +30,7 @@
 
             <nav>
                 <div class="nav-wrapper">
-                    <a href="index.php" class="brand-logo"><img height="20px" src="pics/rowing_double.png"/>RowAndGo!</a>
+                    <a href="index.php" id="menuLogo" class="brand-logo"><img height="16px" src="pics/rowing_double.png"/>Row&Go!</a>
                     <a href="#.php" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="index.php">HOME</a></li>
