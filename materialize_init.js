@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.dropdown-trigger');
-  var options = {hover: false, coverTrigger: false};
+  var options = {hover: false, coverTrigger: false}; // hover false because you can't hover with a mobile
   var instances = M.Dropdown.init(elems, options);
 });
 

@@ -42,7 +42,7 @@
     $sortDir = 0; // overall sort direction
 
     $cast = ""; // for event sort
-    $EVENTSORT = "cast(event2 as integer)";
+    $EVENTSORT = "cast(event2 as unsigned)";
 
     $sortType = "date1"; // default
     if(isset($_GET["sortType"])) {      // returned when pagination used
