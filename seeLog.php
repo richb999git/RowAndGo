@@ -141,7 +141,7 @@
         } else {
             $userOrClub = "";
         }
-        $sql = "SELECT idResults, idPerson, date1, event1, eventType, scoreDistance, scoreTime, dynamic1, weight1, ageCat, rowusers.idUsers, rowusers.uidUsers, rowusers.male, rowusers.club";
+        $sql = "SELECT idResults, idPerson, date1, event1, eventType, scoreDistance, scoreTime, dynamic1, weight1, rate, ageCat, rowusers.idUsers, rowusers.uidUsers, rowusers.male, rowusers.club";
         $sql .= ", left(event1, length(event1)-6 ) as event2 FROM `results` INNER JOIN rowusers ON results.idPerson=rowusers.idUsers ";
         $sql .= $where.$userOrClub.$group." ORDER BY ".$sortType." ".$sortDirSQL.$sortType2;
     }
@@ -441,16 +441,31 @@
         $row["dynamic1"] == 1 ? $dynamic = "Dynamic" : $dynamic = "Standard";
         $row["weight1"] == 1 ? $weight1 = "Light" : $weight1 = "Heavy";
         $row["male"] == 1 ? $male = "Male" : $male = "Female";
-        $event1String = $row["event2"]; //temporary
-        //$event1String = substr($row["event1"], 0, -6); //temporary
+        $event1String = $row["event2"]; 
         echo '              
                     <tr>
                         <td>';
-        if ($row["idUsers"] == $_SESSION["userId"]) { // delete id and send the idResult in the href (along with all the data) ready for editing >>>>>>>>
-            echo '<a id="'.$row["idResults"].'" href="#" class="tooltipped" data-position="top" data-tooltip="Edit/Delete"><i class="tiny material-icons">edit</i></a>';
+        if ($row["idUsers"] == $_SESSION["userId"]) {
+            $editDetails = "addScoreMain.php?edit=y"; 
+            $editDetails .= "&date=".$row["date1"];
+            $editDetails .= "&rate=".$row["rate"];
+            $row["dynamic1"] == 1 ? $editDetails .= "&dynamic=Dynamic" : $editDetails .= "&dynamic=Standard";
+            $row["weight1"] == 1 ? $editDetails .= "&weight=Light" : $editDetails .= "&weight=Heavy";
+            $row["rate"] != 0 ? $editDetails .= "&event1=".substr($event1String, 0, -3) : $editDetails .= "&event1=".$event1String;
+            if ($row["eventType"] == "TIME") {
+                $editDetails .= "&distOrTime=time";
+                $editDetails .= "&scoreDistance=".$row["scoreDistance"];
+            } else {
+                $editDetails .= "&distOrTime=distance";
+                $m = floor(($row["scoreTime"])/60);
+                $s = round(($row["scoreTime"] - round($m * 60))*10)/10;
+                $editDetails .= '&scoreMinutes='.$m.'&scoreSeconds='.$s;
+            }
+            $editDetails .= '&scoreID='.$row["idResults"];
+            echo '<a href="'.$editDetails.'" class="tooltipped" data-position="top" data-tooltip="Edit/Delete"><i class="tiny material-icons">edit</i></a>';
         }                
         echo '          </td>
-                        <td>'.$row["date1"].'</td>
+                        <td>'.date('d-M-Y', strtotime($row["date1"])).'</td>
                         <td>'.$event1String.'</td>
                         <td>'.$score.'</td>
                         <td>'.floatToDateFormat($split).'</td>

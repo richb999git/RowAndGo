@@ -9,13 +9,41 @@ if (isset($_POST["log-submit"])) {
     // field "rate" is if the event is rate capped (otherwise shown as 0)
     // field "eventType" is either TIME or DIST
     
+    // ascertain if we need to add or edit the score
+    if (isset($_GET["edit"])) {
+        if ($_GET["edit"] == "y") {
+            $edit = "y"; 
+        } else if ($_GET["edit"] == "n") {
+            $edit = "n";
+        } else {
+            header("Location: ../index.php?error=incorrect_edit_mode");
+            exit(); 
+        }
+    }
+
+    // ascertain if we need to delete the score
+    if (isset($_POST["log-submit"])) {
+        if($_POST["log-submit"] == "log-delete") {
+
+            $sql = 'DELETE FROM results WHERE idResults='.$_GET["scoreID"];           
+            if (mysqli_query($conn, $sql)) {
+                mysqli_close($conn);
+                header("Location: ../index.php?error=DELETE_OK");
+                exit(); 
+            } else {
+                //echo "Error deleting record: " . mysqli_error($conn);
+                mysqli_close($conn);
+                header("Location: ../index.php?error=DELETE_ERROR");
+                exit(); 
+            }
+        }
+    }    
+
     $event1 = $_POST["event1"];
     $rate = $_POST["rate"];
     $ergDate = $_POST["ergDate"];
     $dynamic = $_POST["dynamic"];
     $weight = $_POST["weight"];
-
-    
     
     if (isset($_POST["distance"])) {
         $scoreDistance = $_POST["distance"];
@@ -75,7 +103,7 @@ if (isset($_POST["log-submit"])) {
     $sql = "SELECT * FROM rowusers WHERE emailUsers=?"; // need to double check the user exists
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)){
-            header("Location: ../signup.php?error=sqlerror1");
+            header("Location: ../signup.php?error=sqlerror");
             exit(); 
         }
         else {
@@ -84,21 +112,33 @@ if (isset($_POST["log-submit"])) {
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
             if ($row = mysqli_fetch_assoc($result)) {
-                // Update would be "UPDATE results SET (idPerson = ?, date1 = ?, eventType = ?, ........ WHERE idResult = ?)
-                // Delete would be "DELETE FROM results WHERE idResults = ?"
-                // Delete would have mysqlistmt_bind_param("i", $idResult)
-                $sql = "INSERT INTO results (idPerson, date1, eventType, event1, rate, scoreDistance, scoreTime, dynamic1, weight1, ageCat) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                // Update would be "UPDATE results SET (idPerson = ?, date1 = ?, eventType = ?, ........ WHERE idResults = ?)
+
+                if ($edit == "n") {
+                    $sql = 'INSERT INTO results (idPerson, date1, eventType, event1, rate, scoreDistance, scoreTime, dynamic1, weight1, ageCat) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+                } else if ($edit == "y") {
+                    $sql = 'UPDATE results SET idPerson=?, date1=?, eventType=?, event1=?, rate=?, scoreDistance=?, scoreTime=?, dynamic1=?, weight1=?, ageCat=?';
+                    $sql .= ' WHERE idResults=?';
+                } else {
+                    header("Location: ../index.php?error=option_error");
+                    exit(); 
+                }
                 $stmt = mysqli_stmt_init($conn);
                 if (!mysqli_stmt_prepare($stmt, $sql)){
-                    header("Location: ../index.php?error=sqlerror2");
+                    header("Location: ../index.php?error=sqlerror");
                     exit(); 
                 }
                 else {
-                $personId = $_SESSION["userId"];
-                mysqli_stmt_bind_param($stmt, "isssiidiis", $personId, $ergDate, $eventType, $event1, $rate, $scoreDistance, $scoreTime, $dynamic, $weight, $ageCat); 
-                mysqli_stmt_execute($stmt);
-                header("Location: ../index.php?success=".$personId.$row["emailUsers"].$row["club"]); // temporary query string
-                exit(); 
+                    $personId = $_SESSION["userId"];
+                    if ($edit == "n") {
+                        mysqli_stmt_bind_param($stmt, "isssiidiis", $personId, $ergDate, $eventType, $event1, $rate, $scoreDistance, $scoreTime, $dynamic, $weight, $ageCat); 
+                    } else {
+                        mysqli_stmt_bind_param($stmt, "isssiidiisi", $personId, $ergDate, $eventType, $event1, $rate, $scoreDistance, $scoreTime, $dynamic, $weight, $ageCat, $_GET["scoreID"]); 
+                    }
+                    
+                    mysqli_stmt_execute($stmt);
+                    header("Location: ../index.php?update_success=".$personId.$row["emailUsers"].$row["club"]); // temporary query string
+                    exit(); 
                 }
 
             }

@@ -25,7 +25,12 @@
 
                         <div class="row">
                             <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
-                                <button class="btn btn100" type="submit" name="scoreType-submit">ENTER SCORE</button>
+                                <div class="input-field col s6">
+                                    <button class="btn btn100" type="submit" name="scoreType-submit">ENTER SCORE</button>
+                                </div>
+                                <div class="input-field col s6">
+                                    <a href="index.php" class="btn btn100" type="button" name="log-cancel">CANCEL</a>
+                                </div>
                             </div>
                         </div>
 

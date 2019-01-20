@@ -8,44 +8,62 @@
 
         $distOrTime = "";
         // test if coming from prior screen or returning with error. If not then access not allowed to page
-        if (isset($_POST["distOrTime"]) || isset($_GET["error"])) { 
+        if (isset($_POST["distOrTime"]) || isset($_GET["error"]) || isset($_GET["edit"])) { 
 
             if (isset($_POST["distOrTime"])) {
                 $distOrTime = $_POST["distOrTime"]; // will be "distance" or "time"
             }
             if (isset($_GET["distOrTime"])) {
-                $distOrTime = $_GET["distOrTime"]; // if page returned because of error
+                $distOrTime = $_GET["distOrTime"]; // if page returned because of error/edit
             }
             $timeMin = "";
             if (isset($_GET["scoreMinutes"])) {
-                $timeMin = $_GET["scoreMinutes"]; // if page returned because of error
+                $timeMin = $_GET["scoreMinutes"]; // if page returned because of error/edit
             }
             $timeSec = "";
             if (isset($_GET["scoreSeconds"])) {
-                $timeSec = $_GET["scoreSeconds"]; // if page returned because of error
+                $timeSec = $_GET["scoreSeconds"]; // if page returned because of error/edit
             }
             $scoreDistance = "";
             if (isset($_GET["scoreDistance"])) {
-                $scoreDistance = $_GET["scoreDistance"]; // if page returned because of error
+                $scoreDistance = $_GET["scoreDistance"]; // if page returned because of error/edit
             }
             $event1 = "";
             if (isset($_GET["event1"])) {
-                $event1 = $_GET["event1"]; // if page returned because of error
+                $event1 = $_GET["event1"]; // if page returned because of error/edit
             }
             $rate = 0;
             if (isset($_GET["rate"])) {
-                $rate = $_GET["rate"]; // if page returned because of error
+                $rate = $_GET["rate"]; // if page returned because of error/edit
             }
             $dynamic = "";
             if (isset($_GET["dynamic"])) {
-                $dynamic = $_GET["dynamic"]; // if page returned because of error
+                $dynamic = $_GET["dynamic"]; // if page returned because of error/edit
             }
             $weight = "";
             if (isset($_GET["weight"])) {
-                $weight = $_GET["weight"]; // if page returned because of error
+                $weight = $_GET["weight"]; // if page returned because of error/edit
+            }
+            $ergDate = date("Y-m-d"); // today as default 
+            if (isset($_GET["date"])) {
+                $ergDate = $_GET["date"]; // if page returned because of error/edit
+            }
+            $ergDate = date('d-M-Y', strtotime($ergDate)); // put in easier to read format on form
+
+            if (isset($_GET["edit"])) {
+                $titleType = "Edit";
+                $edit = "y";
+            } else {
+                $titleType = "Add";
+                $edit = "n";
             }
 
-            echo '<h4 id="SignUpTitle">Add Erg Score - '.$distOrTime.'</h4>';
+            $scoreID = "";
+            if (isset($_GET["scoreID"])) {
+                $scoreID = $_GET["scoreID"];
+            }
+
+            echo '<h4 id="SignUpTitle">'.$titleType.' Erg Score - '.$distOrTime.'</h4>';
 
             if (isset($_GET["error"])) {
                 if ($_GET["error"] == "emptyfields") {
@@ -54,15 +72,15 @@
                     echo "<p class='errorSignUp'>Invalid future date!</p>";
                 }
             }
-            
+
             echo ' 
                 <div class="row">
                         <br/>
-                        <form class="col s10 m6 l4" action="includes/addScore.inc.php" method="post">
+                        <form class="col s10 m6 l4" action="includes/addScore.inc.php?edit='.$edit.'&scoreID='.$scoreID.'" method="post">
 
                             <div class="row">
                                 <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce20">
-                                    <input id="ergDate" type="text" class="datepicker" name="ergDate" required>
+                                    <input id="ergDate" type="text" class="datepicker" name="ergDate" value="'.$ergDate.'" required>
                                     <label for="ergDate">Date of Erg score</label>
                                 </div>
                             </div>';
@@ -165,7 +183,7 @@
                                 <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce40">
                                     <select name="rate" required>';
                                     
-            if ($rate != "" && $rate != "Free rate") {
+            if ($rate != "" && $rate != "Free rate" && $rate !=0) {
                                 echo '<option value="'.$rate.'">'.$rate.' spm</option>';
             } else {
                                 echo '<option value="Free rate">Free rate</option>';
@@ -259,14 +277,36 @@
                         </div>
                         </div>
 
-
-                            <div class="row">
-                                <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce20">
+                        <div class="row">
+                            <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce20">';
+            
+            if ($edit == "n") {
+                echo '
+                                <div class="input-field col s6">
                                     <button class="btn btn100" type="submit" name="log-submit">LOG SCORE</button>
                                 </div>
+                                <div class="input-field col s6">
+                                    <a href="javascript:history.go(-1)" class="btn btn100" type="button" name="log-cancel">CANCEL</a>
+                                </div>';
+            } else {
+                echo '
+                                <div class="input-field col s4">
+                                    <button class="btn btn100" type="submit" name="log-submit">EDIT SCORE</button>
+                                </div>
+                                <div class="input-field col s4">
+                                    <button class="btn btn100" type="submit" name="log-submit" value="log-delete">DELETE</button>
+                                </div>
+                                <div class="input-field col s4">
+                                    <a href="javascript:history.go(-1)" class="btn btn100" type="button" name="log-cancel">CANCEL</a>
+                                </div>';
+            }
+
+            echo '
                             </div>
+                        </div>
 
                     </form>
+
             </div>
             ';
         

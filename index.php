@@ -13,25 +13,34 @@
 
             if (isset($_GET["error"])) {
                 
-                if ($_GET["error"] == "notloggedin") {
-                    echo '
 
+                if ($_GET["error"] == "notloggedin") {
+                    $errorMessage = "You need to be logged in!";
+                } else if ($_GET["error"] == "DELETE_OK") {
+                    $errorMessage = "Score deleted successfully";
+                } else if ($_GET["error"] == "DELETE_ERROR") {
+                    $errorMessage = "Error deleting score";
+                } else if ($_GET["error"] == "sqlerror") {
+                    $errorMessage = "Database error when updating. Please try again.";
+                }
+                echo '
                     <div class="row">
                         <div class="col s12 m4 offset-m4">
                         <div class="card-panel teal center-align z-depth-3">
-                            <span class="white-text">You need to be logged in!
-                            
-                            </span>
+                            <span class="white-text">'.$errorMessage.'</span> 
                         </div>
                         </div>
-                    </div>
+                    </div>';
 
-                    '
-                    ;
-                }
-
-            } else {
-
+            } else if (isset($_GET["update_success"])) {
+                echo '
+                    <div class="row">
+                        <div class="col s12 m4 offset-m4">
+                        <div class="card-panel teal center-align z-depth-3">
+                            <span class="white-text">Score update successful</span> 
+                        </div>
+                        </div>
+                    </div>';
             }
 
             echo '

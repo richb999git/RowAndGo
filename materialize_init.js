@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.datepicker');
-  var options = {format: "dd-mmm-yyyy", yearRange: 60};
+  var options = {format: "dd-mmm-yyyy", yearRange: 60, setDefaultDate: true};
   var instances = M.Datepicker.init(elems, options);
 });
 
