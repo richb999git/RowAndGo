@@ -151,3 +151,10 @@ font-size: 1.5rem;  /* was 2rem */
 #menuLogo {
     font-size: 22px;
 }
+
+.reduceColHeight {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    /*padding-right: 3px;
+    padding-left: 3px;*/
+}

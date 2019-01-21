@@ -44,6 +44,7 @@ if (isset($_POST["log-submit"])) {
     $ergDate = $_POST["ergDate"];
     $dynamic = $_POST["dynamic"];
     $weight = $_POST["weight"];
+    $ageCat = $_POST["ageCat"];
     
     if (isset($_POST["distance"])) {
         $scoreDistance = $_POST["distance"];
@@ -87,7 +88,7 @@ if (isset($_POST["log-submit"])) {
     
     $dynamic == "Dynamic" ? $dynamic = 1 : $dynamic = 0;
     $weight == "Light" ? $weight = 1 : $weight = 0;
-    $ageCat = "temporary";
+
     if ($rate != "Free rate") {
         $event1 = $event1."R".$rate;
     } else {
@@ -95,9 +96,8 @@ if (isset($_POST["log-submit"])) {
     }   
     
     // add gender, weight, erg type (dynamic/std) to event1
-    // later need to add (J)unior and Masters age categories (and SENior). e.g. J15, VTD = masters D, SEN but will have to add a filter
-    // J11 to J18, U23, SEN, VTA to VTP
-    $event1 .= $_SESSION["male"].$weight.$dynamic."SEN"; // SEN will be for default age category until worked in
+    // Also age category (J)unior and Masters age categories (and SENior). e.g. J15, VTD = masters D. J11 to J18, U23, SEN, VTA to VTJ
+    $event1 .= $_SESSION["male"].$weight.$dynamic.$ageCat; 
     
     // need to get user's id so I can save to results table as PersonId - $_SESSION["userId"]
     $sql = "SELECT * FROM rowusers WHERE emailUsers=?"; // need to double check the user exists
@@ -132,13 +132,15 @@ if (isset($_POST["log-submit"])) {
                     $personId = $_SESSION["userId"];
                     if ($edit == "n") {
                         mysqli_stmt_bind_param($stmt, "isssiidiis", $personId, $ergDate, $eventType, $event1, $rate, $scoreDistance, $scoreTime, $dynamic, $weight, $ageCat); 
+                        mysqli_stmt_execute($stmt);
+                        header("Location: ../index.php?update_success=".$personId.$row["emailUsers"].$row["club"]); // for message and info
+                        exit(); 
                     } else {
                         mysqli_stmt_bind_param($stmt, "isssiidiisi", $personId, $ergDate, $eventType, $event1, $rate, $scoreDistance, $scoreTime, $dynamic, $weight, $ageCat, $_GET["scoreID"]); 
+                        mysqli_stmt_execute($stmt);
+                        header("Location: ../index.php?edit_success=".$personId.$row["emailUsers"].$row["club"]); // for message and info
+                        exit();                  
                     }
-                    
-                    mysqli_stmt_execute($stmt);
-                    header("Location: ../index.php?update_success=".$personId.$row["emailUsers"].$row["club"]); // temporary query string
-                    exit(); 
                 }
 
             }

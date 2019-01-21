@@ -7,11 +7,12 @@
 <?php
     if (isset($_SESSION["userId"])) {
 
+    // get method used so that back button works. Data is not sensitive.
     echo '  
     <h4 id="SignUpTitle">View Erg Scores</h4>
     <div class="row">
     <br/>
-    <form class="col s10 m6 l6" action="seeLog.php" method="post">
+    <form class="col s10 m6 l6" action="seeLog.php" method="get">
 
         <div class="row">
             <div class="input-field col s10 m10 l6 offset-s2 offset-m7 offset-l9 marginReduce20 radBox"> 

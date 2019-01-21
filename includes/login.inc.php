@@ -33,6 +33,7 @@ if (isset($_POST["login-submit"])) {
                     $_SESSION["club"] = $row["club"];
                     $_SESSION["userEmail"] = $row["emailUsers"];
                     $_SESSION["male"] = $row["male"];
+                    $_SESSION["dob"] = $row["dob"];
                     header("Location: ../index.php?login=success");
                     exit(); 
                 }

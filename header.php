@@ -67,6 +67,7 @@
                             if (isset($_SESSION["userId"])) {
                                 echo '
                                     <a href="includes/logout.inc.php" class="btn" >LOGOUT</a>
+                                    <a href="#">Logged in as '.$_SESSION["userEmail"].'</a>
                                     ';
                                 }
                                 else {

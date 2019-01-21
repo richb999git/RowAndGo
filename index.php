@@ -26,9 +26,9 @@
                 echo '
                     <div class="row">
                         <div class="col s12 m4 offset-m4">
-                        <div class="card-panel teal center-align z-depth-3">
-                            <span class="white-text">'.$errorMessage.'</span> 
-                        </div>
+                            <div class="card-panel teal center-align z-depth-3">
+                                <span class="white-text">'.$errorMessage.'</span> 
+                            </div>
                         </div>
                     </div>';
 
@@ -36,9 +36,20 @@
                 echo '
                     <div class="row">
                         <div class="col s12 m4 offset-m4">
-                        <div class="card-panel teal center-align z-depth-3">
-                            <span class="white-text">Score update successful</span> 
+                            <div class="card-panel teal center-align z-depth-3">
+                                <span class="white-text">Score update successful</span> 
+                            </div>
                         </div>
+                    </div>';
+
+            } else if (isset($_GET["edit_success"])) {
+                echo '
+                    <div class="row">
+                        <div class="col s12 m6 l4 offset-m3 offset-l4" >
+                            <div class="card-panel teal center-align z-depth-3">
+                                <p class="white-text">Score update successful</p> 
+                                <p><a class="btn white-text" href="javascript:history.go(-2)">Back to scores</a></p>
+                            </div>
                         </div>
                     </div>';
             }

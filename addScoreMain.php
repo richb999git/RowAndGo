@@ -58,6 +58,107 @@
                 $edit = "n";
             }
 
+            $ageCat = "";
+            if (isset($_GET["ageCat"])) {
+                $ageCat = $_GET["ageCat"];
+            } else {
+                // work out age category based on DOB
+                // U23 19-22, SEN 23-26 (and above), a 27-35, b 36-42, c 43-49, d 50-54, e 55-59, f 60-64, g 65-69, h 70-74, i 75-79, j 80-
+                // on or before 31st December
+                // Junior categories based on academic year, i.e. From Sep 1st to Aug 31st e.g if you turn 16 in that period you are J16
+
+                // get current year $dob = date('Y-m-d', strtotime($dob));
+                // today = strtotime(date("Y-m-d"))
+                $year = date("Y", strtotime(date("Y-m-d")));
+                $endOfYear = "31/12/".$year;
+                echo $endOfYear;
+                $endOfYearAsDate = date("d-m-Y", strtotime("31-12-".$year));
+                echo $endOfYearAsDate;
+                // get DOB somehow - require dbh.inc.php - SELECT -- no get dob at login----------------
+                // nonJuniorAge = year - $dob year
+            }
+
+            $year = date("Y", strtotime(date("Y-m-d")));
+            $endOfYear = "31/12/".$year;
+            echo $endOfYear;
+            $endOfYearAsDate = date("d-m-Y", strtotime("31-12-".$year));
+            echo $endOfYearAsDate;
+            echo "-----------DOB-----------".$_SESSION["dob"];
+            $dobYear = date("Y", strtotime(date("Y-m-d", strtotime($_SESSION["dob"]))));
+            echo "-----------DOB Year---------".$dobYear;
+            $NonJuniorAge = $year - $dobYear;
+            echo "------------NonJuniorAge----------".$NonJuniorAge;
+            // categorise the NonJuniorAge as above - switch/case - or array?
+            // juniors = aug31st of current year - dob then take the number of years from this ----------------------------->>>>>>>>
+            switch ($NonJuniorAge)
+            {
+                case $NonJuniorAge > 79:
+                echo "Age Cat J";
+                break;
+                case $NonJuniorAge > 74:
+                echo "Age Cat I";
+                break;
+                case $NonJuniorAge > 69:
+                echo "Age Cat H";
+                break;
+                case $NonJuniorAge > 64:
+                echo "Age Cat G";
+                break;
+                case $NonJuniorAge > 59:
+                echo "Age Cat F";
+                break;
+                case $NonJuniorAge > 54:
+                echo "Age Cat E";
+                break;
+                case $NonJuniorAge > 49:
+                echo "Age Cat D";
+                break;
+                case $NonJuniorAge > 42:
+                echo "Age Cat C";
+                break;
+                case $NonJuniorAge > 35:
+                echo "Age Cat B";
+                break;
+                case $NonJuniorAge > 26:
+                echo "Age Cat A";
+                break;
+                case $NonJuniorAge > 22:
+                echo "Age Cat SEN";
+                break;
+                case $NonJuniorAge > 18:
+                echo "Age Cat U23";
+                break;
+                case $NonJuniorAge > 17:
+                echo "Age Cat J18";
+                break;
+                case $NonJuniorAge > 16:
+                echo "Age Cat J17";
+                break;
+                case $NonJuniorAge > 15:
+                echo "Age Cat J16";
+                break;
+                case $NonJuniorAge > 14:
+                echo "Age Cat J15";
+                break;
+                case $NonJuniorAge > 13:
+                echo "Age Cat J14";
+                break;
+                case $NonJuniorAge > 12:
+                echo "Age Cat J13";
+                break;
+                case $NonJuniorAge > 11:
+                echo "Age Cat J12";
+                break;
+                case $NonJuniorAge > 10:
+                echo "Age Cat J11";
+                break;
+                default;
+                echo "Age Cat U23";
+            }
+
+
+            ////////////////////////////////////////////////////////////////////////////////////////
+
             $scoreID = "";
             if (isset($_GET["scoreID"])) {
                 $scoreID = $_GET["scoreID"];
@@ -76,7 +177,7 @@
             echo ' 
                 <div class="row">
                         <br/>
-                        <form class="col s10 m6 l4" action="includes/addScore.inc.php?edit='.$edit.'&scoreID='.$scoreID.'" method="post">
+                        <form class="col s10 m6 l4 " action="includes/addScore.inc.php?edit='.$edit.'&scoreID='.$scoreID.'" method="post">
 
                             <div class="row">
                                 <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce20">
@@ -88,7 +189,7 @@
             if ($distOrTime == "distance") {
                 echo '
                             <div class="row">
-                                <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce20">
+                                <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce40">
                                     <select name="event1" required>';
                                     
             if ($event1 != "") {
@@ -121,7 +222,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce20">
+                            <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce40">
                                 <div class="input-field col s6">
                                     <input id="timeMin" type="number" class="validate" name="timeMin" value='.$timeMin.' min=0 required />
                                     <label for="timeMin">Score - minutes</label>
@@ -170,7 +271,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce20">
+                                <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce40">
                                     <input id="distance" type="number" class="validate" name="distance" value="'.$scoreDistance.'" required>
                                     <label for="distance">Score in metres</label>
                                 </div>
@@ -181,38 +282,80 @@
             echo '
                             <div class="row">    
                                 <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce40">
-                                    <select name="rate" required>';
+                                    <div class="input-field col s6">
+                                        <select name="rate" required>';
                                     
             if ($rate != "" && $rate != "Free rate" && $rate !=0) {
-                                echo '<option value="'.$rate.'">'.$rate.' spm</option>';
+                                echo '      <option value="'.$rate.'">'.$rate.' spm</option>';
             } else {
-                                echo '<option value="Free rate">Free rate</option>';
+                                echo '      <option value="Free rate">Free rate</option>';
             }
             echo '
-                                    <option value="16">16 spm</option>
-                                    <option value="17">17 spm</option>
-                                    <option value="18">18 spm</option>
-                                    <option value="19">19 spm</option>
-                                    <option value="20">20 spm</option>
-                                    <option value="21">21 spm</option>
-                                    <option value="22">22 spm</option>
-                                    <option value="23">23 spm</option>
-                                    <option value="24">24 spm</option>
-                                    <option value="25">25 spm</option>
-                                    <option value="26">26 spm</option>
-                                    <option value="27">27 spm</option>
-                                    <option value="28">28 spm</option>
-                                    <option value="29">29 spm</option>
-                                    <option value="30">30 spm</option>
-                                    <option value="31">31 spm</option>
-                                    <option value="32">32 spm</option>
-                                </select>
-                                <label>Free rate or capped?</label>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                        <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce40">
+                                            <option value="16">16 spm</option>
+                                            <option value="17">17 spm</option>
+                                            <option value="18">18 spm</option>
+                                            <option value="19">19 spm</option>
+                                            <option value="20">20 spm</option>
+                                            <option value="21">21 spm</option>
+                                            <option value="22">22 spm</option>
+                                            <option value="23">23 spm</option>
+                                            <option value="24">24 spm</option>
+                                            <option value="25">25 spm</option>
+                                            <option value="26">26 spm</option>
+                                            <option value="27">27 spm</option>
+                                            <option value="28">28 spm</option>
+                                            <option value="29">29 spm</option>
+                                            <option value="30">30 spm</option>
+                                            <option value="31">31 spm</option>
+                                            <option value="32">32 spm</option>
+                                        </select>
+                                        <label>Free rate or capped?</label>
+                                    </div> 
+                                    
+                                    <div class="input-field col s6">
+                                        <select name="ageCat" required>'; 
+            
+            if ($ageCat != "") {
+                                $ageCatD = $ageCat;
+                                if (substr($ageCat, 0, 1) == "V") {
+                                    $ageCatD = "Masters ".substr($ageCat,-1);
+                                }  
+                                echo '      <option value="'.$ageCat.'">'.$ageCatD.'</option>';
+            } else {
+                                echo '      <option value="SEN">SEN</option>';
+            }
+            echo '      
+                                            <option value="U23">U23</option>
+                                            <option value="VTA">Masters A</option>
+                                            <option value="VTB">Masters B</option>
+                                            <option value="VTC">Masters C</option>
+                                            <option value="VTD">Masters D</option>
+                                            <option value="VTE">Masters E</option>
+                                            <option value="VTF">Masters F</option>
+                                            <option value="VTG">Masters G</option>
+                                            <option value="VTH">Masters H</option>
+                                            <option value="VTI">Masters I</option>
+                                            <option value="VTJ">Masters J</option>
+                                            <option value="J18">J18</option>
+                                            <option value="J17">J17</option>
+                                            <option value="J16">J16</option>
+                                            <option value="J15">J15</option>
+                                            <option value="J14">J14</option>
+                                            <option value="J13">J13</option>
+                                            <option value="J12">J12</option>
+                                            <option value="J11">J11</option>                                            
+                                        </select>
+                                        <label>Age Category</label>
+                                    </div>
+
+                                </div>
+                            </div>     
+
+            ';
+
+            echo '      <div class="row">
+                        <div class="input-field col s12 offset-s0 offset-m5 offset-l11 marginReduce40">
+                        <div class="col offset-s1">
                             <p>
                             <label>';
             
@@ -239,13 +382,14 @@
                                     </label>';                
                 }
             echo '
-                        
                             </p>
+                        </div>
                         </div>
                         </div>
 
                         <div class="row">
-                        <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce20">
+                        <div class="input-field col s12 offset-s0 offset-m5 offset-l11 marginReduce20">
+                        <div class="col offset-s1">
                             <p>
                             <label>';
             
@@ -272,8 +416,8 @@
                                     </label>';                
                 }
             echo '
-                        
                             </p>
+                        </div>
                         </div>
                         </div>
 
@@ -291,7 +435,7 @@
             } else {
                 echo '
                                 <div class="input-field col s4">
-                                    <button class="btn btn100" type="submit" name="log-submit">EDIT SCORE</button>
+                                    <button class="btn btn100" type="submit" name="log-submit">UPDATE</button>
                                 </div>
                                 <div class="input-field col s4">
                                     <button class="btn btn100" type="submit" name="log-submit" value="log-delete">DELETE</button>

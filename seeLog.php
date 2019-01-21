@@ -7,9 +7,9 @@
 
     require "includes/dbh.inc.php"; // don't include a / before folder name (works on localhost but not heroku)
 
-    if(isset($_POST["whichErgs"])) {        // from report choice page
-        $whichErgs = $_POST["whichErgs"];   // Mine, Club, All
-        $reportType = $_POST["reportType"]; // Calendar, BestAll, BestSeason
+    if(isset($_GET["whichErgs"])) {        // from report choice page
+        $whichErgs = $_GET["whichErgs"];   // Mine, Club, All
+        $reportType = $_GET["reportType"]; // Calendar, BestAll, BestSeason
     }
 
     if(isset($_GET["whichErgs"])) {         // from this page (filters & sorts)
@@ -118,10 +118,33 @@
         }
     }
 
-    
+  /////////////////////////////////// age category filter - work in progress ///////////////////////
+    $ageCat = 99; // default 99 = no filter
+    $ageCatString = "ageCat!=99";
+    if(isset($_GET["ageCat"])) {      // returned when filter used
+        $ageCat = $_GET["ageCat"];
+        if ($ageCat != 99) {
+            $ageCatString = "ageCat='".$ageCat."'";
+
+            if ($ageCat == "Masters") {
+                $ageCatString = "LEFT(ageCat, 1)='V'";
+            } else if ($ageCat == "Juniors") {
+                $ageCatString = "LEFT(ageCat, 1)='J'";
+            } else if ($ageCat[0] == "M") {
+                $ageCatString = "ageCat='VT".substr($ageCat, -1)."'";
+            }
+
+        } else {
+            $ageCatString = "ageCat!=99"; 
+        }
+
+    }
+    echo $ageCatString;
+
+  /////////////////////////////////// age category filter - work in progress ///////////////////////
 
     // filters
-    $where = "WHERE ".$weightString." AND ".$maleString." AND ".$eventTypeString." AND ".$dynamicString;
+    $where = "WHERE ".$weightString." AND ".$maleString." AND ".$eventTypeString." AND ".$dynamicString." AND ".$ageCatString;
 
     $group = ""; // was to test fasted ergs but not used now (queries changed)...
 
@@ -231,8 +254,8 @@
     */
 
 
-////////////////--------------------------------------------------------------
-    //echo "sql = ".$sql;
+////////////////-------------------- SQL query ------------------------------------------
+    echo "sql = ".$sql;
 
     
     //$sortDir == "DESC" ? $sortDir = 0: $sortDir = 1;
@@ -312,6 +335,8 @@
     }
     
     echo '<div class="right-align" id="reportDropdowns">';
+
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////    Gender filter 
     
     echo '<a class="dropdown-trigger btn-small red lighten-2" href="#" data-target="gender">Gender - ';
     if      ($male == 1) { echo 'Male</a>'; }
@@ -319,36 +344,62 @@
     else                 { echo 'All</a>'; }  
               
     echo '      <ul id="gender" class="dropdown-content">
-                    <li><a href="'.$_SERVER["PHP_SELF"].'?male=99&weight='.$weight.'&eventType='.$eventType.'&dynamic='.$dynamic.$sortQString.'">All</a></li>
-                    <li><a href="'.$_SERVER["PHP_SELF"].'?male=1&weight='.$weight.'&eventType='.$eventType.'&dynamic='.$dynamic.$sortQString.'">Male</a></li>
-                    <li><a href="'.$_SERVER["PHP_SELF"].'?male=0&weight='.$weight.'&eventType='.$eventType.'&dynamic='.$dynamic.$sortQString.'">Female</a></li>
+                    <li><a href="'.$_SERVER["PHP_SELF"].'?male=99&weight='.$weight.'&eventType='.$eventType.'&dynamic='.$dynamic.'&ageCat='.$ageCat.$sortQString.'">All</a></li>
+                    <li><a href="'.$_SERVER["PHP_SELF"].'?male=1&weight='.$weight.'&eventType='.$eventType.'&dynamic='.$dynamic.'&ageCat='.$ageCat.$sortQString.'">Male</a></li>
+                    <li><a href="'.$_SERVER["PHP_SELF"].'?male=0&weight='.$weight.'&eventType='.$eventType.'&dynamic='.$dynamic.'&ageCat='.$ageCat.$sortQString.'">Female</a></li>
                 </ul>';
 
- 
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////    Weight filter 
+                
     echo '<a class="dropdown-trigger btn-small red lighten-2" href="#" data-target="weight">Weight - ';
     if      ($weight == 1) { echo 'Light</a>'; }
     else if ($weight == 0) { echo 'Heavy</a>'; }
     else                   { echo 'All</a>'; }    
     
     echo '      <ul id="weight" class="dropdown-content">
-                    <li><a href="'.$_SERVER["PHP_SELF"].'?weight=99&male='.$male.'&eventType='.$eventType.'&dynamic='.$dynamic.$sortQString.'">All</a></li>
-                    <li><a href="'.$_SERVER["PHP_SELF"].'?weight=1&male='.$male.'&eventType='.$eventType.'&dynamic='.$dynamic.$sortQString.'">Light</a></li>
-                    <li><a href="'.$_SERVER["PHP_SELF"].'?weight=0&male='.$male.'&eventType='.$eventType.'&dynamic='.$dynamic.$sortQString.'">Heavy</a></li>
+                    <li><a href="'.$_SERVER["PHP_SELF"].'?weight=99&male='.$male.'&eventType='.$eventType.'&dynamic='.$dynamic.'&ageCat='.$ageCat.$sortQString.'">All</a></li>
+                    <li><a href="'.$_SERVER["PHP_SELF"].'?weight=1&male='.$male.'&eventType='.$eventType.'&dynamic='.$dynamic.'&ageCat='.$ageCat.$sortQString.'">Light</a></li>
+                    <li><a href="'.$_SERVER["PHP_SELF"].'?weight=0&male='.$male.'&eventType='.$eventType.'&dynamic='.$dynamic.'&ageCat='.$ageCat.$sortQString.'">Heavy</a></li>
                 </ul>
             </div>
             <br/><br/>
             <div class="right-align" id="reportDropdowns2">';
 
-    echo '<a class="dropdown-trigger btn-small red lighten-2" href="#" data-target="eventType">Event - ';
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////    Event type filter 
+
+    // hide this filter on mobile - insufficent room - prefer to show more results
+    echo '<a class="dropdown-trigger btn-small red lighten-2 hide-on-small-only" href="#" data-target="eventType">Event - ';
     if      ($eventType == 1) { echo 'Time</a>'; }
     else if ($eventType == 0) { echo 'Dist</a>'; }
     else                      { echo 'All</a>'; }   
     
     echo '      <ul id="eventType" class="dropdown-content">
-                    <li><a href="'.$_SERVER["PHP_SELF"].'?eventType=99&weight='.$weight.'&male='.$male.'&dynamic='.$dynamic.$sortQString.'">All</a></li>
-                    <li><a href="'.$_SERVER["PHP_SELF"].'?eventType=1&weight='.$weight.'&male='.$male.'&dynamic='.$dynamic.$sortQString.'">Time</a></li>
-                    <li><a href="'.$_SERVER["PHP_SELF"].'?eventType=0&weight='.$weight.'&male='.$male.'&dynamic='.$dynamic.$sortQString.'">Meters</a></li>
+                    <li><a href="'.$_SERVER["PHP_SELF"].'?eventType=99&weight='.$weight.'&male='.$male.'&dynamic='.$dynamic.'&ageCat='.$ageCat.$sortQString.'">All</a></li>
+                    <li><a href="'.$_SERVER["PHP_SELF"].'?eventType=1&weight='.$weight.'&male='.$male.'&dynamic='.$dynamic.'&ageCat='.$ageCat.$sortQString.'">Time</a></li>
+                    <li><a href="'.$_SERVER["PHP_SELF"].'?eventType=0&weight='.$weight.'&male='.$male.'&dynamic='.$dynamic.'&ageCat='.$ageCat.$sortQString.'">Meters</a></li>
                 </ul>';
+    
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////    Age Category filter           
+
+    $ageDesc = array("SEN","U23","Juniors","Masters","J18","J17","J16","J15","J14","J13","J12","J11","MastersA","MastersB","MastersC","MastersD","MastersE","MastersF","MastersG","MastersH","MastersI","MastersJ");
+
+    echo '<a class="dropdown-trigger btn-small red lighten-2" href="#" data-target="ageCat">Age - ';
+
+    if ($ageCat == 99 || $ageCat == "") { echo 'All</a>'; } 
+    else {
+        echo $ageCat.'</a>';
+    }
+
+    echo '      <ul id="ageCat" class="dropdown-content">';  
+    echo '          <li><a href="'.$_SERVER["PHP_SELF"].'?ageCat=99&eventType='.$eventType.'&weight='.$weight.'&male='.$male.'&dynamic='.$dynamic.$sortQString.'">All</a></li>';
+
+    for ($i = 0; $i < count($ageDesc); $i++) {
+        echo '<li><a href="'.$_SERVER["PHP_SELF"].'?ageCat='.$ageDesc[$i];
+        echo '&eventType='.$eventType.'&weight='.$weight.'&male='.$male.'&dynamic='.$dynamic.$sortQString.'">'.$ageDesc[$i].'</a></li>';
+    }
+    echo '</ul>';
+
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////    Erg Type filter
 
     echo '<a class="dropdown-trigger btn-small red lighten-2" href="#" data-target="ergType">Erg - ';
     if      ($dynamic == 1) { echo 'Dynamic</a>'; }
@@ -356,9 +407,9 @@
     else                    { echo 'All</a>'; }      
               
     echo '      <ul id="ergType" class="dropdown-content">
-                    <li><a href="'.$_SERVER["PHP_SELF"].'?dynamic=99&weight='.$weight.'&male='.$male.'&eventType='.$eventType.$sortQString.'">All</a></li>
-                    <li><a href="'.$_SERVER["PHP_SELF"].'?dynamic=1&weight='.$weight.'&male='.$male.'&eventType='.$eventType.$sortQString.'">Dynamic</a></li>
-                    <li><a href="'.$_SERVER["PHP_SELF"].'?dynamic=0&weight='.$weight.'&male='.$male.'&eventType='.$eventType.$sortQString.'">Std</a></li>
+                    <li><a href="'.$_SERVER["PHP_SELF"].'?dynamic=99&weight='.$weight.'&male='.$male.'&eventType='.$eventType.'&ageCat='.$ageCat.$sortQString.'">All</a></li>
+                    <li><a href="'.$_SERVER["PHP_SELF"].'?dynamic=1&weight='.$weight.'&male='.$male.'&eventType='.$eventType.'&ageCat='.$ageCat.$sortQString.'">Dynamic</a></li>
+                    <li><a href="'.$_SERVER["PHP_SELF"].'?dynamic=0&weight='.$weight.'&male='.$male.'&eventType='.$eventType.'&ageCat='.$ageCat.$sortQString.'">Std</a></li>
                 </ul>
             </div>   
             <div>
@@ -367,16 +418,18 @@
     echo  $pageControls.'
                 </ul>
                 
-            </div>
+            </div>';
             
-            <!-- TABLE HEADERS WITH SORTABLE HEADINGS SHOWN IN BLUE -->
+ ////////////////////////////////////////////////////////////////////// TABLE HEADERS WITH SORTABLE HEADINGS SHOWN IN BLUE 
+
+    echo '  
             <hr/>
             <table class="striped tableStyle1 centered" >
                 <thead>
                     <tr>
                         <th id="editDel"></th>';
 
-    $filterQString = '&male='.$male.'&weight='.$weight.'&eventType='.$eventType.'&dynamic='.$dynamic.'&whichErgs='.$whichErgs.'&reportType='.$reportType;              
+    $filterQString = '&male='.$male.'&weight='.$weight.'&eventType='.$eventType.'&dynamic='.$dynamic.'&whichErgs='.$whichErgs.'&ageCat='.$ageCat.'&reportType='.$reportType;              
     
     if ($sortType == "date1") {
         echo '<th id="dateCol"><a href="'.$_SERVER["PHP_SELF"].'?dateSort='.!$dateSort.$filterQString.'" class="sortedCol">Date</th>';
@@ -441,10 +494,16 @@
         $row["dynamic1"] == 1 ? $dynamic = "Dynamic" : $dynamic = "Standard";
         $row["weight1"] == 1 ? $weight1 = "Light" : $weight1 = "Heavy";
         $row["male"] == 1 ? $male = "Male" : $male = "Female";
-        $event1String = $row["event2"]; 
+        $event1String = $row["event2"];
+        $ageCat = $row["ageCat"];
+        if (substr($ageCat, 0, 1) == "V") {
+            $ageCat = "Masters ".substr($ageCat,-1);
+        }
+
+        // start of part of scores table with values
         echo '              
                     <tr>
-                        <td>';
+                        <td class="reduceColHeight">';
         if ($row["idUsers"] == $_SESSION["userId"]) {
             $editDetails = "addScoreMain.php?edit=y"; 
             $editDetails .= "&date=".$row["date1"];
@@ -461,10 +520,12 @@
                 $s = round(($row["scoreTime"] - round($m * 60))*10)/10;
                 $editDetails .= '&scoreMinutes='.$m.'&scoreSeconds='.$s;
             }
+            $editDetails .= '&ageCat='.$row["ageCat"];
             $editDetails .= '&scoreID='.$row["idResults"];
-            echo '<a href="'.$editDetails.'" class="tooltipped" data-position="top" data-tooltip="Edit/Delete"><i class="tiny material-icons">edit</i></a>';
+            echo '<a href="'.$editDetails.'" class="btn reduceColHeight tooltipped" data-position="top" data-tooltip="Edit/Delete"><i class="tiny material-icons">edit</i></a>';
         }                
         echo '          </td>
+        
                         <td>'.date('d-M-Y', strtotime($row["date1"])).'</td>
                         <td>'.$event1String.'</td>
                         <td>'.$score.'</td>
@@ -474,12 +535,12 @@
                         <td class="tdWidth">'.$row["club"].'</td>
                         <td>'.$male.'</td>
                         <td>'.$weight1.'</td>
-                        <td>'.$row["ageCat"].'</td>
+                        <td>'.$ageCat.'</td>
                     </tr>';
         }
 
     } else {
-        echo "0 results";
+        echo "<p class='tableStyle1'>0 results</p>";
     }
 
     echo '      </tbody>
