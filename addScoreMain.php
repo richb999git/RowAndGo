@@ -441,7 +441,7 @@
                                     <button class="btn btn100" type="submit" name="log-submit" value="log-delete">DELETE</button>
                                 </div>
                                 <div class="input-field col s4">
-                                    <a href="javascript:history.go(-1)" class="btn btn100" type="button" name="log-cancel">CANCEL</a>
+                                    <a href="javascript:history.go(-1)" class="btn btn100" type="text" name="log-cancel">CANCEL</a>
                                 </div>';
             }
 

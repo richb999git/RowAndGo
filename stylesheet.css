@@ -142,6 +142,8 @@ font-size: 1.5rem;  /* was 2rem */
 }
 .btn100 {
     width: 100%; /* used on Materialize buttons */
+    font-size: 80% ; /* so text is small enough on some screen sizes to still be centered */
+    -webkit-appearance: none !important; /* to make buttons appear the same */
 }
 .brand-logo {
     margin-left: 5px; /* move logo off the edge */
