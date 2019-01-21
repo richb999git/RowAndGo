@@ -139,7 +139,7 @@
         }
 
     }
-    echo $ageCatString;
+    
 
   /////////////////////////////////// age category filter - work in progress ///////////////////////
 
@@ -255,7 +255,7 @@
 
 
 ////////////////-------------------- SQL query ------------------------------------------
-    echo "sql = ".$sql;
+    //echo "sql = ".$sql;
 
     
     //$sortDir == "DESC" ? $sortDir = 0: $sortDir = 1;

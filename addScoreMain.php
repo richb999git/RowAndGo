@@ -66,98 +66,29 @@
                 // U23 19-22, SEN 23-26 (and above), a 27-35, b 36-42, c 43-49, d 50-54, e 55-59, f 60-64, g 65-69, h 70-74, i 75-79, j 80-
                 // on or before 31st December
                 // Junior categories based on academic year, i.e. From Sep 1st to Aug 31st e.g if you turn 16 in that period you are J16
-
-                // get current year $dob = date('Y-m-d', strtotime($dob));
-                // today = strtotime(date("Y-m-d"))
                 $year = date("Y", strtotime(date("Y-m-d")));
-                $endOfYear = "31/12/".$year;
-                echo $endOfYear;
-                $endOfYearAsDate = date("d-m-Y", strtotime("31-12-".$year));
-                echo $endOfYearAsDate;
-                // get DOB somehow - require dbh.inc.php - SELECT -- no get dob at login----------------
-                // nonJuniorAge = year - $dob year
+                $endOfYear = $year."-12-31"; // calendar year end for non juniors
+                $dobYear = date("Y", strtotime(date("Y-m-d", strtotime($_SESSION["dob"]))));
+                $NonJuniorAge = $year - $dobYear;
+                $currentMonth = date("m", strtotime(date("Y-m-d")));
+                if ($currentMonth > 8) { $year++; } // use with acedemic year
+                $endOfYearJuniors = $year."-08-31";  // acedemic year end
+                $juniorAge = strtotime($endOfYearJuniors) - strtotime($_SESSION["dob"]);  // in seconds. 365.25 for leap years
+                $juniorAge = floor($juniorAge / (60*60*24*365.25)); // in years
+                $juniorAge <= 18 ? $NonJuniorAge = 0 : $juniorAge = 0;
+                $ages = array(79, 74, 69, 64, 59, 54, 49, 42, 35, 26, 22, 18, 17, 16, 15, 14, 13, 12, 11, 1);
+                $ageCats = array("VTJ", "VTI", "VTH", "VTG", "VTF", "VTE", "VTD", "VTC", "VTB", "VTA", "SEN", "U23", "J18", "J17", "J16", "J15", "J14", "J13", "J12", "J11" );
+                $i = 0;
+                while ($ageCat == "") {
+                    if ($NonJuniorAge > $ages[$i]) { // 79 first
+                        $NonJuniorAge == 18 ? $ageCat = "U23" : $ageCat = $ageCats[$i];
+                    } else if ($juniorAge > $ages[$i]) { 
+                        $ageCat = $ageCats[$i];
+                    }
+                    $i++;
+                }
             }
 
-            $year = date("Y", strtotime(date("Y-m-d")));
-            $endOfYear = "31/12/".$year;
-            echo $endOfYear;
-            $endOfYearAsDate = date("d-m-Y", strtotime("31-12-".$year));
-            echo $endOfYearAsDate;
-            echo "-----------DOB-----------".$_SESSION["dob"];
-            $dobYear = date("Y", strtotime(date("Y-m-d", strtotime($_SESSION["dob"]))));
-            echo "-----------DOB Year---------".$dobYear;
-            $NonJuniorAge = $year - $dobYear;
-            echo "------------NonJuniorAge----------".$NonJuniorAge;
-            // categorise the NonJuniorAge as above - switch/case - or array?
-            // juniors = aug31st of current year - dob then take the number of years from this ----------------------------->>>>>>>>
-            switch ($NonJuniorAge)
-            {
-                case $NonJuniorAge > 79:
-                echo "Age Cat J";
-                break;
-                case $NonJuniorAge > 74:
-                echo "Age Cat I";
-                break;
-                case $NonJuniorAge > 69:
-                echo "Age Cat H";
-                break;
-                case $NonJuniorAge > 64:
-                echo "Age Cat G";
-                break;
-                case $NonJuniorAge > 59:
-                echo "Age Cat F";
-                break;
-                case $NonJuniorAge > 54:
-                echo "Age Cat E";
-                break;
-                case $NonJuniorAge > 49:
-                echo "Age Cat D";
-                break;
-                case $NonJuniorAge > 42:
-                echo "Age Cat C";
-                break;
-                case $NonJuniorAge > 35:
-                echo "Age Cat B";
-                break;
-                case $NonJuniorAge > 26:
-                echo "Age Cat A";
-                break;
-                case $NonJuniorAge > 22:
-                echo "Age Cat SEN";
-                break;
-                case $NonJuniorAge > 18:
-                echo "Age Cat U23";
-                break;
-                case $NonJuniorAge > 17:
-                echo "Age Cat J18";
-                break;
-                case $NonJuniorAge > 16:
-                echo "Age Cat J17";
-                break;
-                case $NonJuniorAge > 15:
-                echo "Age Cat J16";
-                break;
-                case $NonJuniorAge > 14:
-                echo "Age Cat J15";
-                break;
-                case $NonJuniorAge > 13:
-                echo "Age Cat J14";
-                break;
-                case $NonJuniorAge > 12:
-                echo "Age Cat J13";
-                break;
-                case $NonJuniorAge > 11:
-                echo "Age Cat J12";
-                break;
-                case $NonJuniorAge > 10:
-                echo "Age Cat J11";
-                break;
-                default;
-                echo "Age Cat U23";
-            }
-
-
-            ////////////////////////////////////////////////////////////////////////////////////////
 
             $scoreID = "";
             if (isset($_GET["scoreID"])) {
