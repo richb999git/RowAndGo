@@ -1,5 +1,5 @@
 <?php
-if (isset($_POST["login-submit"])) {
+if (isset($_POST["login-submit"])) { // check user has come from the login page
 
     require "dbh.inc.php";
 

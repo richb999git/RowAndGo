@@ -1,5 +1,5 @@
 <?php
-if (isset($_POST["log-submit"])) {
+if (isset($_POST["log-submit"])) { // check user has come from the log score page
     
     require "dbh.inc.php";
     session_start();

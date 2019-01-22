@@ -1,5 +1,5 @@
 <?php
-if (isset($_POST["signup-submit"])) {
+if (isset($_POST["signup-submit"])) { // check user has come from the signup page
     
     require "dbh.inc.php";
 

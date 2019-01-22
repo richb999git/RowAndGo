@@ -20,9 +20,11 @@
                     $errorMessage = "Score deleted successfully";
                 } else if ($_GET["error"] == "DELETE_ERROR") {
                     $errorMessage = "Error deleting score";
+                } else if ($_GET["error"] == "nodirectaccess") {
+                    $errorMessage = "Access denied";
                 } else if ($_GET["error"] == "sqlerror") {
                     $errorMessage = "Database error when updating. Please try again.";
-                }
+                } else { $errorMessage = "Error";}
                 echo '
                     <div class="row">
                         <div class="col s12 m4 offset-m4">
