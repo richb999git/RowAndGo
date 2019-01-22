@@ -217,7 +217,8 @@
                                         <select name="rate" required>';
                                     
             if ($rate != "" && $rate != "Free rate" && $rate !=0) {
-                                echo '      <option value="'.$rate.'">'.$rate.' spm</option>';
+                                echo '      <option value="'.$rate.'">'.$rate.' spm</option>
+                                            <option value="Free rate">Free rate</option>';
             } else {
                                 echo '      <option value="Free rate">Free rate</option>';
             }
@@ -251,7 +252,8 @@
                                 if (substr($ageCat, 0, 1) == "V") {
                                     $ageCatD = "Masters ".substr($ageCat,-1);
                                 }  
-                                echo '      <option value="'.$ageCat.'">'.$ageCatD.'</option>';
+                                echo '      <option value="'.$ageCat.'">'.$ageCatD.'</option>
+                                            <option value="SEN">SEN</option>';
             } else {
                                 echo '      <option value="SEN">SEN</option>';
             }

@@ -29,7 +29,11 @@
                     <div class="row">
                         <div class="col s12 m4 offset-m4">
                             <div class="card-panel teal center-align z-depth-3">
-                                <span class="white-text">'.$errorMessage.'</span> 
+                                <span class="white-text">'.$errorMessage.'</span>';
+                    if ($errorMessage = "Score deleted successfully") {
+                        echo '<p><a class="btn white-text" href="javascript:history.go(-2)">Back to scores</a></p>';
+                    }
+                    echo '
                             </div>
                         </div>
                     </div>';
