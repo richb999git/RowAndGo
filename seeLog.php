@@ -39,12 +39,18 @@ if (isset($_SESSION["userId"])) {
     $sortDir = 0; // overall sort direction
 
     $cast = ""; // for event sort
-    $EVENTSORT = "cast(event2 as unsigned)";
+    $DATE_COL = "date1";
+    //$EVENT_SORT_COL = "cast(ts.event1 as unsigned)"; // "cast(event1 as unsigned)"
+    //$ROWER_NAME_COL = "ts.uidUsers"; // "rowusers.uidUsers";
+    //$ROWER_CLUB_COL = "ts.club"; // "rowusers.club";
+    $EVENT_SORT_COL = "event1"; // "cast(event1 as unsigned)"
+    $ROWER_NAME_COL = "uidUsers"; // "rowusers.uidUsers";
+    $ROWER_CLUB_COL = "club"; // "rowusers.club";
 
-    $sortType = "date1"; // default
+    $sortType = $DATE_COL; // default
     if(isset($_GET["sortType"])) {      // returned when pagination used
         $sortType = $_GET["sortType"];
-        if ($sortType == "event1") { $sortType = $EVENTSORT; }
+        if ($sortType == "event1") { $sortType = $EVENT_SORT_COL; }
         $sortDir = $_GET["sortDir"];  
     }
 
@@ -52,19 +58,19 @@ if (isset($_SESSION["userId"])) {
 
     if(isset($_GET["dateSort"])) {      // returned when sort used
         $sortDir = $_GET["dateSort"]; 
-        $sortType = "date1";
+        $sortType = $DATE_COL;
     }
     if(isset($_GET["eventSort"])) {      // returned when sort used
         $sortDir = $_GET["eventSort"];
-        $sortType = $EVENTSORT;
+        $sortType = $EVENT_SORT_COL;
     }
     if(isset($_GET["nameSort"])) {      // returned when sort used
         $sortDir = $_GET["nameSort"];  
-        $sortType = "rowusers.uidUsers";
+        $sortType = $ROWER_NAME_COL;
     }
     if(isset($_GET["clubSort"])) {      // returned when sort used
         $sortDir = $_GET["clubSort"]; 
-        $sortType = "rowusers.club";
+        $sortType = $ROWER_CLUB_COL;
     }
 
     ///////////////    FILTERS    //////////////////////////////////////////////
@@ -150,9 +156,9 @@ if (isset($_SESSION["userId"])) {
     echo '
         <main>';
     if ($reportType == "Calendar") {
-        echo '<a href="'.$_SERVER["PHP_SELF"].'?reportType='.$reportType.'&whichErgs='.$whichErgs.'" class="btn-small tooltipped" data-position="top" data-tooltip="reset view">Calendar View</a>';
+        echo '<a href="'.$_SERVER["PHP_SELF"].'?reportType='.$reportType.'&whichErgs='.$whichErgs.'" class="btn-small tooltipped" data-position="top" data-tooltip="reset view">Calendar - '.$whichErgs.'</a>';
     } else {
-        echo '<a href="'.$_SERVER["PHP_SELF"].'?reportType='.$reportType.'&whichErgs='.$whichErgs.'" class="btn-small tooltipped" data-position="top" data-tooltip="reset view"">Bests View</a>';
+        echo '<a href="'.$_SERVER["PHP_SELF"].'?reportType='.$reportType.'&whichErgs='.$whichErgs.'" class="btn-small tooltipped" data-position="top" data-tooltip="reset view"">Bests - '.$whichErgs.'</a>';
     }   
     echo '<div class="right-align" id="reportDropdowns">';
 
@@ -172,32 +178,32 @@ if (isset($_SESSION["userId"])) {
 
     $filterQString = '&male='.$male.'&weight='.$weight.'&eventType='.$eventType.'&dynamic='.$dynamic.'&whichErgs='.$whichErgs.'&ageCat='.$ageCat.'&reportType='.$reportType;              
     
-    if ($sortType == "date1") {
-        echo '<th id="dateCol"><a href="'.$_SERVER["PHP_SELF"].'?dateSort='.!$dateSort.$filterQString.'" class="sortedCol">Date</th>';
+    if ($sortType == $DATE_COL) {
+        echo           '<th id="dateCol"><a href="'.$_SERVER["PHP_SELF"].'?dateSort='.!$dateSort.$filterQString.'" class="sortedCol">Date</th>';
     } else {
-        echo '<th id="dateCol"><a href="'.$_SERVER["PHP_SELF"].'?dateSort='.!$dateSort.$filterQString.'" >Date</th>';
+        echo           '<th id="dateCol"><a href="'.$_SERVER["PHP_SELF"].'?dateSort='.!$dateSort.$filterQString.'" >Date</th>';
     } 
     
-    if ($sortType == $EVENTSORT) {
-        echo '<th id="eventCol"><a href="'.$_SERVER["PHP_SELF"].'?eventSort='.!$eventSort.$filterQString.'" class="sortedCol">Event</th>';
+    if ($sortType == $EVENT_SORT_COL) {
+        echo           '<th id="eventCol"><a href="'.$_SERVER["PHP_SELF"].'?eventSort='.!$eventSort.$filterQString.'" class="sortedCol">Event</th>';
     } else {
-        echo '<th id="eventCol"><a href="'.$_SERVER["PHP_SELF"].'?eventSort='.!$eventSort.$filterQString.'" >Event</th>';
+        echo           '<th id="eventCol"><a href="'.$_SERVER["PHP_SELF"].'?eventSort='.!$eventSort.$filterQString.'" >Event</th>';
     }
 
     echo '              <th id="timeDistCol">Time/Dist</th>
                         <th id="splitCol">/500m</th>
                         <th id="dynStdCol">Std/Dyn</th>';
      
-    if ($sortType == "rowusers.uidUsers") {
-        echo '<th><a href="'.$_SERVER["PHP_SELF"].'?nameSort='.!$nameSort.$filterQString.'" class="sortedCol">Name</th>';
+    if ($sortType == $ROWER_NAME_COL) {
+        echo           '<th><a href="'.$_SERVER["PHP_SELF"].'?nameSort='.!$nameSort.$filterQString.'" class="sortedCol">Name</th>';
     } else {
-        echo '<th><a href="'.$_SERVER["PHP_SELF"].'?nameSort='.!$nameSort.$filterQString.'" >Name</th>';
+        echo           '<th><a href="'.$_SERVER["PHP_SELF"].'?nameSort='.!$nameSort.$filterQString.'" >Name</th>';
     }
             
-    if ($sortType == "rowusers.club") {
-        echo '<th><a href="'.$_SERVER["PHP_SELF"].'?clubSort='.!$clubSort.$filterQString.'" class="sortedCol">Club</th>';
+    if ($sortType == $ROWER_CLUB_COL) {
+        echo           '<th><a href="'.$_SERVER["PHP_SELF"].'?clubSort='.!$clubSort.$filterQString.'" class="sortedCol">Club</th>';
     } else {
-        echo '<th><a href="'.$_SERVER["PHP_SELF"].'?clubSort='.!$clubSort.$filterQString.'">Club</th>';
+        echo           '<th><a href="'.$_SERVER["PHP_SELF"].'?clubSort='.!$clubSort.$filterQString.'">Club</th>';
     }
 
     echo '              <th>Gender</th>

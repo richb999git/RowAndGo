@@ -4,15 +4,8 @@
 
     <main>
         <?php
-            //if (isset($_SESSION["userId"])) {
-            //    echo "<p>You are logged in ".$_SESSION["userUid"]."!</p>";
-            //}
-            //else {
-            //    echo "<p>You are logged out!</p>";
-            //}
 
-            if (isset($_GET["error"])) {
-                
+            if (isset($_GET["error"])) {                
 
                 if ($_GET["error"] == "notloggedin") {
                     $errorMessage = "You need to be logged in!";
@@ -24,13 +17,15 @@
                     $errorMessage = "Access denied";
                 } else if ($_GET["error"] == "sqlerror") {
                     $errorMessage = "Database error when updating. Please try again.";
+                } else if ($_GET["error"] == "REPORT_ERROR") {
+                    $errorMessage = "Database error when reporting. Please try again.";
                 } else { $errorMessage = "Error";}
                 echo '
                     <div class="row">
                         <div class="col s12 m4 offset-m4">
                             <div class="card-panel teal center-align z-depth-3">
                                 <span class="white-text">'.$errorMessage.'</span>';
-                    if ($errorMessage = "Score deleted successfully") {
+                    if ($errorMessage == "Score deleted successfully") {
                         echo '<p><a class="btn white-text" href="javascript:history.go(-2)">Back to scores</a></p>';
                     }
                     echo '

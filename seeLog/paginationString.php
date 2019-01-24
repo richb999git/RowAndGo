@@ -2,8 +2,16 @@
 
 ///////////////    PAGINATION CONTROLS STRING CREATION  //////////////////////////
 
-$result = mysqli_query($conn, $sql);  // <<<<<<< Need to use prepared statements? Is sql injection a risk? No user text can be entered.
-////////////////////////////////////////////// check for error and handle  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+if (mysqli_query($conn, $sql)) {
+    $result = mysqli_query($conn, $sql);  // No need to use prepared statements. SQL injection is not a risk. No user text can be entered.
+} else {
+    //echo "Error deleting record: " . mysqli_error($conn);
+    mysqli_close($conn);
+    header("Location: index.php?error=REPORT_ERROR");
+    exit(); 
+}
+
+
 $noOfLines = mysqli_num_rows($result);
 
 $linesPerPage = 15;

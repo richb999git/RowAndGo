@@ -7,110 +7,109 @@
     $group = ""; // was to test fasted ergs but not used now (queries changed)...
 
     $sortDir == 0 ? $sortDirSQL = "DESC": $sortDirSQL = "ASC";
-    $sortType == $EVENTSORT ? $sortType2 = ", rate ".$sortDirSQL : $sortType2 = "";
+    $sortString = $DATE_COL; // default
+    $sortType2 = ""; // default
+    $userOrClub = ""; // default
     $idPerson = $_SESSION["userId"]; 
     $club = $_SESSION["club"];
 
     if ($reportType == "Calendar") {
-        // Calendar view - All
+        
         if ($whichErgs == "Mine") {
             $userOrClub = " AND idPerson=".$idPerson;
         } else if ($whichErgs == "Club") {
             $userOrClub = " AND rowusers.club='".$club."'";
-        } else {
-            $userOrClub = "";
         }
+
+        if ($sortType == $EVENT_SORT_COL) {
+            $sortString = "cast(".$EVENT_SORT_COL." as unsigned)";
+            $sortType2 = ", rate ".$sortDirSQL;
+        } else if ($sortType == $ROWER_NAME_COL) {
+            $sortString = "rowusers.".$ROWER_NAME_COL;
+        } else if ($sortType == $ROWER_CLUB_COL) {
+            $sortString = "rowusers.".$ROWER_CLUB_COL;
+        }
+
         $sql = "SELECT idResults, idPerson, date1, event1, eventType, scoreDistance, scoreTime, dynamic1, weight1, rate, ageCat, rowusers.idUsers, rowusers.uidUsers, rowusers.male, rowusers.club";
         $sql .= ", left(event1, length(event1)-6 ) as event2 FROM `results` INNER JOIN rowusers ON results.idPerson=rowusers.idUsers ";
-        $sql .= "WHERE ".$where.$userOrClub.$group." ORDER BY ".$sortType." ".$sortDirSQL.$sortType2;
+        $sql .= "WHERE ".$where.$userOrClub.$group." ORDER BY ".$sortString." ".$sortDirSQL.$sortType2;
     }
     
+
     if ($reportType == "BestAll" || $reportType == "BestYear") {
 
+        if ($sortType == $EVENT_SORT_COL) {
+            $sortString = "cast(ts.".$EVENT_SORT_COL." as unsigned)";
+            $sortType2 = ", rate ".$sortDirSQL;
+        } else if ($sortType == $ROWER_NAME_COL) {
+            $sortString = "ts.".$ROWER_NAME_COL;
+        } else if ($sortType == $ROWER_CLUB_COL) {
+            $sortString = "ts.".$ROWER_CLUB_COL;
+        } 
+
         if ($whichErgs == "Mine") {
-            $sql = "select *, left(event1, length(event1)-6 ) as event2 from results e";
-            $sql .= " inner join rowusers on(e.idPerson=rowusers.idUsers)";
-            $sql .= " where scoreDistance in(select max(scoreDistance) from results WHERE idPerson=".$idPerson." group by event1 )  AND";
-            $sql .= " scoreTime in(select min(scoreTime) from results WHERE idPerson=".$idPerson." group by event1 )";
-            $sql .= " AND idPerson=".$idPerson;
-            $sql .= " AND ".$where.$group;
-            if ($reportType == "BestYear") {$sql .=" HAVING YEAR(date1) = YEAR(CURDATE())";}
-            $sql .= " ORDER BY ".$sortType." ".$sortDirSQL.$sortType2;
-
+            $userOrClub = " AND idPerson=".$idPerson;
         } else if ($whichErgs == "Club") {
-            $sql = "select *, left(event1, length(event1)-6 ) as event2 from results";
-            $sql .= " inner join rowusers on(idPerson=rowusers.idUsers)";
-            $sql .= "where scoreDistance in(select max(scoreDistance) from ";
-            $sql .= "( select * from results inner join rowusers on(idPerson=rowusers.idUsers) WHERE rowusers.club ='".$club."' )";
-            $sql .= " t2 group by event1)  AND ";
-            //$sql .= " t2 group by left(event1, length(event1)-6 ))  AND "; // alternative group
-            $sql .= "scoreTime in(select min(scoreTime) from ";
-            $sql .= "( select * from results inner join rowusers on(idPerson=rowusers.idUsers) WHERE rowusers.club ='".$club."' )";
-            $sql .= " t3 group by event1 ) ";
-            //$sql .= " t3 group by left(event1, length(event1)-6 ))"; // alternative group
-            $sql .= "HAVING rowusers.club ='".$club."' AND ".$where; // where here is in Having
-            if ($reportType == "BestYear") {$sql .=" AND YEAR(date1) = YEAR(CURDATE())";}
-            $sql .= " ORDER BY ".$sortType." ".$sortDirSQL.$sortType2;
+            $userOrClub = " AND rowusers.club='".$club."'";
+        } // else All and no filter - ""
+        
+        $reportType == "BestYear" ? $thisYear = " AND YEAR(date1) = YEAR(CURDATE()) " : $thisYear = ""; 
 
-        } else {  // All
-            $sql = "select *, left(event1, length(event1)-6 ) as event2 from results e";
-            $sql .= " inner join rowusers on(e.idPerson=rowusers.idUsers)";
-            $sql .= " where scoreDistance in(select max(scoreDistance) from results group by event1 )  AND";
-            $sql .= " scoreTime in(select min(scoreTime) from results group by event1 )";
-            $sql .= " AND ".$where;
-            if ($reportType == "BestYear") {$sql .=" AND YEAR(date1) = YEAR(CURDATE()) ";}
-            $sql .= $group." ORDER BY ".$sortType." ".$sortDirSQL.$sortType2;            
-        }
+        $sql = "SELECT ts.*, left(ts.event1, length(ts.event1)-6 ) as event2 FROM (";
+        $sql .= "SELECT * from results INNER JOIN rowusers on(results.idPerson=rowusers.idUsers) ";
+        $sql .= " WHERE ".$where." ";
+        $sql .= $userOrClub.$thisYear;
+        $sql .= " ) ts ";
+        $sql .= "INNER JOIN";
+        $sql .= "(SELECT event1, MIN(scoreTime) AS minScore, MAX(scoreDistance) AS maxDistance ";
+        $sql .= "FROM (";
+        $sql .= "SELECT * from results INNER JOIN rowusers on(results.idPerson=rowusers.idUsers) ";
+        $sql .= " WHERE ".$where." ";
+        $sql .= $userOrClub.$thisYear;
+        $sql .= " ) tmp ";
+        $sql .= "GROUP BY event1) groupedts ";
+        $sql .= "ON ts.event1 = groupedts.event1 ";
+        $sql .= "AND ts.scoreTime = groupedts.minScore AND ts.scoreDistance = groupedts.maxDistance ";
+        $sql .= "ORDER BY ".$sortString." ".$sortDirSQL.$sortType2;
+
     }
 
   /////// sql queries in a more readable form:
-
-  //// Bests view - overall using event1
     /*
-    select * from results e
-    inner join rowusers d on(e.idPerson=d.idUsers)
-    where scoreDistance in(select max(scoreDistance) from results group by event1 )  AND
-    scoreTime in(select min(scoreTime) from results group by event1 )
-    AND WHERE xxxxxxxxxx
-    ORDER BY xxxxxxx
-    */
+    // Best view - new
+    SELECT ts.*		
+    FROM 		
+        (		
+        SELECT * from results 		
+        INNER JOIN rowusers on(results.idPerson=rowusers.idUsers)		
+        where ........................idPerson/rowusers.club AND Year......		
+        )		
+    ts		
+    INNER JOIN		
+        (SELECT event1, MIN(scoreTime) AS minScore, MAX(scoreDistance) AS maxDistance		
+        FROM		
+            (	
+            SELECT * from results 	
+            inner join rowusers on(results.idPerson=rowusers.idUsers)	
+            where .....................idPerson/rowusers.club AND Year......	
+            ) tmp	
+        GROUP BY event1) groupedts		
+    ON ts.event1 = groupedts.event1 		
+    AND ts.scoreTime = groupedts.minScore		
+    AND ts.scoreDistance = groupedts.maxDistance		
+    ORDER BY `ts`.`event1` ASC	
+            
+    */  
 
-
-  //// Bests view - individual using event1
-    /*
-    select * from results e
-    inner join rowusers d on(e.idPerson=d.idUsers)
-    where scoreDistance in(select max(scoreDistance) from results WHERE idPerson=11 group by event1)  AND
-    scoreTime in(select min(scoreTime) from results WHERE idPerson=11 group by event1 )
-    AND idPerson=11
-    AND WHERE xxxxxxxxxx
-    ORDER BY xxxxxxx
-    */
-
-
-  //// Bests view - club using event1
-    /*
-    select * from results
-    inner join rowusers on(idPerson=rowusers.idUsers)
-    where scoreDistance in(select max(scoreDistance) from 
-    (
-        select * from results 
-        inner join rowusers on(idPerson=rowusers.idUsers)
-        WHERE rowusers.club ="Greenbank" 
-    ) t2 group by event1)  AND
-    scoreTime in(select min(scoreTime) from 
-    (             
-        select * from results 
-        inner join rowusers on(idPerson=rowusers.idUsers)
-        WHERE rowusers.club ="Greenbank"            
-    ) t3 group by event1 )
-    HAVING xxxxxxxxxxxxx
-    ORDER BY xxxxxxx
-
-    */
+    //ts = top scores		     
+       
+    // insert above for individual bests/club bests and current year bests
+    // Where idPerson=14		
+    // Where rowusers.club="Greenbank"		
+    // AND YEAR(date1) = YEAR(CURDATE())
 
 
 ////////////////-------------------- SQL query ------------------------------------------
-    echo ", sql = ".$sql;
+    //echo ", sql = ".$sql;
 
 ?>
