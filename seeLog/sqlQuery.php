@@ -4,6 +4,7 @@
 
     // filters
     $where = $weightString." AND ".$maleString." AND ".$eventTypeString." AND ".$dynamicString." AND ".$ageCatString;
+    $having = $event2String;
     $group = ""; // was to test fasted ergs but not used now (queries changed)...
 
     $sortDir == 0 ? $sortDirSQL = "DESC": $sortDirSQL = "ASC";
@@ -32,7 +33,7 @@
 
         $sql = "SELECT idResults, idPerson, date1, event1, eventType, scoreDistance, scoreTime, dynamic1, weight1, rate, ageCat, rowusers.idUsers, rowusers.uidUsers, rowusers.male, rowusers.club";
         $sql .= ", left(event1, length(event1)-6 ) as event2 FROM `results` INNER JOIN rowusers ON results.idPerson=rowusers.idUsers ";
-        $sql .= "WHERE ".$where.$userOrClub.$group." ORDER BY ".$sortString." ".$sortDirSQL.$sortType2;
+        $sql .= "WHERE ".$where.$userOrClub.$group." ".$having." ORDER BY ".$sortString." ".$sortDirSQL.$sortType2;
     }
     
 
@@ -70,7 +71,8 @@
         $sql .= "GROUP BY event1) groupedts ";
         $sql .= "ON ts.event1 = groupedts.event1 ";
         $sql .= "AND ts.scoreTime = groupedts.minScore AND ts.scoreDistance = groupedts.maxDistance ";
-        $sql .= "ORDER BY ".$sortString." ".$sortDirSQL.$sortType2;
+        $sql .= $having;
+        $sql .= " ORDER BY ".$sortString." ".$sortDirSQL.$sortType2;
 
     }
 
@@ -96,7 +98,8 @@
         GROUP BY event1) groupedts		
     ON ts.event1 = groupedts.event1 		
     AND ts.scoreTime = groupedts.minScore		
-    AND ts.scoreDistance = groupedts.maxDistance		
+    AND ts.scoreDistance = groupedts.maxDistance
+    HAVING event2 = '2000m'..................................... or blank		
     ORDER BY `ts`.`event1` ASC	
             
     */  

@@ -40,12 +40,9 @@ if (isset($_SESSION["userId"])) {
 
     $cast = ""; // for event sort
     $DATE_COL = "date1";
-    //$EVENT_SORT_COL = "cast(ts.event1 as unsigned)"; // "cast(event1 as unsigned)"
-    //$ROWER_NAME_COL = "ts.uidUsers"; // "rowusers.uidUsers";
-    //$ROWER_CLUB_COL = "ts.club"; // "rowusers.club";
-    $EVENT_SORT_COL = "event1"; // "cast(event1 as unsigned)"
-    $ROWER_NAME_COL = "uidUsers"; // "rowusers.uidUsers";
-    $ROWER_CLUB_COL = "club"; // "rowusers.club";
+    $EVENT_SORT_COL = "event1"; // "cast(event1 as unsigned)" or "cast(ts.event1 as unsigned)"
+    $ROWER_NAME_COL = "uidUsers"; // "rowusers.uidUsers"; or "ts.uidUsers"
+    $ROWER_CLUB_COL = "club"; // "rowusers.club"; or "ts.club"
 
     $sortType = $DATE_COL; // default
     if(isset($_GET["sortType"])) {      // returned when pagination used
@@ -139,6 +136,16 @@ if (isset($_SESSION["userId"])) {
         }
     }
     
+    $event2 = 99; // default 99 = no filter
+    $event2String = "";
+    if(isset($_GET["event2"])) {      // returned when filter used
+        $event2 = $_GET["event2"];
+        if ($event2 != 99) {
+            $event2String = "HAVING event2='".$event2."'";
+        } else {
+            $event2String = ""; 
+        }
+    }
 
     ////////////////////////////////////////////////////////////////////// get required sql query
     require "seeLog/sqlQuery.php";
@@ -176,7 +183,7 @@ if (isset($_SESSION["userId"])) {
                     <tr>
                         <th id="editDel"></th>';
 
-    $filterQString = '&male='.$male.'&weight='.$weight.'&eventType='.$eventType.'&dynamic='.$dynamic.'&whichErgs='.$whichErgs.'&ageCat='.$ageCat.'&reportType='.$reportType;              
+    $filterQString = '&male='.$male.'&weight='.$weight.'&eventType='.$eventType.'&dynamic='.$dynamic.'&whichErgs='.$whichErgs.'&ageCat='.$ageCat.'&reportType='.$reportType.'&event2='.$event2;              
     
     if ($sortType == $DATE_COL) {
         echo           '<th id="dateCol"><a href="'.$_SERVER["PHP_SELF"].'?dateSort='.!$dateSort.$filterQString.'" class="sortedCol">Date</th>';

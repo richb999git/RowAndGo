@@ -1,7 +1,8 @@
 <?php
 
 ///////////////    PAGINATION CONTROLS STRING CREATION  //////////////////////////
-
+$result = mysqli_query($conn, $sql);
+/*
 if (mysqli_query($conn, $sql)) {
     $result = mysqli_query($conn, $sql);  // No need to use prepared statements. SQL injection is not a risk. No user text can be entered.
 } else {
@@ -10,6 +11,7 @@ if (mysqli_query($conn, $sql)) {
     header("Location: index.php?error=REPORT_ERROR");
     exit(); 
 }
+*/
 
 
 $noOfLines = mysqli_num_rows($result);
@@ -33,7 +35,7 @@ $scoresNum = "Scores: $noOfLines";
 $pageNum = "Page $page of $lastPage";
 
 $pageControls = "";
-$qstring = '&sortType='.$sortType.'&sortDir='.$sortDir.'&male='.$male.'&weight='.$weight.'&eventType='.$eventType.'&dynamic='.$dynamic; // use this to pass query string data from sorts and filters
+$qstring = '&sortType='.$sortType.'&sortDir='.$sortDir.'&male='.$male.'&weight='.$weight.'&eventType='.$eventType.'&dynamic='.$dynamic.'&event2='.$event2; // use this to pass query string data from sorts and filters
 $qstring .= '&whichErgs='.$whichErgs.'&reportType='.$reportType;
 
 if ($lastPage != 1) { // if more than one page render controls else nothing to render
