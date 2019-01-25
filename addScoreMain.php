@@ -40,7 +40,7 @@
             if (isset($_GET["dynamic"])) {
                 $dynamic = $_GET["dynamic"]; // if page returned because of error/edit
             }
-            $weight = "";
+            $_SESSION["weight"] == 1 ? $weight = "Light" : $weight = "Heavy" ; // default to user's weight on their account
             if (isset($_GET["weight"])) {
                 $weight = $_GET["weight"]; // if page returned because of error/edit
             }
@@ -99,7 +99,7 @@
 
             if (isset($_GET["error"])) {
                 if ($_GET["error"] == "emptyfields") {
-                    echo "<p class='errorSignUp'>Fill in all fields!</p>";
+                    echo "<p class='errorSignUp'>Please fill in all fields!</p>";
                 } else if ($_GET["error"] == "invaliddate") {
                     echo "<p class='errorSignUp'>Invalid future date!</p>";
                 }
@@ -121,7 +121,7 @@
                 echo '
                             <div class="row">
                                 <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce40">
-                                    <select name="event1" required>';
+                                    <select name="event1">';  // can't use required because it is effectively selected automatically with "Select..."
                                     
             if ($event1 != "") {
                             echo '<option value="'.$event1.'">'.$event1.'</option>';
@@ -169,7 +169,7 @@
                 echo '
                             <div class="row">
                                 <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce20">
-                                    <select name="event1" required>';  
+                                    <select name="event1">';  // can't use required because it is effectively selected automatically with "Select..."
 
                 if ($event1 != "") {
                                 echo '<option value="'.$event1.'">'.$event1.'</option>';

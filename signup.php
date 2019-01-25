@@ -34,7 +34,7 @@
             
             if (isset($_GET["error"])) {
                 if ($_GET["error"] == "emptyfields") {
-                    echo "<p class='errorSignUp'>Fill in all fields!</p>";
+                    echo "<p class='errorSignUp'>Please fill in all fields!</p>";
                 }
                 else if ($_GET["error"] == "invalidmail") {
                     echo "<p class='errorSignUp'>Invalid email!</p>";
@@ -75,7 +75,7 @@
 
                     <div class="row">
                         <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
-                            <input id="club" type="text" class="validate" name="club" value="'.$club.'">
+                            <input id="club" type="text" class="validate" name="club" value="'.$club.'" required>
                             <label for="club"><i class="material-icons">people</i> Club</label>
                         </div>
                     </div>

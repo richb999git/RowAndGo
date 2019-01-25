@@ -112,7 +112,6 @@ if (isset($_POST["log-submit"])) { // check user has come from the log score pag
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
             if ($row = mysqli_fetch_assoc($result)) {
-                // Update would be "UPDATE results SET (idPerson = ?, date1 = ?, eventType = ?, ........ WHERE idResults = ?)
 
                 if ($edit == "n") {
                     $sql = 'INSERT INTO results (idPerson, date1, eventType, event1, rate, scoreDistance, scoreTime, dynamic1, weight1, ageCat) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
@@ -150,10 +149,6 @@ if (isset($_POST["log-submit"])) { // check user has come from the log score pag
             }
 
         }
-
-    // temporary
-    //header("Location: ../index.php?score=success&eventType=".$eventType."&scoreDistance=".$scoreDistance."&scoreMinutes=".$scoreMinutes."&scoreSeconds=".$scoreSeconds."&ergDate=".$ergDate."&event1=".$event1."&rate=".$rate."&scoreTime=".$scoreTime."&testDate=".$testDate);
-    //exit(); 
 
 }
 else {

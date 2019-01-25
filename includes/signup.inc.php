@@ -12,8 +12,8 @@ if (isset($_POST["signup-submit"])) { // check user has come from the signup pag
     $weight = $_POST["weight"];
     $gender = $_POST["gender"];
 
-    if (empty($username) || empty($email) || empty($password) || empty($passwordRepeat) || empty($dob)) {
-        header("Location: ../signup.php?error=emptyfields&uid=".$username."&mail=".$email);
+    if (empty($username) || empty($email) || empty($password) || empty($passwordRepeat) || empty($club) || empty($dob)) {
+        header("Location: ../signup.php?error=emptyfields&uid=".$username."&mail=".$email."&dob=".$dob."&club=".$club."&weight=".$weight."&gender=".$gender);
         exit();
     }
     else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {

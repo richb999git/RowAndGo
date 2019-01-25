@@ -34,6 +34,7 @@ if (isset($_POST["login-submit"])) { // check user has come from the login page
                     $_SESSION["userEmail"] = $row["emailUsers"];
                     $_SESSION["male"] = $row["male"];
                     $_SESSION["dob"] = $row["dob"];
+                    $_SESSION["weight"] = $row["lightWeight"];
                     header("Location: ../index.php?login=success");
                     exit(); 
                 }
