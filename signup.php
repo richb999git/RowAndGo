@@ -97,7 +97,7 @@
 
                     <div class="row">
                         <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
-                            <input id="dob" type="text" class="datepicker" name="dob">
+                            <input id="dob" type="text" class="datepicker" name="dob" value="'.$dob.'" required>
                             <label for="dob"><i class="material-icons">date_range</i> Date of birth</label>
                         </div>
                     </div>

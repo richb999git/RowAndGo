@@ -144,7 +144,7 @@
                                     <option value="10000m">10000m</option>
                                     <option value="12000m">12000m</option>
                                     <option value="15000m">15000m</option>
-                                    <option value="20000m">200m0m</option>
+                                    <option value="20000m">20000m</option>
                                     <option value="21097m">21097m</option>
                                     <option value="42195m">42195m</option>
                                 </select>
