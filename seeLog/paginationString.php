@@ -1,8 +1,8 @@
 <?php
 
 ///////////////    PAGINATION CONTROLS STRING CREATION  //////////////////////////
-$result = mysqli_query($conn, $sql);
-/*
+//$result = mysqli_query($conn, $sql);
+/* */
 if (mysqli_query($conn, $sql)) {
     $result = mysqli_query($conn, $sql);  // No need to use prepared statements. SQL injection is not a risk. No user text can be entered.
 } else {
@@ -11,7 +11,7 @@ if (mysqli_query($conn, $sql)) {
     header("Location: index.php?error=REPORT_ERROR");
     exit(); 
 }
-*/
+/* */
 
 
 $noOfLines = mysqli_num_rows($result);

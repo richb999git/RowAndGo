@@ -36,6 +36,7 @@ if (isset($_SESSION["userId"])) {
     $eventSort = 0;
     $nameSort = 0;
     $clubSort = 0;
+    $timeDistSort = 0;
     $sortDir = 0; // overall sort direction
 
     $cast = ""; // for event sort
@@ -43,6 +44,7 @@ if (isset($_SESSION["userId"])) {
     $EVENT_SORT_COL = "event1"; // "cast(event1 as unsigned)" or "cast(ts.event1 as unsigned)"
     $ROWER_NAME_COL = "uidUsers"; // "rowusers.uidUsers"; or "ts.uidUsers"
     $ROWER_CLUB_COL = "club"; // "rowusers.club"; or "ts.club"
+    $TIME_DIST_COL = "scoreDistance";
 
     $sortType = $DATE_COL; // default
     if(isset($_GET["sortType"])) {      // returned when pagination used
@@ -69,6 +71,11 @@ if (isset($_SESSION["userId"])) {
         $sortDir = $_GET["clubSort"]; 
         $sortType = $ROWER_CLUB_COL;
     }
+    if(isset($_GET["timeDistSort"])) {      // returned when sort used
+        $sortDir = $_GET["timeDistSort"]; 
+        $sortType = $TIME_DIST_COL;
+    }
+    
 
     ///////////////    FILTERS    //////////////////////////////////////////////
 
@@ -150,10 +157,13 @@ if (isset($_SESSION["userId"])) {
     ////////////////////////////////////////////////////////////////////// get required sql query
     require "seeLog/sqlQuery.php";
 
+    //$splitSort = $sortDir; // reverses sort direction
+    $timeDistSort = $sortDir; // reverses sort direction
     $eventSort = $sortDir; // reverses sort direction
     $nameSort = $sortDir; // reverses sort direction
     $clubSort = $sortDir; // reverses sort direction
     $dateSort = $sortDir; // reverses sort direction
+
 
     ////////////////////////////////////////////////////////////////////// get pagination string ready to display
     require "seeLog/paginationString.php";
@@ -197,8 +207,13 @@ if (isset($_SESSION["userId"])) {
         echo           '<th id="eventCol"><a href="'.$_SERVER["PHP_SELF"].'?eventSort='.!$eventSort.$filterQString.'" >Event</th>';
     }
 
-    echo '              <th id="timeDistCol">Time/Dist</th>
-                        <th id="splitCol">/500m</th>
+    if ($sortType == $TIME_DIST_COL) {
+        echo           '<th><a id="timeDistCol" href="'.$_SERVER["PHP_SELF"].'?timeDistSort='.!$timeDistSort.$filterQString.'" class="sortedCol">Time/Dist</th>';
+    } else {
+        echo           '<th><a id="timeDistCol" href="'.$_SERVER["PHP_SELF"].'?timeDistSort='.!$timeDistSort.$filterQString.'" >Time/Dist</th>';
+    }
+
+    echo '              <th id="splitCol">/500m</th>
                         <th id="dynStdCol">Std/Dyn</th>';
      
     if ($sortType == $ROWER_NAME_COL) {

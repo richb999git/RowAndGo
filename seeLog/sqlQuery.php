@@ -14,6 +14,11 @@
     $idPerson = $_SESSION["userId"]; 
     $club = $_SESSION["club"];
 
+    if ($sortType == $TIME_DIST_COL) {
+        $sortString = "scoreDistance";
+        $sortType2 = ", scoreTime ".$sortDirSQL;
+    }
+
     if ($reportType == "Calendar") {
         
         if ($whichErgs == "Mine") {
