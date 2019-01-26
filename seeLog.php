@@ -192,6 +192,7 @@ if (isset($_SESSION["userId"])) {
 
     echo '  
             <hr/>
+            <div class="tableOverflow">
             <table class="striped tableStyle1 centered" >
                 <thead>
                     <tr>
@@ -200,9 +201,9 @@ if (isset($_SESSION["userId"])) {
     $filterQString = '&male='.$male.'&weight='.$weight.'&eventType='.$eventType.'&dynamic='.$dynamic.'&whichErgs='.$whichErgs.'&ageCat='.$ageCat.'&reportType='.$reportType.'&event2='.$event2;              
     
     if ($sortType == $DATE_COL) {
-        echo           '<th id="dateCol"><a href="'.$_SERVER["PHP_SELF"].'?dateSort='.!$dateSort.$filterQString.'" class="sortedCol">Date</th>';
+        echo           '<th class="dateCol"><a href="'.$_SERVER["PHP_SELF"].'?dateSort='.!$dateSort.$filterQString.'" class="sortedCol">Date</th>';
     } else {
-        echo           '<th id="dateCol"><a href="'.$_SERVER["PHP_SELF"].'?dateSort='.!$dateSort.$filterQString.'" >Date</th>';
+        echo           '<th class="dateCol"><a href="'.$_SERVER["PHP_SELF"].'?dateSort='.!$dateSort.$filterQString.'" >Date</th>';
     } 
     
     if ($sortType == $EVENT_SORT_COL) {
@@ -236,7 +237,7 @@ if (isset($_SESSION["userId"])) {
     }
             
     echo '              <th>Gender</th>
-                        <th>Age Cat</th>
+                        <th class="ageCol">Age Cat</th>
                         <th>Weight</th>
                         <th>Std/Dyn</th>
                     </tr>
@@ -304,14 +305,14 @@ if (isset($_SESSION["userId"])) {
         }                
         echo '          </td>
         
-                        <td id="dateCol">'.date('d-M-Y', strtotime($row["date1"])).'</td>
+                        <td class="dateCol">'.date('d-M-Y', strtotime($row["date1"])).'</td>
                         <td>'.$event1String.'</td>
                         <td>'.$score.'</td>
                         <td>'.floatToDateFormat($split).'</td>
                         <td class="tdWidth">'.$row["club"].'</td>
                         <td class="tdWidth">'.$row["uidUsers"].'</td>
                         <td>'.$male.'</td>
-                        <td>'.$ageCat.'</td>
+                        <td class="ageCol">'.$ageCat.'</td>
                         <td>'.$weight1.'</td>
                         <td>'.$dynamic.'</td>
                     </tr>';
@@ -323,6 +324,7 @@ if (isset($_SESSION["userId"])) {
 
     echo '      </tbody>
             </table>
+            </div>
             <hr>';
 
     echo '
