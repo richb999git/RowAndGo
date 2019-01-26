@@ -183,12 +183,9 @@ if (isset($_SESSION["userId"])) {
     } else {
         echo '<a href="'.$_SERVER["PHP_SELF"].'?reportType='.$reportType.'&whichErgs='.$whichErgs.'" class="btn-small tooltipped" data-position="top" data-tooltip="reset view"">Bests - '.$whichErgs.'</a>';
     }   
-    echo '<div class="right-align" id="reportDropdowns">';
-
+    
     ////////////////////////////////////////////////////////////////////// get filters
     require "seeLog/filters.php";
-
-
             
     ////////////////////////////////////////////////////////////////////// TABLE HEADERS WITH SORTABLE HEADINGS SHOWN IN BLUE 
 
@@ -331,7 +328,8 @@ if (isset($_SESSION["userId"])) {
     echo '
             <ul class="pagination">';
     echo  $pageControls.'
-                        </ul>
+            </ul>
+        </main>
     ';
 
 } else {
