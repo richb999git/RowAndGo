@@ -39,11 +39,11 @@ if      ($weight == 1) { echo 'Light</a>'; }
 else if ($weight == 0) { echo 'Heavy</a>'; }
 else                   { echo 'All</a>'; }
 
-$weightQ = "$male.'&eventType='.$eventType.'&dynamic='.$dynamic.'&ageCat='.$ageCat.'&event2='.$event2.$sortQString";
+$weightQ = '&male='.$male.'&eventType='.$eventType.'&dynamic='.$dynamic.'&ageCat='.$ageCat.'&event2='.$event2.$sortQString;
 echo '      <ul id="weight" class="dropdown-content">
-                <li><a href="'.$_SERVER["PHP_SELF"].'?weight=99&male='.$weightQ.'">All</a></li>
-                <li><a href="'.$_SERVER["PHP_SELF"].'?weight=1&male='.$weightQ.'">Light</a></li>
-                <li><a href="'.$_SERVER["PHP_SELF"].'?weight=0&male='.$weightQ.'">Heavy</a></li>
+                <li><a href="'.$_SERVER["PHP_SELF"].'?weight=99'.$weightQ.'">All</a></li>
+                <li><a href="'.$_SERVER["PHP_SELF"].'?weight=1'.$weightQ.'">Light</a></li>
+                <li><a href="'.$_SERVER["PHP_SELF"].'?weight=0'.$weightQ.'">Heavy</a></li>
             </ul>
         </div>
         <br/><br/>
