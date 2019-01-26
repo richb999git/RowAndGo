@@ -222,7 +222,11 @@ if (isset($_SESSION["userId"])) {
         echo           '<th><a id="splitCol" href="'.$_SERVER["PHP_SELF"].'?splitSort='.!$splitSort.$filterQString.'" >/500m</th>';
     }
 
-    echo '              <th id="dynStdCol">Std/Dyn</th>';
+    if ($sortType == $ROWER_CLUB_COL) {
+        echo           '<th><a href="'.$_SERVER["PHP_SELF"].'?clubSort='.!$clubSort.$filterQString.'" class="sortedCol">Club</th>';
+    } else {
+        echo           '<th><a href="'.$_SERVER["PHP_SELF"].'?clubSort='.!$clubSort.$filterQString.'">Club</th>';
+    }
      
     if ($sortType == $ROWER_NAME_COL) {
         echo           '<th><a href="'.$_SERVER["PHP_SELF"].'?nameSort='.!$nameSort.$filterQString.'" class="sortedCol">Name</th>';
@@ -230,15 +234,10 @@ if (isset($_SESSION["userId"])) {
         echo           '<th><a href="'.$_SERVER["PHP_SELF"].'?nameSort='.!$nameSort.$filterQString.'" >Name</th>';
     }
             
-    if ($sortType == $ROWER_CLUB_COL) {
-        echo           '<th><a href="'.$_SERVER["PHP_SELF"].'?clubSort='.!$clubSort.$filterQString.'" class="sortedCol">Club</th>';
-    } else {
-        echo           '<th><a href="'.$_SERVER["PHP_SELF"].'?clubSort='.!$clubSort.$filterQString.'">Club</th>';
-    }
-
     echo '              <th>Gender</th>
-                        <th>Weight</th>
                         <th>Age Cat</th>
+                        <th>Weight</th>
+                        <th>Std/Dyn</th>
                     </tr>
                 </thead>';
 
@@ -308,12 +307,12 @@ if (isset($_SESSION["userId"])) {
                         <td>'.$event1String.'</td>
                         <td>'.$score.'</td>
                         <td>'.floatToDateFormat($split).'</td>
-                        <td>'.$dynamic.'</td>
-                        <td class="tdWidth">'.$row["uidUsers"].'</td>
                         <td class="tdWidth">'.$row["club"].'</td>
+                        <td class="tdWidth">'.$row["uidUsers"].'</td>
                         <td>'.$male.'</td>
-                        <td>'.$weight1.'</td>
                         <td>'.$ageCat.'</td>
+                        <td>'.$weight1.'</td>
+                        <td>'.$dynamic.'</td>
                     </tr>';
         }
 

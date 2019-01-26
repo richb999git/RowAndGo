@@ -1,10 +1,11 @@
 <?php
 
-echo '<div class="right-align" id="reportDropdowns">';
+echo   '<div class="right-align" id="reportDropdowns">';
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////    event2 filter (for specific events)
 
-$event2NoRate = array("250m","500m","1000m","1500m","2000m","2500m","3000m","5000m","6000m","10000m","12000m","15000m","20000m","21097m","42195m","1min","2mins","3mins","4mins","5mins","6 mins","7mins","10mins","12mins","15mins", "20mins","25mins","30mins","40mins","45mins","50mins","60mins","90mins","120mins");
+//$event2NoRate = array("250m","500m","1000m","1500m","2000m","2500m","3000m","5000m","6000m","10000m","12000m","15000m","20000m","21097m","42195m","1min","2mins","3mins","4mins","5mins","6 mins","7mins","10mins","12mins","15mins", "20mins","25mins","30mins","40mins","45mins","50mins","60mins","90mins","120mins");
 $event2WRate = array("250m","500m","1000m","1500m","2000m","2000mR24","2000mR26","2000mR28","2500m","3000m","5000m","5000mR24","5000mR26","6000m","10000m","10000mR18","10000mR20","15000m","20000m","20000mR18","21097m","42195m","1min","2mins","3mins","4mins","5mins","6 mins","7mins","10mins","12mins","15mins","20mins","20minsR20","20minsR22","30mins","30minsR18","30minsR20","45mins","45minsR18","45minsR20","60mins","60minsR18","60minsR20");
+$event2Q = '&ageCat='.$ageCat.'&eventType='.$eventType.'&weight='.$weight.'&male='.$male.'&dynamic='.$dynamic;
 
 // show event2 categories only on desktop
 echo       '<a class="dropdown-trigger btn-small red lighten-2 hide-on-med-and-down" href="#" data-target="event2">Event - ';
@@ -13,10 +14,9 @@ else {
     echo $event2.'</a>';
 }
 echo '      <ul id="event2" class="dropdown-content">';  
-echo '          <li><a href="'.$_SERVER["PHP_SELF"].'?event2=99&ageCat='.$ageCat.'&eventType='.$eventType.'&weight='.$weight.'&male='.$male.'&dynamic='.$dynamic.$sortQString.'">All</a></li>';
+echo '          <li><a href="'.$_SERVER["PHP_SELF"].'?event2=99'.$event2Q.$sortQString.'">All</a></li>';
 for ($i = 0; $i < count($event2WRate); $i++) {
-    echo       '<li><a href="'.$_SERVER["PHP_SELF"].'?event2='.$event2WRate[$i];
-    echo       '&ageCat='.$ageCat.'&eventType='.$eventType.'&weight='.$weight.'&male='.$male.'&dynamic='.$dynamic.$sortQString.'">'.$event2WRate[$i].'</a></li>';
+    echo       '<li><a href="'.$_SERVER["PHP_SELF"].'?event2='.$event2WRate[$i].$event2Q.$sortQString.'">'.$event2WRate[$i].'</a></li>';
 }
 echo       '</ul>';
 
@@ -70,8 +70,7 @@ echo '      <ul id="eventType" class="dropdown-content">
 
 $ageDescFull = array("SEN","U23","Juniors","Masters","J18","J17","J16","J15","J14","J13","J12","J11","MastersA","MastersB","MastersC","MastersD","MastersE","MastersF","MastersG","MastersH","MastersI","MastersJ");
 $ageDescSmall = array("SEN","U23","Juniors","Masters");
-// temporary
-$ageDescSmall = array("SEN","U23","Juniors","Masters","J18","J17","J16","J15","J14","J13","J12","J11","MastersA","MastersB","MastersC","MastersD","MastersE","MastersF","MastersG","MastersH","MastersI","MastersJ");
+$ageQ = '&eventType='.$eventType.'&weight='.$weight.'&male='.$male.'&dynamic='.$dynamic.'&event2='.$event2.$sortQString;
 
 // show full ages categories on desktop
 echo       '<a class="dropdown-trigger btn-small red lighten-2 hide-on-med-and-down tooltipped" data-position="top" data-tooltip="filter" href="#" data-target="ageCat1">Age - ';
@@ -80,10 +79,9 @@ else {
     echo $ageCat.'</a>';
 }
 echo '      <ul id="ageCat1" class="dropdown-content">';  
-echo '          <li><a href="'.$_SERVER["PHP_SELF"].'?ageCat=99&eventType='.$eventType.'&weight='.$weight.'&male='.$male.'&dynamic='.$dynamic.'&event2='.$event2.$sortQString.'">All</a></li>';
+echo '          <li><a href="'.$_SERVER["PHP_SELF"].'?ageCat=99'.$ageQ.'">All</a></li>';
 for ($i = 0; $i < count($ageDescFull); $i++) {
-    echo       '<li><a href="'.$_SERVER["PHP_SELF"].'?ageCat='.$ageDescFull[$i];
-    echo       '&eventType='.$eventType.'&weight='.$weight.'&male='.$male.'&dynamic='.$dynamic.'&event2='.$event2.$sortQString.'">'.$ageDescFull[$i].'</a></li>';
+    echo       '<li><a href="'.$_SERVER["PHP_SELF"].'?ageCat='.$ageDescFull[$i].$ageQ.'">'.$ageDescFull[$i].'</a></li>';
 }
 echo       '</ul>';
 
@@ -95,10 +93,9 @@ else {
     echo $ageCat.'</a>';
 }
 echo '      <ul id="ageCat2" class="dropdown-content">';  
-echo '          <li><a href="'.$_SERVER["PHP_SELF"].'?ageCat=99&eventType='.$eventType.'&weight='.$weight.'&male='.$male.'&dynamic='.$dynamic.'&event2='.$event2.$sortQString.'">All</a></li>';
+echo '          <li><a href="'.$_SERVER["PHP_SELF"].'?ageCat=99'.$ageQ.'">All</a></li>';
 for ($i = 0; $i < count($ageDescSmall); $i++) {
-    echo       '<li><a href="'.$_SERVER["PHP_SELF"].'?ageCat='.$ageDescSmall[$i];
-    echo       '&eventType='.$eventType.'&weight='.$weight.'&male='.$male.'&dynamic='.$dynamic.'&event2='.$event2.$sortQString.'">'.$ageDescSmall[$i].'</a></li>';
+    echo       '<li><a href="'.$_SERVER["PHP_SELF"].'?ageCat='.$ageDescSmall[$i].$ageQ.'">'.$ageDescSmall[$i].'</a></li>';
 }
 echo       '</ul>';
 
@@ -116,7 +113,8 @@ echo '      <ul id="ergType" class="dropdown-content">
                 <li><a href="'.$_SERVER["PHP_SELF"].'?dynamic=1'.$ergTypeQ.'">Dynamic</a></li>
                 <li><a href="'.$_SERVER["PHP_SELF"].'?dynamic=0'.$ergTypeQ.'">Std</a></li>
             </ul>
-        </div>   
+        </div> 
+
         <div>
             <p class="tableStyle1">'.$scoresNum.' - '.$pageNum.'</p>
 
