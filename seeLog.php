@@ -178,6 +178,7 @@ if (isset($_SESSION["userId"])) {
     $sortQString = '&sortType='.$sortType.'&sortDir='.$sortDir.'&whichErgs='.$whichErgs.'&reportType='.$reportType;
     echo '
         <main>';
+
     if ($reportType == "Calendar") {
         echo '<a href="'.$_SERVER["PHP_SELF"].'?reportType='.$reportType.'&whichErgs='.$whichErgs.'" class="btn-small tooltipped" data-position="top" data-tooltip="reset view">Calendar - '.$whichErgs.'</a>';
     } else {
@@ -303,7 +304,7 @@ if (isset($_SESSION["userId"])) {
         }                
         echo '          </td>
         
-                        <td>'.date('d-M-Y', strtotime($row["date1"])).'</td>
+                        <td id="dateCol">'.date('d-M-Y', strtotime($row["date1"])).'</td>
                         <td>'.$event1String.'</td>
                         <td>'.$score.'</td>
                         <td>'.floatToDateFormat($split).'</td>

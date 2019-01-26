@@ -26,31 +26,40 @@ main {
     word-break: break-word;
 }
 
-.tableStyle1 {
-    min-width: 960px; 
-    margin: 0 auto;
-    font-size: 100%;
-    margin-left: 0px;
-    padding-left: 17px;
+#dateCol  { 
+    white-space: nowrap; /* so date doesn't wrap */
+}
+
+@media only screen and (min-width: 601px) {
+    .tableStyle1 {
+        font-size: 80%;
+        margin: 0 auto;
+        padding-left: 15px;
+    }
 }
 
 @media only screen and (min-width: 801px) {
-    #super4 {
+    #super4 { /* image on contact form of the 4 super heroes */
         width: 50%;
+    }
+    .tableStyle1 {
+        font-size: 100%;
     }
 }
 
-
 @media only screen and (max-width: 600px) {
     .tableStyle1 {
-        font-size: 80%;       
+        font-size: 70%; 
+        margin: 0 auto;
+        padding-left: 7px;
     }
-    #super4 {
+    #super4 { /* image on contact form of the 4 super heroes */
         width: 90%;
     }
-    #dateCol, #eventCol, #timeDistCol, #splitCol, #dynStdCol  { /* squeeze first few columns so mobiles show a bit more in portrait. */
-        width: 7em;
+    #eventCol, #timeDistCol, #splitCol  { /* squeeze first few columns so mobiles show a bit more in portrait. */
+        /* width: 7em; /* not needed anymore? I made the table responsive again. Seems to work better */
     }
+
 }
   
 @media only screen and (orientation: landscape) {
