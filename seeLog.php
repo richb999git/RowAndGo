@@ -36,6 +36,7 @@ if (isset($_SESSION["userId"])) {
     $eventSort = 0;
     $nameSort = 0;
     $clubSort = 0;
+    $splitSort = 0;
     $timeDistSort = 0;
     $sortDir = 0; // overall sort direction
 
@@ -45,6 +46,7 @@ if (isset($_SESSION["userId"])) {
     $ROWER_NAME_COL = "uidUsers"; // "rowusers.uidUsers"; or "ts.uidUsers"
     $ROWER_CLUB_COL = "club"; // "rowusers.club"; or "ts.club"
     $TIME_DIST_COL = "scoreDistance";
+    $SPLIT_COL = "split";
 
     $sortType = $DATE_COL; // default
     if(isset($_GET["sortType"])) {      // returned when pagination used
@@ -74,6 +76,10 @@ if (isset($_SESSION["userId"])) {
     if(isset($_GET["timeDistSort"])) {      // returned when sort used
         $sortDir = $_GET["timeDistSort"]; 
         $sortType = $TIME_DIST_COL;
+    }
+    if(isset($_GET["splitSort"])) {      // returned when sort used
+        $sortDir = $_GET["splitSort"]; 
+        $sortType = $SPLIT_COL;
     }
     
 
@@ -157,7 +163,7 @@ if (isset($_SESSION["userId"])) {
     ////////////////////////////////////////////////////////////////////// get required sql query
     require "seeLog/sqlQuery.php";
 
-    //$splitSort = $sortDir; // reverses sort direction
+    $splitSort = $sortDir; // reverses sort direction
     $timeDistSort = $sortDir; // reverses sort direction
     $eventSort = $sortDir; // reverses sort direction
     $nameSort = $sortDir; // reverses sort direction
@@ -213,8 +219,13 @@ if (isset($_SESSION["userId"])) {
         echo           '<th><a id="timeDistCol" href="'.$_SERVER["PHP_SELF"].'?timeDistSort='.!$timeDistSort.$filterQString.'" >Time/Dist</th>';
     }
 
-    echo '              <th id="splitCol">/500m</th>
-                        <th id="dynStdCol">Std/Dyn</th>';
+    if ($sortType == $SPLIT_COL) {
+        echo           '<th><a id="splitCol" href="'.$_SERVER["PHP_SELF"].'?splitSort='.!$splitSort.$filterQString.'" class="sortedCol">/500m</th>';
+    } else {
+        echo           '<th><a id="splitCol" href="'.$_SERVER["PHP_SELF"].'?splitSort='.!$splitSort.$filterQString.'" >/500m</th>';
+    }
+
+    echo '              <th id="dynStdCol">Std/Dyn</th>';
      
     if ($sortType == $ROWER_NAME_COL) {
         echo           '<th><a href="'.$_SERVER["PHP_SELF"].'?nameSort='.!$nameSort.$filterQString.'" class="sortedCol">Name</th>';
@@ -232,11 +243,12 @@ if (isset($_SESSION["userId"])) {
                         <th>Weight</th>
                         <th>Age Cat</th>
                     </tr>
-                </thead>
-                <tbody>';
+                </thead>';
 
 
     ///////////////    OUTPUT DATABASE ROWS   /////////////////////////////////////////
+
+    echo '      <tbody>';
     
     if ($noOfLines) {
         // data loop

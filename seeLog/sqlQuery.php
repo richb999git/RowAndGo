@@ -19,6 +19,10 @@
         $sortType2 = ", scoreTime ".$sortDirSQL;
     }
 
+    if ($sortType == $SPLIT_COL) {
+        $sortString = "split";
+    }
+
     if ($reportType == "Calendar") {
         
         if ($whichErgs == "Mine") {
@@ -37,6 +41,7 @@
         }
 
         $sql = "SELECT idResults, idPerson, date1, event1, eventType, scoreDistance, scoreTime, dynamic1, weight1, rate, ageCat, rowusers.idUsers, rowusers.uidUsers, rowusers.male, rowusers.club";
+        $sql .= ", IFNULL( NULLIF(scoreTime/(event1/500),0), NULLIF(event1*60/(scoreDistance/500),0) ) as split";
         $sql .= ", left(event1, length(event1)-6 ) as event2 FROM `results` INNER JOIN rowusers ON results.idPerson=rowusers.idUsers ";
         $sql .= "WHERE ".$where.$userOrClub.$group." ".$having." ORDER BY ".$sortString." ".$sortDirSQL.$sortType2;
     }
@@ -61,7 +66,9 @@
         
         $reportType == "BestYear" ? $thisYear = " AND YEAR(date1) = YEAR(CURDATE()) " : $thisYear = ""; 
 
-        $sql = "SELECT ts.*, left(ts.event1, length(ts.event1)-6 ) as event2 FROM (";
+        $sql = "SELECT ts.*, left(ts.event1, length(ts.event1)-6 ) as event2 ";
+        $sql .= ", IFNULL( NULLIF(scoreTime/(ts.event1/500),0), NULLIF(ts.event1*60/(scoreDistance/500),0) ) as split";
+        $sql .= " FROM (";
         $sql .= "SELECT * from results INNER JOIN rowusers on(results.idPerson=rowusers.idUsers) ";
         $sql .= " WHERE ".$where." ";
         $sql .= $userOrClub.$thisYear;
