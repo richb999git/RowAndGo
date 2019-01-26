@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.dropdown-trigger');
   // hover false because you can't hover with a mobile. 
   // closeOnClick false works better on mobiles (more resposive button and more obvious server is doing something)
-  var options = {hover: false, coverTrigger: false, closeOnClick: false}; 
+  var options = {hover: false, coverTrigger: false, closeOnClick: false, constrainWidth: true}; 
   var instances = M.Dropdown.init(elems, options);
 });
 

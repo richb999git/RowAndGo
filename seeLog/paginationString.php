@@ -16,7 +16,7 @@ if (mysqli_query($conn, $sql)) {
 
 $noOfLines = mysqli_num_rows($result);
 
-$linesPerPage = 15;
+$maxPagesEitherSide = 4; // 4 is max to comfortable fit on mobile screen (3 + selection + 3 = 7 numbers in pagination control)
 $page = 1;
 if(isset($_GET["page"])) {
     $page = $_GET["page"];
@@ -36,7 +36,7 @@ $pageNum = "Page $page of $lastPage";
 
 $pageControls = "";
 $qstring = '&sortType='.$sortType.'&sortDir='.$sortDir.'&male='.$male.'&weight='.$weight.'&eventType='.$eventType.'&dynamic='.$dynamic.'&event2='.$event2; // use this to pass query string data from sorts and filters
-$qstring .= '&whichErgs='.$whichErgs.'&reportType='.$reportType;
+$qstring .= '&whichErgs='.$whichErgs.'&reportType='.$reportType.'&linesPerPage='.$linesPerPage;
 
 if ($lastPage != 1) { // if more than one page render controls else nothing to render
     // show previous pages on control
@@ -45,7 +45,7 @@ if ($lastPage != 1) { // if more than one page render controls else nothing to r
     } else {
         $prev = $page - 1;
         $pageControls .= '<li class="waves-effect"><a href="'.$_SERVER["PHP_SELF"].'?page='.$prev.$qstring.'"><i class="material-icons">chevron_left</i></a></li>';
-        for ($i=$page-8; $i<$page; $i++) {
+        for ($i=$page-$maxPagesEitherSide; $i<$page; $i++) {
             if ($i > 0) {
                 $pageControls .= '<li class="waves-effect"><a href="'.$_SERVER["PHP_SELF"].'?page='.$i.$qstring.'">'.$i.'</a></li>';
             }
@@ -56,7 +56,7 @@ if ($lastPage != 1) { // if more than one page render controls else nothing to r
     // show next pages on control
     for ($i=$page+1; $i<=$lastPage; $i++) {
         $pageControls .= '<li class="waves-effect"><a href="'.$_SERVER["PHP_SELF"].'?page='.$i.$qstring.'">'.$i.'</a></li>';
-        if ($i >= $page + 8) {
+        if ($i >= $page + $maxPagesEitherSide) {
             break;
         }
     }

@@ -37,20 +37,34 @@ main {
     margin: 0 auto;
 }
 
-@media only screen and (min-width: 601px) {
+@media only screen and (max-width: 800px) { /* was min 601px */
     .tableStyle1 {
         font-size: 75%;
         margin: 0 auto;
-        padding-left: 15px;
+    }
+    .scoreCount {
+        font-size: 80%;
+        margin-left: 6px;
+        margin-bottom: 14px;
+        margin-top: -8px;
     }
 }
 
-@media only screen and (min-width: 801px) {
+
+@media only screen and (min-width: 801px) { /* was min 801px */
     #super4 { /* image on contact form of the 4 super heroes */
         width: 50%;
     }
     .tableStyle1 {
         font-size: 100%;
+        margin-bottom: 10px;
+        margin-top: -6px;
+    }
+    .scoreCount {
+        font-size: 100%;
+        margin-left: 6px;
+        margin-bottom: 16px;
+        margin-top: -6px;
     }
 }
 
@@ -58,14 +72,15 @@ main {
     .tableStyle1 {
         font-size: 70%; 
         margin: 0 auto;
+    }
+    .scoreCount {
+        font-size: 75%; 
+        margin-bottom: 16px;
+        margin-top: -6px;
         padding-left: 7px;
-
     }
     #super4 { /* image on contact form of the 4 super heroes */
         width: 90%;
-    }
-    #eventCol, #timeDistCol, #splitCol  { /* squeeze first few columns so mobiles show a bit more in portrait. */
-        /* width: 7em; /* not needed anymore? I made the table responsive again. Seems to work better */
     }
 
 }
@@ -87,21 +102,36 @@ main {
     margin-right: 4px;
 }
 
+.pagination {
+    display: inline;
+}
 
 /* make materialize css pagination smaller */
 .pagination li {
-height: 25px; /* was 30px */
+    height: 25px; /* was 30px */
+    margin-bottom: 2px;
 }
 
 .pagination li a {
-font-size: 0.8rem; /* was 1.2rem */
-line-height: 20px; /* was 30px */
+    font-size: 0.8rem; /* was 1.2rem */
+    line-height: 20px; /* was 30px */
+    margin-left: -3px; /* to make control less wide (for mobiles) */
+    margin-right: -3px; /* to make control less wide (for mobiles) */
 }
 
 .pagination li i {
-font-size: 1.5rem;  /* was 2rem */
+    font-size: 1.5rem;  /* was 2rem */
 }
   
+.linesButton {
+    font-size: 80%;
+    border-radius: 2px;
+    padding: 2px 4px 2px 4px;
+    color: white;
+    margin-left: 4px;
+    margin-right: -6px;
+}
+
 .btn-small { /*overide materialize*/
     width: 160px;
     padding: 0;
@@ -178,3 +208,23 @@ font-size: 1.5rem;  /* was 2rem */
     padding-right: 3px;
     padding-left: 3px;
 }
+
+
+.rowDropdownH {
+    width: 38px !important; /* make dropdown smaller */
+    min-width: 38px;
+}
+
+.rowDropdown {
+    margin-left: -6px;
+    min-width: 44px;  /* has to be a bit bigger than the parent (rowDropdownH) */
+}
+
+/* don't think this is needed
+.rowDropdown a {
+    padding-left: 0px;
+    margin-left: -0px !important;
+    margin-top: -4px !important;
+    min-width: 40px !important;
+}
+*/

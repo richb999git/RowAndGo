@@ -160,6 +160,11 @@ if (isset($_SESSION["userId"])) {
         }
     }
 
+    $linesPerPage = 15; // default 15 lines in pagination
+    if(isset($_GET["linesPerPage"])) {      // returned when filter used
+        $linesPerPage = $_GET["linesPerPage"];
+    }
+
     ////////////////////////////////////////////////////////////////////// get required sql query
     require "seeLog/sqlQuery.php";
 
@@ -175,7 +180,7 @@ if (isset($_SESSION["userId"])) {
     require "seeLog/paginationString.php";
 
     ///////////////    TITLE and DROPDOWN FILTERS  ///////////////////////   
-    $sortQString = '&sortType='.$sortType.'&sortDir='.$sortDir.'&whichErgs='.$whichErgs.'&reportType='.$reportType;
+    $sortQString = '&sortType='.$sortType.'&sortDir='.$sortDir.'&whichErgs='.$whichErgs.'&reportType='.$reportType; 
     echo '
         <main>';
 
@@ -198,7 +203,7 @@ if (isset($_SESSION["userId"])) {
                     <tr>
                         <th id="editDel"></th>';
 
-    $filterQString = '&male='.$male.'&weight='.$weight.'&eventType='.$eventType.'&dynamic='.$dynamic.'&whichErgs='.$whichErgs.'&ageCat='.$ageCat.'&reportType='.$reportType.'&event2='.$event2;              
+    $filterQString = '&male='.$male.'&weight='.$weight.'&eventType='.$eventType.'&dynamic='.$dynamic.'&whichErgs='.$whichErgs.'&ageCat='.$ageCat.'&reportType='.$reportType.'&event2='.$event2.'&linesPerPage='.$linesPerPage;              
     
     if ($sortType == $DATE_COL) {
         echo           '<th class="dateCol"><a href="'.$_SERVER["PHP_SELF"].'?dateSort='.!$dateSort.$filterQString.'" class="sortedCol">Date</th>';
