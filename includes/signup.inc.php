@@ -52,7 +52,7 @@ if (isset($_POST["signup-submit"])) { // check user has come from the signup pag
         $sql = "SELECT emailUsers FROM rowusers WHERE emailUsers=?"; // was uidUsers
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)){
-            header("Location: ../signup.php?error=sqlerror&edit=".$edit);
+            header("Location: ../index.php?error=sqlerror&edit=".$edit);
             exit(); 
         }
         else {
@@ -61,13 +61,13 @@ if (isset($_POST["signup-submit"])) { // check user has come from the signup pag
             mysqli_stmt_store_result($stmt);
             $resultCheck = mysqli_stmt_num_rows($stmt); // checking if email already exists. If not then add the user.
             if ($edit == "n" && $resultCheck > 0) {
-                header("Location: ../signup.php?error=emailtaken&uid=".$username."&mail=".$email."&club=".$club."&weight=".$weight."&gender=".$gender."&dob=".$dob);
+                header("Location: ../signup.php?error=emailtaken&uid=".$username."&mail=".$email."&club=".$club."&weight=".$weight."&gender=".$gender."&dob=".$dob."&edit=".$edit);
                 exit();
             }
             else {
 
-                if ($edit == "n") { //INSERT
-                    $sql = "INSERT INTO rowusers (uidUsers, emailUsers, club, male, lightWeight, dob) VALUES(?, ?, ?, ?, ?, ?, ?)"; // was 3 fields
+                if ($edit == "n") { 
+                    $sql = "INSERT INTO rowusers (uidUsers, emailUsers, pwdUsers, club, male, lightWeight, dob) VALUES(?, ?, ?, ?, ?, ?, ?)";
                 } else if ($edit == "y") {
                     $sql = 'UPDATE rowusers SET uidUsers=?, emailUsers=?, club=?, male=?, lightWeight=?, dob=?';
                     $sql .= ' WHERE idUsers=?';
