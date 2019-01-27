@@ -8,6 +8,7 @@ if (isset($_SESSION["userId"])) {
     require "includes/dbh.inc.php"; // don't include a / before folder name (works on localhost but not heroku)
     
     function floatToDateFormat($score) {
+        $score = round($score, 1); //round score first to one decimal place (as displayed)
         $h = floor($score / (60 * 60));
         $m = floor(($score - ($h * 60 * 60)) / 60);
         $s = floor(($score - ($h * 60 * 60) - ($m * 60)));
