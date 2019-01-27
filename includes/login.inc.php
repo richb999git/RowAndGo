@@ -2,7 +2,7 @@
 if (isset($_POST["login-submit"])) { // check user has come from the login page
 
     require "dbh.inc.php";
-
+    session_start();
     $mailuid = $_POST["mailuid"];
     $password = $_POST["pwd"];
 
@@ -30,6 +30,7 @@ if (isset($_POST["login-submit"])) { // check user has come from the login page
                 else if ($pwdCheck == true) {
                     session_start();
                     $_SESSION["userId"] = $row["idUsers"];
+                    $_SESSION["username"] = $row["uidUsers"];
                     $_SESSION["club"] = $row["club"];
                     $_SESSION["userEmail"] = $row["emailUsers"];
                     $_SESSION["male"] = $row["male"];
