@@ -321,30 +321,31 @@
                         </div>
 
                         <div class="row">
-                        <div class="input-field col s12 offset-s0 offset-m5 offset-l11 marginReduce20">
+                        <div class="input-field col s12 offset-s0 offset-m5 offset-l11 marginReduce20 tooltipped" data-position="top" data-tooltip="Junior weight N/A so will be ignored">
                         <div class="col offset-s1">
                             <p>
                             <label>';
             
+            $ageCat[0] == "J" ? $weightDisableString = "disabled" :  $weightDisableString = "";                            
             if ( $weight != "Light" ) {
                 echo '
-                                        <input name="weight" class="with-gap" type="radio" value="Heavy" checked/>
+                                        <input name="weight" class="with-gap" type="radio" value="Heavy" checked '.$weightDisableString.'/>
                                         <span>Heavy weight</span>
                                     </label>
         
                                     <label>
-                                        <input name="weight" class="with-gap" type="radio" value="Light" />
+                                        <input name="weight" class="with-gap" type="radio" value="Light"  '.$weightDisableString.'/>
                                         <span>Light weight</span>
                                     </label>';
         
                 } else {
                     echo '
-                                        <input name="weight" class="with-gap" type="radio" value="Heavy"/>
+                                        <input name="weight" class="with-gap" type="radio" value="Heavy" '.$weightDisableString.'/>
                                         <span>Heavy weight</span>
                                     </label>
         
                                     <label>
-                                        <input name="weight" class="with-gap" type="radio" value="Light" checked />
+                                        <input name="weight" class="with-gap" type="radio" value="Light" checked  '.$weightDisableString.'/>
                                         <span>Light weight</span>
                                     </label>';                
                 }

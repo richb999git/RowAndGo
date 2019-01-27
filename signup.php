@@ -187,10 +187,9 @@
                             <span>Female</span>
                         </label>
                         </p>
-                        <p>
+                        <p class="tooltipped" data-position="top" data-tooltip="Junior weight N/A so will be ignored">
                         <label>';
     
-
     if ( $weight != "L" ) {
         echo '
                             <input name="weight" type="radio" value="H" checked />
@@ -236,7 +235,7 @@
     echo   '</form>
         </div>
         <br>
-        '
+        ';
 ?>
 
 </main>

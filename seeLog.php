@@ -101,7 +101,7 @@ if (isset($_SESSION["userId"])) {
     if(isset($_GET["weight"])) {      // returned when filter used
         $weight = $_GET["weight"];
         if ($weight != 99) {
-            $weightString = "weight1=".$weight;
+            $weightString = "(weight1=".$weight." AND event1 NOT LIKE '%J1%' )"; // weight categories excludes juniors (J1x)
         } else {
             $weightString = "weight1!=99"; 
         }
@@ -307,7 +307,8 @@ if (isset($_SESSION["userId"])) {
             $editDetails .= '&ageCat='.$row["ageCat"];
             $editDetails .= '&scoreID='.$row["idResults"];
             echo '<a href="'.$editDetails.'" class="btn reduceColHeight tooltipped" data-position="top" data-tooltip="Edit/Delete"><i class="tiny material-icons">edit</i></a>';
-        }                
+        }
+        $ageCat[0] == "J" ? $weightOutput = "N/A" : $weightOutput = $weight1;                
         echo '          </td>
         
                         <td class="dateCol">'.date('d-M-Y', strtotime($row["date1"])).'</td>
@@ -318,7 +319,7 @@ if (isset($_SESSION["userId"])) {
                         <td class="tdWidth">'.$row["uidUsers"].'</td>
                         <td>'.$male.'</td>
                         <td class="ageCol">'.$ageCat.'</td>
-                        <td>'.$weight1.'</td>
+                        <td>'.$weightOutput.'</td>
                         <td>'.$dynamic.'</td>
                     </tr>';
         }

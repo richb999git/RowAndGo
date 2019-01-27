@@ -22,7 +22,7 @@ echo       '</ul>';
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////    Gender filter 
 
-echo       '<a class="dropdown-trigger btn-small red lighten-2" href="#" data-target="gender">Gender - ';
+echo       '<a class="dropdown-trigger btn-small red lighten-2 tooltipped" data-position="top" data-tooltip="filter" href="#" data-target="gender">Gender - ';
 if      ($male == 1) { echo 'Male</a>'; }
 else if ($male == 0) { echo 'Female</a>'; }
 else                 { echo 'All</a>'; }  
@@ -36,7 +36,7 @@ echo '      <ul id="gender" class="dropdown-content">
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////    Weight filter 
             
-echo       '<a class="dropdown-trigger btn-small red lighten-2" href="#" data-target="weight">Weight - ';
+echo       '<a class="dropdown-trigger btn-small red lighten-2 tooltipped" data-position="top" data-tooltip="excludes juniors"  href="#" data-target="weight">Weight - ';
 if      ($weight == 1) { echo 'Light</a>'; }
 else if ($weight == 0) { echo 'Heavy</a>'; }
 else                   { echo 'All</a>'; }
@@ -73,7 +73,7 @@ $ageDescSmall = array("SEN","U23","Juniors","Masters");
 $ageQ = '&eventType='.$eventType.'&weight='.$weight.'&male='.$male.'&dynamic='.$dynamic.'&event2='.$event2.'&linesPerPage='.$linesPerPage.$sortQString;
 
 // show full ages categories on desktop
-echo       '<a class="dropdown-trigger btn-small red lighten-2 hide-on-med-and-down tooltipped" data-position="top" data-tooltip="filter" href="#" data-target="ageCat1">Age - ';
+echo       '<a class="dropdown-trigger btn-small red lighten-2 hide-on-med-and-down" href="#" data-target="ageCat1">Age - ';
 if ($ageCat == 99 || $ageCat == "") { echo 'All</a>'; } 
 else {
     echo $ageCat.'</a>';

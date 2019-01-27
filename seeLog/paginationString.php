@@ -35,7 +35,7 @@ $scoresNum = "Scores: $noOfLines";
 $pageNum = "Page $page of $lastPage";
 
 $pageControls = "";
-$qstring = '&sortType='.$sortType.'&sortDir='.$sortDir.'&male='.$male.'&weight='.$weight.'&eventType='.$eventType.'&dynamic='.$dynamic.'&event2='.$event2; // use this to pass query string data from sorts and filters
+$qstring = '&sortType='.$sortType.'&sortDir='.$sortDir.'&male='.$male.'&weight='.$weight.'&eventType='.$eventType.'&dynamic='.$dynamic.'&event2='.$event2.'&ageCat='.$ageCat; // use this to pass query string data from sorts and filters
 $qstring .= '&whichErgs='.$whichErgs.'&reportType='.$reportType.'&linesPerPage='.$linesPerPage;
 
 if ($lastPage != 1) { // if more than one page render controls else nothing to render
