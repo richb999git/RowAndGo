@@ -8,7 +8,7 @@ $event2WRate = array("250m","500m","1000m","1500m","2000m","2000mR24","2000mR26"
 $event2Q = '&ageCat='.$ageCat.'&eventType='.$eventType.'&weight='.$weight.'&male='.$male.'&dynamic='.$dynamic.'&linesPerPage='.$linesPerPage.$sortQString;
 
 // show event2 categories only on desktop
-echo       '<a class="dropdown-trigger btn-small red lighten-2 hide-on-med-and-down" href="#" data-target="event2">Event - ';
+echo       '<a class="dropdown-trigger-filters btn-small red lighten-2 hide-on-med-and-down" href="#" data-target="event2">Event - ';
 if ($event2 == 99 || $event2 == "") { echo 'All</a>'; } 
 else {
     echo $event2.'</a>';
@@ -22,7 +22,7 @@ echo       '</ul>';
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////    Gender filter 
 
-echo       '<a class="dropdown-trigger btn-small red lighten-2 tooltipped" data-position="top" data-tooltip="filter" href="#" data-target="gender">Gender - ';
+echo       '<a class="dropdown-trigger-filters btn-small red lighten-2 tooltipped" data-position="top" data-tooltip="filter" href="#" data-target="gender">Gender - ';
 if      ($male == 1) { echo 'Male</a>'; }
 else if ($male == 0) { echo 'Female</a>'; }
 else                 { echo 'All</a>'; }  
@@ -36,7 +36,7 @@ echo '      <ul id="gender" class="dropdown-content">
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////    Weight filter 
             
-echo       '<a class="dropdown-trigger btn-small red lighten-2 tooltipped" data-position="top" data-tooltip="excludes juniors"  href="#" data-target="weight">Weight - ';
+echo       '<a class="dropdown-trigger-filters btn-small red lighten-2 tooltipped" data-position="top" data-tooltip="excludes juniors"  href="#" data-target="weight">Weight - ';
 if      ($weight == 1) { echo 'Light</a>'; }
 else if ($weight == 0) { echo 'Heavy</a>'; }
 else                   { echo 'All</a>'; }
@@ -54,7 +54,7 @@ echo '      <ul id="weight" class="dropdown-content">
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////    Event type filter (TIME/DIST)
 
 // hide this filter on mobile - insufficent room - prefer to show more results
-echo       '<a class="dropdown-trigger btn-small red lighten-2 hide-on-small-only" href="#" data-target="eventType">Type - ';
+echo       '<a class="dropdown-trigger-filters btn-small red lighten-2 hide-on-small-only" href="#" data-target="eventType">Type - ';
 if      ($eventType == 1) { echo 'Time</a>'; }
 else if ($eventType == 0) { echo 'Dist</a>'; }
 else                      { echo 'All</a>'; }   
@@ -73,7 +73,7 @@ $ageDescSmall = array("SEN","U23","Juniors","Masters");
 $ageQ = '&eventType='.$eventType.'&weight='.$weight.'&male='.$male.'&dynamic='.$dynamic.'&event2='.$event2.'&linesPerPage='.$linesPerPage.$sortQString;
 
 // show full ages categories on desktop
-echo       '<a class="dropdown-trigger btn-small red lighten-2 hide-on-med-and-down" href="#" data-target="ageCat1">Age - ';
+echo       '<a class="dropdown-trigger-filters btn-small red lighten-2 hide-on-med-and-down" href="#" data-target="ageCat1">Age - ';
 if ($ageCat == 99 || $ageCat == "") { echo 'All</a>'; } 
 else {
     echo $ageCat.'</a>';
@@ -87,7 +87,7 @@ echo       '</ul>';
 
 
 // only show overall ages catagories on mobile/tablet (doesn't work well with a large list)
-echo       '<a class="dropdown-trigger btn-small red lighten-2 hide-on-large-only tooltipped" data-position="top" data-tooltip="reduced filter (mobile)" href="#" data-target="ageCat2">Age - ';
+echo       '<a class="dropdown-trigger-filters btn-small red lighten-2 hide-on-large-only tooltipped" data-position="top" data-tooltip="reduced filter (mobile)" href="#" data-target="ageCat2">Age - ';
 if ($ageCat == 99 || $ageCat == "") { echo 'All</a>'; } 
 else {
     echo $ageCat.'</a>';
@@ -102,7 +102,7 @@ echo       '</ul>';
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////    Erg Type filter
 
-echo       '<a class="dropdown-trigger btn-small red lighten-2" href="#" data-target="ergType">Erg - ';
+echo       '<a class="dropdown-trigger-filters btn-small red lighten-2" href="#" data-target="ergType">Erg - ';
 if      ($dynamic == 1) { echo 'Dynamic</a>'; }
 else if ($dynamic == 0) { echo 'Standard</a>'; }
 else                    { echo 'All</a>'; }      
@@ -119,7 +119,7 @@ echo '      <ul id="ergType" class="dropdown-content">
             <p class="scoreCount">'.$scoresNum.' - '.$pageNum.'</p>';
 
 $overallQ = '&weight='.$weight.'&male='.$male.'&eventType='.$eventType.'&ageCat='.$ageCat.'&event2='.$event2.'&dynamic='.$dynamic.$sortQString;
-echo       '<a class="dropdown-trigger red lighten-2 linesButton" href="#" data-target="lines">ROWS</a>
+echo       '<a class="dropdown-trigger-filters red lighten-2 linesButton" href="#" data-target="lines">ROWS</a>
             <ul id="lines" class="dropdown-content rowDropdownH">
                 <li class="rowDropdown"><a href="'.$_SERVER["PHP_SELF"].'?linesPerPage=5'.$overallQ.'">5</a></li>
                 <li class="rowDropdown"><a href="'.$_SERVER["PHP_SELF"].'?linesPerPage=10'.$overallQ.'">10</a></li>
