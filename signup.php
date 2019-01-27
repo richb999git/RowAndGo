@@ -162,10 +162,8 @@
                     <p>
                     <label>';
 
-    // don't allow gender change when editing account. User may have added scores already
-    
+    // don't allow gender change when editing account. User may have added scores already   
     $edit == "y" ? $genderDisableString = "disabled" :  $genderDisableString = "";
-
     if ( $gender != "F" ) {
     echo '
                             <input name="gender" type="radio" value="M" checked '.$genderDisableString.'/>
@@ -173,7 +171,7 @@
                         </label>
 
                         <label>
-                            <input name="gender" type="radio" value="F" />';
+                            <input name="gender" type="radio" value="F" '.$genderDisableString.'/>';
 
     } else {
         echo '
@@ -182,7 +180,7 @@
                         </label>
 
                         <label>
-                            <input name="gender" type="radio" value="F" checked />';                
+                            <input name="gender" type="radio" value="F" checked '.$genderDisableString.'/>';                
     }
 
     echo '                        
