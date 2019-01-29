@@ -37,4 +37,3 @@ document.addEventListener('DOMContentLoaded', function() {
   var options = {};
   var instances = M.Tooltip.init(elems, options);
 });
-

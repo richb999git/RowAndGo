@@ -170,6 +170,7 @@ main {
 #SignUpTitle {
     margin-bottom: 0px;
     text-align: center;
+    color: black;
 }
 .errorSignUp {
     color: red;
@@ -222,7 +223,7 @@ main {
 /* pagination page number input */
 .pagInput {
     border: 1px solid black !important;
-    width: 30px !important;
+    width: 28px !important;
     height: 21px !important;
     font-size: 12px !important;
     padding-left: 2px !important;
@@ -232,6 +233,7 @@ main {
 .pagPages {
     display: inline;
     margin-left: 3px;
+    font-size: 14px;
 }
 
 #pageChange {
@@ -248,4 +250,9 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
   margin: 0; 
+}
+
+.nilLM {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
 }

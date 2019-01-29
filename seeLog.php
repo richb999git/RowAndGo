@@ -300,34 +300,27 @@ if (isset($_SESSION["userId"])) {
             </div>
             <hr>';
 
-    echo '  <form class="pagPages">'; 
+    echo '  <form class="pagPages" name="pagPages" id="pagPages">'; 
     echo '      Page: <input class="pagInput" type="number" id="pageNo" value='.$page.' />
-                <button class="red lighten-2" type="button" id="pageChange" >Go</button>
+                <input type="hidden" id="php_lastPage" value="'.$lastPage.'">
+                <input class="red lighten-2" type="submit" id="pageChange" value="Go"></input>
                 ';
     echo   '</form>';
-
-    // move this out of this php file if possible
-    echo '<script >
-            document.getElementById("pageChange").addEventListener("click", function(){
-                var inputPage = document.getElementById("pageNo");
-                var lastPage = '.$lastPage.'; ///
-                var page = parseInt(inputPage.value, 10) || 1;
-                location.href = "'.$_SERVER["PHP_SELF"].'?page=" + (page <= lastPage ? page : lastPage) + "'.$qstring.'";         
-            });
-          </script>';
 
     echo '  <ul class="pagination">';
     echo  $pageControls.'
             </ul>';
 
-    echo '</main>
-    ';
+    echo '</main>';
+    echo '<script src="pagination.js"></script>';
+    
 
 } else {
     header("Location: index.php?error=notloggedin");
     exit(); 
 }
 ?>
+
 
 <?php
     require "footer.php";

@@ -24,7 +24,7 @@ if (isset($event2)) {
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////    Gender filter 
 
-    echo       '<a class="dropdown-trigger-filters btn-small red lighten-2 tooltipped" data-position="top" data-tooltip="filter" href="#" data-target="gender">Gender - ';
+    echo       '<a class="dropdown-trigger-filters btn-small red lighten-2 tooltipped" data-position="top" data-tooltip="filters" href="#" data-target="gender">Gender - ';
     if      ($male == 1) { echo 'Male</a>'; }
     else if ($male == 0) { echo 'Female</a>'; }
     else                 { echo 'All</a>'; }  

@@ -22,6 +22,7 @@
 
         <link rel="stylesheet" href="stylesheet.css">     
         <link rel="shortcut icon" href="pics/favRowAndGoIcon3.png" type="image/x-icon">
+        
     
 
     </head>
@@ -38,14 +39,15 @@
                         <li><a href="addScore.php">ADD SCORE</a></li>
                         <li><a href="viewScores.php">VIEW SCORES</a></li>
                         <li><a href="contact.php">CONTACT</a></li>
-                        <li><a href="signup.php?edit=y">EDIT ACCOUNT</a></li>  <!-- when logged in -->
+                        <li><a href="signup.php?edit=y">EDIT ACCOUNT</a></li>  
                         <li>
 
                         <?php
                             if (isset($_SESSION["userId"])) {
                                 echo '
                                     <a href="includes/logout.inc.php" class="btn" >LOGOUT</a>
-                                    <a class="right">Logged in as: '.$_SESSION["userEmail"].'<a>'; 
+                                    <a href="signup.php?edit=y" class="right nilLM">'.$_SESSION["userEmail"].'</a><i class="material-icons right nilLM">person_outline</i>';
+                                    
                                 }
                                 else {
                                     echo '<a href="signup.php" class="btn" >SIGN UP</a>
@@ -63,15 +65,14 @@
                         <li><a href="addScore.php">ADD SCORE</a></li>
                         <li><a href="viewScores.php">VIEW SCORES</a></li>
                         <li><a href="contact.php">CONTACT</a></li>
-                        <li><a href="signup.php?edit=y">EDIT ACCOUNT</a></li>  <!-- temporary -->
+                        <li><a href="signup.php?edit=y">EDIT ACCOUNT</a></li>  
                         <li>
 
                         <?php
                             if (isset($_SESSION["userId"])) {
                                 echo '
                                     <a href="includes/logout.inc.php" class="btn" >LOGOUT</a>
-                                    <a href="#">Logged in as '.$_SESSION["userEmail"].'</a>
-                                    ';
+                                    <a href="signup.php?edit=y">Logged in as: '.$_SESSION["userEmail"].'<a>'; 
                                 }
                                 else {
                                     echo '<a href="signup.php" class="btn" >SIGN UP</a>
@@ -92,3 +93,5 @@
         
     </body>
 </html>
+
+<!-- <a href="#" class="right">Logged in as: '.$_SESSION["userEmail"].'</a>'; -->
