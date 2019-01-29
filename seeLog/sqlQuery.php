@@ -1,5 +1,6 @@
 <?php
-
+// no direct access allowed
+if (isset($sortDir)) {
 ///////////////    SQL STATEMENT   //////////////////////////////////////////////  
 
     // filters
@@ -126,5 +127,10 @@
 
 ////////////////-------------------- SQL query ------------------------------------------
     //echo ", sql = ".$sql;
+
+} else {
+    header("Location: ../index.php?error=nodirectaccess");
+    exit(); 
+}  
 
 ?>

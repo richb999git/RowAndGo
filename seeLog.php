@@ -198,57 +198,15 @@ if (isset($_SESSION["userId"])) {
 
     echo '  
             <hr/>
-            <div class="tableOverflow">
-            <table class="striped tableStyle1 centered" >
-                <thead>
-                    <tr>
-                        <th id="editDel"></th>';
+            <div class="tableOverflow">';
 
-    $filterQString = '&male='.$male.'&weight='.$weight.'&eventType='.$eventType.'&dynamic='.$dynamic.'&whichErgs='.$whichErgs.'&ageCat='.$ageCat.'&reportType='.$reportType.'&event2='.$event2.'&linesPerPage='.$linesPerPage;              
-    
-    if ($sortType == $DATE_COL) {
-        echo           '<th class="dateCol"><a href="'.$_SERVER["PHP_SELF"].'?dateSort='.!$dateSort.$filterQString.'" class="sortedCol">Date</th>';
-    } else {
-        echo           '<th class="dateCol"><a href="'.$_SERVER["PHP_SELF"].'?dateSort='.!$dateSort.$filterQString.'" >Date</th>';
-    } 
-    
-    if ($sortType == $EVENT_SORT_COL) {
-        echo           '<th id="eventCol"><a href="'.$_SERVER["PHP_SELF"].'?eventSort='.!$eventSort.$filterQString.'" class="sortedCol">Event</th>';
-    } else {
-        echo           '<th id="eventCol"><a href="'.$_SERVER["PHP_SELF"].'?eventSort='.!$eventSort.$filterQString.'" >Event</th>';
-    }
+    echo   '<table class="striped tableStyle1 centered" >';
 
-    if ($sortType == $TIME_DIST_COL) {
-        echo           '<th><a id="timeDistCol" href="'.$_SERVER["PHP_SELF"].'?timeDistSort='.!$timeDistSort.$filterQString.'" class="sortedCol">Time/Dist</th>';
-    } else {
-        echo           '<th><a id="timeDistCol" href="'.$_SERVER["PHP_SELF"].'?timeDistSort='.!$timeDistSort.$filterQString.'" >Time/Dist</th>';
-    }
+    ///////////////////////////////////////////////////////////////////// HEADERS
 
-    if ($sortType == $SPLIT_COL) {
-        echo           '<th><a id="splitCol" href="'.$_SERVER["PHP_SELF"].'?splitSort='.!$splitSort.$filterQString.'" class="sortedCol">/500m</th>';
-    } else {
-        echo           '<th><a id="splitCol" href="'.$_SERVER["PHP_SELF"].'?splitSort='.!$splitSort.$filterQString.'" >/500m</th>';
-    }
-
-    if ($sortType == $ROWER_CLUB_COL) {
-        echo           '<th><a href="'.$_SERVER["PHP_SELF"].'?clubSort='.!$clubSort.$filterQString.'" class="sortedCol">Club</th>';
-    } else {
-        echo           '<th><a href="'.$_SERVER["PHP_SELF"].'?clubSort='.!$clubSort.$filterQString.'">Club</th>';
-    }
-     
-    if ($sortType == $ROWER_NAME_COL) {
-        echo           '<th><a href="'.$_SERVER["PHP_SELF"].'?nameSort='.!$nameSort.$filterQString.'" class="sortedCol">Name</th>';
-    } else {
-        echo           '<th><a href="'.$_SERVER["PHP_SELF"].'?nameSort='.!$nameSort.$filterQString.'" >Name</th>';
-    }
-            
-    echo '              <th>Gender</th>
-                        <th class="ageCol">Age Cat</th>
-                        <th>Weight</th>
-                        <th>Std/Dyn</th>
-                    </tr>
-                </thead>';
-
+    echo   '    <thead>';
+    require "seeLog/logHeaders.php";
+    echo '      </thead>';
 
     ///////////////    OUTPUT DATABASE ROWS   /////////////////////////////////////////
 
@@ -276,14 +234,13 @@ if (isset($_SESSION["userId"])) {
         $split = $time / ($dist / 500);
         
         // get dynamic or standard & Light or Heavy & gender
-        $row["dynamic1"] == 1 ? $dynamic = "Dynamic" : $dynamic = "Standard";
-        $row["weight1"] == 1 ? $weight1 = "Light" : $weight1 = "Heavy";
-        $row["male"] == 1 ? $male = "Male" : $male = "Female";
-        $event1String = $row["event2"];
-        $ageCat = $row["ageCat"];
-        if (substr($ageCat, 0, 1) == "V") {
-            $ageCat = "Masters ".substr($ageCat,-1);
-        }
+        $row["dynamic1"] == 1 ? $dynamicOutput = "Dynamic" : $dynamicOutput = "Standard";
+        $row["weight1"] == 1 ? $weightOutput = "Light" : $weightOutput = "Heavy";
+        $row["male"] == 1 ? $genderOutput = "Male" : $genderOutput = "Female";
+        $eventOutput = $row["event2"];
+        $ageCatOutput = $row["ageCat"];
+        if (substr($ageCat, 0, 1) == "V") { $ageCatOutput = "Masters ".substr($ageCatOutput,-1); }
+        if (substr($ageCat, 0, 1) == "J") { $weightOutput = "N/A"; } 
 
         // start of part of scores table with values
         echo '              
@@ -295,7 +252,7 @@ if (isset($_SESSION["userId"])) {
             $editDetails .= "&rate=".$row["rate"];
             $row["dynamic1"] == 1 ? $editDetails .= "&dynamic=Dynamic" : $editDetails .= "&dynamic=Standard";
             $row["weight1"] == 1 ? $editDetails .= "&weight=Light" : $editDetails .= "&weight=Heavy";
-            $row["rate"] != 0 ? $editDetails .= "&event1=".substr($event1String, 0, -3) : $editDetails .= "&event1=".$event1String;
+            $row["rate"] != 0 ? $editDetails .= "&event1=".substr($eventOutput, 0, -3) : $editDetails .= "&event1=".$eventOutput;
             if ($row["eventType"] == "TIME") {
                 $editDetails .= "&distOrTime=time";
                 $editDetails .= "&scoreDistance=".$row["scoreDistance"];
@@ -309,19 +266,19 @@ if (isset($_SESSION["userId"])) {
             $editDetails .= '&scoreID='.$row["idResults"];
             echo '<a href="'.$editDetails.'" class="btn reduceColHeight tooltipped" data-position="top" data-tooltip="Edit/Delete"><i class="tiny material-icons">edit</i></a>';
         }
-        $ageCat[0] == "J" ? $weightOutput = "N/A" : $weightOutput = $weight1;                
+                       
         echo '          </td>
         
                         <td class="dateCol">'.date('d-M-Y', strtotime($row["date1"])).'</td>
-                        <td>'.$event1String.'</td>
+                        <td>'.$eventOutput.'</td>
                         <td>'.$score.'</td>
                         <td>'.floatToDateFormat($split).'</td>
                         <td class="tdWidth">'.$row["club"].'</td>
                         <td class="tdWidth">'.$row["uidUsers"].'</td>
-                        <td>'.$male.'</td>
-                        <td class="ageCol">'.$ageCat.'</td>
+                        <td>'.$genderOutput.'</td>
+                        <td class="ageCol">'.$ageCatOutput.'</td>
                         <td>'.$weightOutput.'</td>
-                        <td>'.$dynamic.'</td>
+                        <td>'.$dynamicOutput.'</td>
                     </tr>';
         }
 
@@ -329,16 +286,41 @@ if (isset($_SESSION["userId"])) {
         echo "<p class='tableStyle1'>0 results</p>";
     }
 
-    echo '      </tbody>
-            </table>
+    echo '      </tbody>';
+
+    ///////////////////////////////////////////////////////////////////// HEADERS in footer
+
+    echo   '    <thead>';
+    require "seeLog/logHeaders.php";
+    echo '      </thead>';
+
+    /////////////////////////////////////////////////////////////////////
+
+    echo '  </table>
             </div>
             <hr>';
 
-    echo '
-            <ul class="pagination">';
+    echo '  <form class="pagPages">'; 
+    echo '      Page: <input class="pagInput" type="number" id="pageNo" value='.$page.' />
+                <button class="red lighten-2" type="button" id="pageChange" >Go</button>
+                ';
+    echo   '</form>';
+
+    // move this out of this php file if possible
+    echo '<script >
+            document.getElementById("pageChange").addEventListener("click", function(){
+                var inputPage = document.getElementById("pageNo");
+                var lastPage = '.$lastPage.'; ///
+                var page = parseInt(inputPage.value, 10) || 1;
+                location.href = "'.$_SERVER["PHP_SELF"].'?page=" + (page <= lastPage ? page : lastPage) + "'.$qstring.'";         
+            });
+          </script>';
+
+    echo '  <ul class="pagination">';
     echo  $pageControls.'
-            </ul>
-        </main>
+            </ul>';
+
+    echo '</main>
     ';
 
 } else {
