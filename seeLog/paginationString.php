@@ -17,7 +17,7 @@ if (isset($linesPerPage)) {
 
     $noOfLines = mysqli_num_rows($result);
 
-    $maxPagesEitherSide = 4; // 4 is max to comfortable fit on mobile screen (3 + selection + 3 = 7 numbers in pagination control)
+    $maxPagesEitherSide = 3; // 3 is max to comfortable fit on mobile screen (3 + selection + 3 = 7 numbers in pagination control) when numbers get large
     $page = 1;
     if(isset($_GET["page"])) {
         $page = $_GET["page"];
