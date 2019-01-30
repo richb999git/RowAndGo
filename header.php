@@ -72,7 +72,7 @@
                             if (isset($_SESSION["userId"])) {
                                 echo '
                                     <a href="includes/logout.inc.php" class="btn" >LOGOUT</a>
-                                    <a href="signup.php?edit=y">Logged in as: '.$_SESSION["userEmail"].'<a>'; 
+                                    <a href="signup.php?edit=y">Logged in as: '.$_SESSION["userEmail"].'</a>'; 
                                 }
                                 else {
                                     echo '<a href="signup.php" class="btn" >SIGN UP</a>

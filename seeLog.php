@@ -313,7 +313,7 @@ if (isset($_SESSION["userId"])) {
     
         
     ////////////////////////////////////////////////////////////////// spinner off
-    //echo '<script>document.getElementById("sqlSpinner").style.display = "none";</script>';        
+    echo '<script>document.getElementById("sqlSpinner").style.display = "none";</script>';        
 
     echo '</main>';
     echo '<script src="pagination.js"></script>';

@@ -6,7 +6,6 @@ main {
 
 }
 
-
 .reportTitle {
     margin-left: 5px;
     font-size: 20px;
@@ -170,7 +169,6 @@ main {
 #SignUpTitle {
     margin-bottom: 0px;
     text-align: center;
-    color: black;
 }
 .errorSignUp {
     color: red;
