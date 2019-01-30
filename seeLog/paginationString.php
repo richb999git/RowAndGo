@@ -2,6 +2,23 @@
 // no direct access allowed
 if (isset($linesPerPage)) {
     ////////////////////////////////////////////////    PAGINATION CONTROLS STRING CREATION  //////////////////////////
+
+    //////////////////////////////////////////////////////////  spinner?
+    echo '
+    <div id="sqlSpinner" class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-red-only">
+        <div class="circle-clipper left">
+            <div class="circle"></div>
+        </div><div class="gap-patch">
+            <div class="circle"></div>
+        </div><div class="circle-clipper right">
+            <div class="circle"></div>
+        </div>
+        </div>
+    </div>
+    ';
+
+    ///>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> spinner?
     $result = mysqli_query($conn, $sql);
     /* 
     if (mysqli_query($conn, $sql)) {
@@ -34,7 +51,6 @@ if (isset($linesPerPage)) {
     $result = mysqli_query($conn, $sql);
     $scoresNum = "Scores: $noOfLines";
     $pageNum = "Page $page of $lastPage";
-
     $pageControls = "";
     $qstring = '&sortType='.$sortType.'&sortDir='.$sortDir.'&male='.$male.'&weight='.$weight.'&eventType='.$eventType.'&dynamic='.$dynamic.'&event2='.$event2.'&ageCat='.$ageCat; // use this to pass query string data from sorts and filters
     $qstring .= '&whichErgs='.$whichErgs.'&reportType='.$reportType.'&linesPerPage='.$linesPerPage;
@@ -68,6 +84,8 @@ if (isset($linesPerPage)) {
             $pageControls .= '<li class="disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li>';
         }
     } 
+
+
 
 } else {
     header("Location: ../index.php?error=nodirectaccess");

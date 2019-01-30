@@ -310,6 +310,10 @@ if (isset($_SESSION["userId"])) {
     echo '  <ul class="pagination">';
     echo  $pageControls.'
             </ul>';
+    
+        
+    ////////////////////////////////////////////////////////////////// spinner off
+    //echo '<script>document.getElementById("sqlSpinner").style.display = "none";</script>';        
 
     echo '</main>';
     echo '<script src="pagination.js"></script>';
