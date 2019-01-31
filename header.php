@@ -38,8 +38,9 @@
                         <li><a href="index.php">HOME</a></li>
                         <li><a href="addScore.php">ADD SCORE</a></li>
                         <li><a href="viewScores.php">VIEW SCORES</a></li>
+                        <li><a href="scoreAdmin.php">SCORE ADMIN</a></li>  
                         <li><a href="contact.php">CONTACT</a></li>
-                        <li><a href="signup.php?edit=y">EDIT ACCOUNT</a></li>  
+                        <li><a href="signup.php?edit=y">EDIT ACCOUNT</a></li> 
                         <li>
 
                         <?php
@@ -64,6 +65,7 @@
                         <li><a href="index.php">HOME</a></li>
                         <li><a href="addScore.php">ADD SCORE</a></li>
                         <li><a href="viewScores.php">VIEW SCORES</a></li>
+                        <li><a href="scoreAdmin.php">SCORE ADMIN</a></li>   
                         <li><a href="contact.php">CONTACT</a></li>
                         <li><a href="signup.php?edit=y">EDIT ACCOUNT</a></li>  
                         <li>

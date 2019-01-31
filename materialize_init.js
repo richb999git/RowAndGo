@@ -41,3 +41,8 @@ document.addEventListener('DOMContentLoaded', function() {
 window.onbeforeunload = function(){
   document.getElementById("sqlSpinner").style.display = "block";
 };
+
+
+window.onload = function(){
+  document.getElementById("sqlSpinner").style.display = "none";
+};
