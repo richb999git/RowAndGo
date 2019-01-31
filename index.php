@@ -32,6 +32,7 @@
                             </div>
                         </div>
                     </div>';
+                    require "seeLog/sqlSpinner.php";
 
             } else if (isset($_GET["update_success"])) {
                 echo '
@@ -53,6 +54,7 @@
                             </div>
                         </div>
                     </div>';
+                    require "seeLog/sqlSpinner.php";
             }
 
             echo '
@@ -61,7 +63,7 @@
                     <h4>Log your training scores and compare with other rowers!</h4>
                 </div>
             ';
-            
+        
 
         ?>
         
