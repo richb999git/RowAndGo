@@ -6,10 +6,16 @@ document.getElementById("pagPages").addEventListener("submit", function(e){
     var url = window.location.href; // returns full url including query string 
     //var url = [location.protocol, '//', location.host, location.pathname].join(''); // join parts of url together so would need to add qstring
     var page = parseInt(inputPage.value, 10) || 1;
+    document.getElementById("sqlSpinner").style.display = "block";
     location.href = url + '&page=' + (page <= lastPage ? page : lastPage); 
     //location.href = url + '?page=' + (page <= lastPage ? page : lastPage) + qstring;  
 });
 
+
+//window.onload = function() {
+//    console.log("spinnersssss");
+    //document.getElementById("sqlSpinner").style.display = "block";
+//}
 
 
 /* php inline version. Slightly easier but not recommended to have inline scripts

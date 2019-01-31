@@ -18,6 +18,8 @@ if (isset($linesPerPage)) {
     </div>
     ';
 
+    
+
     ///>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> spinner?
     $result = mysqli_query($conn, $sql);
     /* 

@@ -37,3 +37,16 @@ document.addEventListener('DOMContentLoaded', function() {
   var options = {};
   var instances = M.Tooltip.init(elems, options);
 });
+
+window.onload = function() {
+  console.log("spinnersssssssssssssssssss");
+  document.getElementById("sqlSpinnerssss").style.display = "block";
+}
+
+//document.addEventListener('DOMContentLoaded', function() {
+  //document.getElementById("sqlSpinner").style.display = "block";
+//});
+
+window.onbeforeunload = function(){
+  document.getElementById("sqlSpinner").style.display = "block";
+};
