@@ -239,8 +239,8 @@ if (isset($_SESSION["userId"])) {
         $row["male"] == 1 ? $genderOutput = "Male" : $genderOutput = "Female";
         $eventOutput = $row["event2"];
         $ageCatOutput = $row["ageCat"];
-        if (substr($ageCat, 0, 1) == "V") { $ageCatOutput = "Masters ".substr($ageCatOutput,-1); }
-        if (substr($ageCat, 0, 1) == "J") { $weightOutput = "N/A"; } 
+        if (substr($ageCatOutput, 0, 1) == "V") { $ageCatOutput = "Masters ".substr($ageCatOutput,-1); }
+        if (substr($ageCatOutput, 0, 1) == "J") { $weightOutput = "N/A"; } 
 
         // start of part of scores table with values
         echo '              
@@ -288,7 +288,7 @@ if (isset($_SESSION["userId"])) {
 
     echo '      </tbody>';
 
-    ///////////////////////////////////////////////////////////////////// HEADERS in footer
+    ///////////////////////////////////////////////////////////////////// HEADERS at the bottom as well as the top
 
     echo   '    <thead>';
     require "seeLog/logHeaders.php";
@@ -300,6 +300,7 @@ if (isset($_SESSION["userId"])) {
             </div>
             <hr>';
 
+    ///////////////////////////////////////////////////////////////////// Pagination - enter page number
     echo '  <form class="pagPages" name="pagPages" id="pagPages">'; 
     echo '      Page: <input class="pagInput" type="number" id="pageNo" value='.$page.' />
                 <input type="hidden" id="php_lastPage" value="'.$lastPage.'">

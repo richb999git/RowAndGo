@@ -40,19 +40,18 @@
                         <li><a href="viewScores.php">VIEW SCORES</a></li>
                         <li><a id="dload" class="tooltipped" data-position="bottom" data-tooltip="as csv (use in Excel)" href="downloadResults.php">DOWNLOAD SCORES</a></li>  
                         <li><a href="contact.php">CONTACT</a></li>
-                        <li><a href="signup.php?edit=y">EDIT ACCOUNT</a></li> 
                         <li>
 
                         <?php
                             if (isset($_SESSION["userId"])) {
                                 echo '
-                                    <a href="includes/logout.inc.php" class="btn" >LOGOUT</a>
-                                    <a href="signup.php?edit=y" class="right nilLM">'.$_SESSION["userEmail"].'</a><i class="material-icons right nilLM">person_outline</i>';
+                                    <a href="includes/logout.inc.php" class="btn" >LOGOUT</a></li>
+                                    <li><a href="signup.php?edit=y" class="right nilLM">'.$_SESSION["userEmail"].'</a><i class="material-icons right nilLM">account_circle</i>';
                                     
                                 }
                                 else {
-                                    echo '<a href="signup.php" class="btn" >SIGN UP</a>
-                                          <a href="login.php" class="btn" >LOGIN</a>
+                                    echo '<a href="signup.php" class="btn" >SIGN UP</a></li>
+                                          <li><a href="login.php" class="btn" >LOGIN</a>
                                     ';
                             }
                         ?>
@@ -62,23 +61,23 @@
                     </ul>
 
                     <ul class="sidenav" id="mobile-demo">
+                        <li><a href="index.php" id="mobileMenu" class="red lighten-2"><img height="16px" src="pics/rowing_double.png"/>Row&Go!</a><li>
                         <li><a href="index.php">HOME</a></li>
                         <li><a href="addScore.php">ADD SCORE</a></li>
                         <li><a href="viewScores.php">VIEW SCORES</a></li>
                         <li><a id="dload" class="tooltipped" data-position="bottom" data-tooltip="as csv (use in Excel)" href="downloadResults.php">DOWNLOAD SCORES</a></li>   
                         <li><a href="contact.php">CONTACT</a></li>
-                        <li><a href="signup.php?edit=y">EDIT ACCOUNT</a></li>  
                         <li>
 
                         <?php
                             if (isset($_SESSION["userId"])) {
                                 echo '
-                                    <a href="includes/logout.inc.php" class="btn" >LOGOUT</a>
-                                    <a href="signup.php?edit=y">Logged in as: '.$_SESSION["userEmail"].'</a>'; 
+                                    <a href="includes/logout.inc.php" class="btn" >LOGOUT</a></li>
+                                    <li class="valign-wrapper"><i class="material-icons nilLM left ablack">account_circle</i><a id="acName" href="signup.php?edit=y"> '.$_SESSION["userEmail"].'</a>'; 
                                 }
                                 else {
-                                    echo '<a href="signup.php" class="btn" >SIGN UP</a>
-                                          <a href="login.php" class="btn" >LOGIN</a>
+                                    echo '<a href="signup.php" class="btn" >SIGN UP</a></li>
+                                          <li><a href="login.php" class="btn" >LOGIN</a>
                                     ';
                             }
                         ?>

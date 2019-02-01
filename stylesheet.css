@@ -200,6 +200,10 @@ main {
     font-size: 22px;
 }
 
+#mobileMenu {
+    font-size: 22px;
+}
+
 .reduceColHeight {
     padding-top: 0px;
     padding-bottom: 0px;
@@ -268,4 +272,14 @@ input[type=number]::-webkit-outer-spin-button {
 /* Used to store spinner yes or no */
 #spinnerSet {
     display: none;
+}
+
+.ablack {
+    color: black;
+    padding-left: 30px !important;
+    margin-right: 4px !important;
+}
+
+#acName {
+    padding-left: 0px;
 }
