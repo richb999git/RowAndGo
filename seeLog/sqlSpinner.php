@@ -12,6 +12,7 @@ echo '
         </div>
         </div>
     </div>
+    <div id="spinnerSet">Y</div>
     ';
 
 ?>

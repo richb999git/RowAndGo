@@ -243,7 +243,8 @@ main {
   border-radius: 3px;
 }
 
-/* don't show arrows in number input box so box can be smaller */
+/* don't show arrows in number input box so box can be smaller (for mobiles) */
+input[type=number] { -moz-appearance: textfield; } /* this line specific to Firefox */
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
@@ -264,7 +265,7 @@ input[type=number]::-webkit-outer-spin-button {
     margin-left: -30px;
 }
 
-#dloadbtn {
-    margin: 50px auto 50px auto;
-    text-align: center;
+/* Used to store spinner yes or no */
+#spinnerSet {
+    display: none;
 }

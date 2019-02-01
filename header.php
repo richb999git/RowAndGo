@@ -38,7 +38,7 @@
                         <li><a href="index.php">HOME</a></li>
                         <li><a href="addScore.php">ADD SCORE</a></li>
                         <li><a href="viewScores.php">VIEW SCORES</a></li>
-                        <li><a href="scoreAdmin.php">SCORE ADMIN</a></li>  
+                        <li><a id="dload" class="tooltipped" data-position="bottom" data-tooltip="as csv (use in Excel)" href="downloadResults.php">DOWNLOAD SCORES</a></li>  
                         <li><a href="contact.php">CONTACT</a></li>
                         <li><a href="signup.php?edit=y">EDIT ACCOUNT</a></li> 
                         <li>
@@ -65,7 +65,7 @@
                         <li><a href="index.php">HOME</a></li>
                         <li><a href="addScore.php">ADD SCORE</a></li>
                         <li><a href="viewScores.php">VIEW SCORES</a></li>
-                        <li><a href="scoreAdmin.php">SCORE ADMIN</a></li>   
+                        <li><a id="dload" class="tooltipped" data-position="bottom" data-tooltip="as csv (use in Excel)" href="downloadResults.php">DOWNLOAD SCORES</a></li>   
                         <li><a href="contact.php">CONTACT</a></li>
                         <li><a href="signup.php?edit=y">EDIT ACCOUNT</a></li>  
                         <li>

@@ -33,16 +33,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.tooltipped');
-  var options = {};
+  var options = {enterDelay: 600};
   var instances = M.Tooltip.init(elems, options);
 });
 
 
-window.onbeforeunload = function(){
-  document.getElementById("sqlSpinner").style.display = "block";
-};
+document.addEventListener('DOMContentLoaded', function() {
+  // resest the spinner variable here
+  document.getElementById("spinnerSet").value = "Y"; // default is Y(es)
 
+  window.onbeforeunload = function(){
+    //test for variable - if not set run this. If this runs immediately then it won't work
+    if (document.getElementById("spinnerSet").value === "Y") {
+      console.log("in onbeforeunload");
+      document.getElementById("sqlSpinner").style.display = "block";
+    } else {
+      // if not Y then don't display spinner but set spinnerSet back to yes for next reload
+      document.getElementById("spinnerSet").value = "Y";
+    }
+      
+  };
 
-window.onload = function(){
-  document.getElementById("sqlSpinner").style.display = "none";
-};
+  // runs BEFORE the "onbeforeunload" so set "spinnerSet" to N 
+  document.getElementById("dload").addEventListener("click", function(e){
+    // set a spinner variable to N(o) when downloading csv (because it doesn't reload page) and therefore spinner will just show otherwise
+    // page reload resets the spinner so that it hides
+    document.getElementById("spinnerSet").value = "N";
+    document.getElementById("sqlSpinner").style.display = "none";
+    console.log("download");
+  });
+
+});
