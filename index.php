@@ -67,7 +67,9 @@
 
         ?>
         
-        
+        <br/>
+        <div class="center-align"><img width=95% id="screenshot" src="pics/screen5.png" alt=""></div>
+        <br/>
         
         
 
