@@ -33,7 +33,9 @@
 
             <br/>
             <h4>Enter your training scores and compare with other rowers!</h4>
-            <br>
+            <br/>
+            <div><img width=95% id="screenshot" src="pics/screen5.png" alt=""></div>
+            <br/>
             <p>If you have any problems please email me at <a href="mailto:richb999@tiscali.co.uk">richb999@tiscali.co.uk</a></p>
             <br/>
         </div>

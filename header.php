@@ -6,12 +6,12 @@
 <html lang="en" dir="ltr" xml:lang="en"> <!-- prevents Chrome thinking pages are in Luxembourgish! -->
     <head>
         <meta charset="utf-8">
-        <meta name="description">
+        <meta name="description" content="Rowing app for recording your rowing machine erg scores and comparing to others">
 
         <!-- stops auto resizing on mobile when moving to lanscape -->
         <meta name=viewport content="width=device-width, initial-scale=1 user-scalable=yes, maximum-scale=1.6, minimum-scale=0.6 "> 
         
-        <title></title>
+        <title>Row&Go! - Erg score tracking</title>
         
         <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
