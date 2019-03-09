@@ -29,7 +29,13 @@ if (isset($_SESSION["userId"])) {
     $reportType = "Calendar"; // default value to stop error if seeLog accessed directly
     if(isset($_GET["whichErgs"])) {        // from report choice page and now from this page as well
         $whichErgs = $_GET["whichErgs"];   // Mine, Club, All
-        $reportType = $_GET["reportType"]; // Calendar, BestAll, BestSeason
+        if ($whichErgs != "Mine" && $whichErgs != "Club" && $whichErgs != "All") {
+            $whichErgs = "All";
+        }
+        $reportType = $_GET["reportType"]; // Calendar, BestAll, BestYear
+        if ($reportType != "Calendar" && $reportType != "BestAll" && $reportType != "BestYear") {
+            $reportType = "Calendar";
+        }
     }
 
     // sort directions 0 or 1
@@ -48,6 +54,11 @@ if (isset($_SESSION["userId"])) {
     $ROWER_CLUB_COL = "club"; // "rowusers.club"; or "ts.club"
     $TIME_DIST_COL = "scoreDistance";
     $SPLIT_COL = "split";
+
+    //$event2NoRate = array("250m","500m","1000m","1500m","2000m","2500m","3000m","5000m","6000m","10000m","12000m","15000m","20000m","21097m","42195m","1min","2mins","3mins","4mins","5mins","6 mins","7mins","10mins","12mins","15mins", "20mins","25mins","30mins","40mins","45mins","50mins","60mins","90mins","120mins");
+    $event2WRate = array("250m","500m","1000m","1500m","2000m","2000mR24","2000mR26","2000mR28","2500m","3000m","5000m","5000mR24","5000mR26","6000m","10000m","10000mR18","10000mR20","15000m","20000m","20000mR18","21097m","42195m","1min","2mins","3mins","4mins","5mins","6 mins","7mins","10mins","12mins","15mins","20mins","20minsR20","20minsR22","30mins","30minsR18","30minsR20","45mins","45minsR18","45minsR20","60mins","60minsR18","60minsR20");
+    $ageDescFull = array("SEN","U23","Juniors","Masters","J18","J17","J16","J15","J14","J13","J12","J11","MastersA","MastersB","MastersC","MastersD","MastersE","MastersF","MastersG","MastersH","MastersI","MastersJ");
+    $ageDescSmall = array("SEN","U23","Juniors","Masters");
 
     $sortType = $DATE_COL; // default
     if(isset($_GET["sortType"])) {      // returned when pagination used
@@ -90,7 +101,11 @@ if (isset($_SESSION["userId"])) {
     $maleString = "rowusers.male!=99";
     if(isset($_GET["male"])) {      // returned when filter used
         $male = $_GET["male"];
+        if( !ctype_digit($male) ) { // check to ensure only a number is created, i.e. no injection
+            $male = 99;
+        }
         if ($male != 99) {
+            if ($male !=1) $male = 0; // set as male=0 (no) if anything other than 1
             $maleString = "rowusers.male=".$male;
         } else {
             $maleString = "rowusers.male!=99"; 
@@ -101,7 +116,11 @@ if (isset($_SESSION["userId"])) {
     $weightString = "weight1!=99";
     if(isset($_GET["weight"])) {      // returned when filter used
         $weight = $_GET["weight"];
+        if( !ctype_digit($weight) ) { // check to ensure only a number is created, i.e. no injection
+            $weight = 99;
+        }
         if ($weight != 99) {
+            if ($weight !=1) $weight = 0; // set as weight=0 (heavy) if anything other than 1
             $weightString = "(weight1=".$weight." AND event1 NOT LIKE '%J1%' )"; // weight categories excludes juniors (J1x)
         } else {
             $weightString = "weight1!=99"; 
@@ -112,7 +131,11 @@ if (isset($_SESSION["userId"])) {
     $eventTypeString = "eventType!=99";
     if(isset($_GET["eventType"])) {      // returned when filter used
         $eventType = $_GET["eventType"];
+        if( !ctype_digit($eventType) ) { // check to ensure only a number is created, i.e. no injection
+            $eventType = 99;
+        }
         if ($eventType != 99) {
+            if ($eventType !=1) $eventType = 0; // set as eventType=0 (DIST) if anything other than 1
             $eventType == 1 ? $eventTypeString = "eventType='TIME'" : $eventTypeString = "eventType='DIST'";
         } else {
             $eventTypeString = "eventType!=99"; 
@@ -123,18 +146,22 @@ if (isset($_SESSION["userId"])) {
     $dynamicString = "dynamic1!=99";
     if(isset($_GET["dynamic"])) {      // returned when filter used
         $dynamic = $_GET["dynamic"];
+        if( !ctype_digit($dynamic) ) { // check to ensure only a number is created, i.e. no injection
+            $dynamic = 99;
+        }
         if ($dynamic != 99) {
+            if ($dynamic !=1) $dynamic = 0; // set as dynamic=0 (no) if anything other than 1
             $dynamicString = "dynamic1=".$dynamic;
         } else {
             $dynamicString = "dynamic1!=99"; 
         }
     }
-
+    
     $ageCat = 99; // default 99 = no filter
     $ageCatString = "ageCat!=99";
     if(isset($_GET["ageCat"])) {      // returned when filter used
         $ageCat = $_GET["ageCat"];
-        if ($ageCat != 99) {
+        if (in_array( $ageCat, $ageDescFull )) { // check if a valid entry has been made
             $ageCatString = "ageCat='".$ageCat."'";
 
             if ($ageCat == "Masters") {
@@ -146,6 +173,7 @@ if (isset($_SESSION["userId"])) {
             }
 
         } else {
+            $ageCat = 99;
             $ageCatString = "ageCat!=99"; 
         }
     }
@@ -154,16 +182,20 @@ if (isset($_SESSION["userId"])) {
     $event2String = "";
     if(isset($_GET["event2"])) {      // returned when filter used
         $event2 = $_GET["event2"];
-        if ($event2 != 99) {
+        if (in_array( $event2, $event2WRate )) { // check if a valid entry has been made
             $event2String = "HAVING event2='".$event2."'";
         } else {
+            $event2 = 99;
             $event2String = ""; 
         }
     }
 
     $linesPerPage = 15; // default 15 lines in pagination
     if(isset($_GET["linesPerPage"])) {      // returned when filter used
-        $linesPerPage = $_GET["linesPerPage"];
+        $linesPerPage = $_GET["linesPerPage"]; 
+        if( !ctype_digit($linesPerPage) && $linesPerPage <= 100) { // check to ensure only a number is created, i.e. no injection
+            $linesPerPage = 15;
+        }
     }
 
     ////////////////////////////////////////////////////////////////////// get required sql query
@@ -226,8 +258,9 @@ if (isset($_SESSION["userId"])) {
             $score = floatToDateFormat($score);
         } else {
             // get time from event1 description. 
-            $time = $row["event1"] * 60;
+            $time = $row["event1"];
             settype($time, "float"); // turn type into float which ignores the letters if first digit is a number
+            $time = $time * 60; // multiply after type conversion
             $dist = $row["scoreDistance"];
             $score = $row["scoreDistance"]."m";
         }

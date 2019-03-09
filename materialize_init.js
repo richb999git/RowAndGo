@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // resest the spinner variable here
   document.getElementById("spinnerSet").value = "Y"; // default is Y(es)
 
+  // use "onbeforeunload" to trigger spinner rather than set the spinner on all the filters/sorts/pagination options
   window.onbeforeunload = function(){
     //test for variable - if not set run this. If this runs immediately then it won't work
     if (document.getElementById("spinnerSet").value === "Y") {

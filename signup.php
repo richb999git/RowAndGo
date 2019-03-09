@@ -103,37 +103,37 @@
         }
         
     }
-    echo '
+    ?>
+    
         <div class="row">
             <br/>
-            <form class="col s10 m5 l4" action="includes/signup.inc.php?edit='.$edit.'" method="post">
-            
-
-
+            <form class="col s10 m5 l4" action="includes/signup.inc.php?edit=<?= $edit ?>" method="post">
+                
                 <div class="row">
                     <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
-                        <input id="email" type="email" class="validate" name="mail" value="'.$email.'" required>
+                        <input id="email" type="email" class="validate" name="mail" value="<?= htmlspecialchars($email); ?>" required>
                         <label for="email"><i class="material-icons">email</i> Email</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
-                        <input id="username" type="text" class="validate" name="uid" value="'.$username.'" required>
+                        <input id="username" type="text" class="validate" name="uid" value="<?= strip_tags($username); ?>" required>
                         <label for="username"><i class="material-icons">person_outline</i> Full name</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
-                        <input id="club" type="text" class="validate" name="club" value="'.$club.'" required>
+                        <input id="club" type="text" class="validate" name="club" value="<?= htmlspecialchars($club); ?>" required>
                         <label for="club"><i class="material-icons">people</i> Club</label>
                     </div>
-                </div>';
-
-    // don't ask for passwords when editing account. User has to be logged in. Add password change option separately
-    if ($edit == "n") {
-        echo '
+                </div>
+    
+    
+    <!-- // don't ask for passwords when editing account. User has to be logged in. Add password change option separately -->
+    <?php if ($edit == "n") {
+        ?>
             <div class="row">
                 <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
                     <input id="password" type="password" class="validate" name="pwd" required>
@@ -146,13 +146,13 @@
                     <input id="password-repeat" type="password" class="validate" name="pwd-repeat" required>
                     <label for="password-repeat"><i class="material-icons">lock</i> Repeat Password</label>
                 </div>
-            </div>';
-    } 
+            </div>
 
-    echo '
+    <?php } ?>
+    
             <div class="row">
                 <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
-                    <input id="dob" type="text" class="datepicker" name="dob" value="'.$dob.'" required>
+                    <input id="dob" type="text" class="datepicker" name="dob" value="<?= strip_tags($dob); ?>" required>
                     <label for="dob"><i class="material-icons">date_range</i> Date of birth</label>
                 </div>
             </div>
@@ -160,86 +160,88 @@
             <div class="row">
                 <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
                     <p>
-                    <label>';
+                    <label>
+    <?php
 
     // don't allow gender change when editing account. User may have added scores already   
     $edit == "y" ? $genderDisableString = "disabled" :  $genderDisableString = "";
-    if ( $gender != "F" ) {
-    echo '
-                            <input name="gender" type="radio" value="M" checked '.$genderDisableString.'/>
+    if ( $gender != "F" ) { ?>
+        
+                            <input name="gender" type="radio" value="M" checked <?=$genderDisableString?> />
                             <span>Male</span>
                         </label>
 
                         <label>
-                            <input name="gender" type="radio" value="F" '.$genderDisableString.'/>';
-
-    } else {
-        echo '
-                            <input name="gender" type="radio" value="M" '.$genderDisableString.'/>
+                            <input name="gender" type="radio" value="F" <?=$genderDisableString?> />
+    <?php
+    } else { ?>
+        
+                            <input name="gender" type="radio" value="M" <?=$genderDisableString?> />
                             <span>Male</span>
                         </label>
 
                         <label>
-                            <input name="gender" type="radio" value="F" checked '.$genderDisableString.'/>';                
-    }
-
-    echo '                        
+                            <input name="gender" type="radio" value="F" checked <?=$genderDisableString?> />                
+    
+    <?php } ?>
+                          
                             <span>Female</span>
                         </label>
                         </p>
                         <p class="tooltipped" data-position="top" data-tooltip="Junior weight N/A so will be ignored">
-                        <label>';
-    
-    if ( $weight != "L" ) {
-        echo '
+                        <label>
+    <?php
+    if ( $weight != "L" ) { ?>
+        
                             <input name="weight" type="radio" value="H" checked />
                             <span>Heavyweight</span>
                         </label>
 
                         <label>
-                            <input name="weight" type="radio" value="L" />';
-    } else {
-        echo '
+                            <input name="weight" type="radio" value="L" />
+    <?php
+    } else { ?>
+        
                             <input name="weight" type="radio" value="H" />
                             <span>Heavyweight</span>
                         </label>
 
                         <label>
-                            <input name="weight" type="radio" value="L" checked />';
-    }
+                            <input name="weight" type="radio" value="L" checked />
 
-    echo '
+    <?php } ?>
+
                             <span>Lightweight</span>
                         </label>
                         </p>
                     </div>
-                </div>';
+                </div>
 
+    <?php
     // need to check if editing or adding and change form button accordingly
-    if ($edit == "y") {
-        echo '
+    if ($edit == "y") { ?>
+        
                 <div class="row">
                     <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
                         <button class="btn btn100" type="submit" name="signup-submit">EDIT</button>
                     </div>
-                </div>';
-    } else {
-        echo '
+                </div>
+    <?php
+    } else { ?>
+        
                 <div class="row">
                     <div class="input-field col s12 offset-s1 offset-m8 offset-l12 marginReduce20">
                         <button class="btn btn100" type="submit" name="signup-submit">SIGN UP</button>
                     </div>
-                </div>';
-    }
+                </div>
+    <?php } ?>
 
-    echo   '</form>
+           </form>
         </div>
         <br>
-        ';
-?>
 
 </main>
 
 <?php
     require "footer.php";
-?>
+

@@ -6,6 +6,8 @@
         
         <div class="center-align">
 
+            <h2>Sorry, no such page</h2>
+
 <?php
     
     switch (rand(1,5) )

@@ -132,5 +132,3 @@ if (isset($sortDir)) {
     header("Location: ../index.php?error=nodirectaccess");
     exit(); 
 }  
-
-?>

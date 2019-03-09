@@ -1,6 +1,6 @@
-<?php
 
-echo '
+
+
     <div id="sqlSpinner" class="preloader-wrapper big active">
         <div class="spinner-layer spinner-red-only">
             <div class="circle-clipper left">
@@ -16,6 +16,5 @@ echo '
     </div>
 
     <div id="spinnerSet">Y</div>
-    ';
+    
 
-?>

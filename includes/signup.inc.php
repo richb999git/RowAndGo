@@ -11,7 +11,7 @@ if (isset($_POST["signup-submit"])) { // check user has come from the signup pag
         } else if ($_GET["edit"] == "n") {
             $edit = "n";
         } else {
-            header("Location: ../index.php?error=incorrect_edit_mode");
+            header("Location: ../index.php?error=incorrect_edit_mode{".$edit);
             exit(); 
         }
     }

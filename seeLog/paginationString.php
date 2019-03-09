@@ -28,6 +28,9 @@ if (isset($linesPerPage)) {
     $page = 1;
     if(isset($_GET["page"])) {
         $page = $_GET["page"];
+        if( !ctype_digit($page) ) { // check to ensure only a number is created, i.e. no injection
+            $page = 1;
+        }
     }
     $lastPage = ceil($noOfLines / $linesPerPage); // rounds up
     $lastPage < 1 ? $lastPage = 1: $lastPage = $lastPage;
@@ -81,4 +84,3 @@ if (isset($linesPerPage)) {
     header("Location: ../index.php?error=nodirectaccess");
     exit(); 
 }    
-?>

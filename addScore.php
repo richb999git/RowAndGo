@@ -50,4 +50,3 @@
 
 <?php
     require "footer.php";
-?>

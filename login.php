@@ -24,14 +24,14 @@
             else if (isset($_GET["login"])) { // == "success")) {
                 echo "<p class='successSignUp'>Login successful!</p>"; // just for illustration
             }
-        echo '
+        ?>
             <div class="row">
                 <br/>
                 <form class="col s8 m5 l4" action="includes/login.inc.php" method="post">
                 
                     <div class="row">
                         <div class="input-field col s12 offset-s3 offset-m8 offset-l12 marginReduce20">
-                            <input id="user-email" type="text" class="validate" name="mailuid" value="'.$userEmail.'" required>
+                            <input id="user-email" type="text" class="validate" name="mailuid" value="<?php echo htmlspecialchars($userEmail) ?>" required>
                             <label for="user-email"><i class="material-icons">email</i> Email</label>
                         </div>
                     </div>
@@ -48,8 +48,7 @@
                 </form>
             </div>
             <br><br><br>
-            '
-        ?>
+               
     </main>
 
 <?php
