@@ -21,11 +21,21 @@ if (isset($_POST["log-submit"])) { // check user has come from the log score pag
         }
     }
 
+    $scoreID = "";
+    if (isset($_GET["scoreID"])) {
+        $scoreID = $_GET["scoreID"];
+        if( !ctype_digit($scoreID) ) { // check to ensure only a number is created, i.e. no injection
+            header("Location: ../index.php?error=invalidScoreID");
+            exit();  
+        }
+    }
+
+
     // ascertain if we need to delete the score
     if (isset($_POST["log-submit"])) {
         if($_POST["log-submit"] == "log-delete") {
 
-            $sql = 'DELETE FROM results WHERE idResults='.$_GET["scoreID"];           
+            $sql = 'DELETE FROM results WHERE idResults='.$scoreID;           
             if (mysqli_query($conn, $sql)) {
                 mysqli_close($conn);
                 header("Location: ../index.php?error=DELETE_OK");
@@ -135,7 +145,7 @@ if (isset($_POST["log-submit"])) { // check user has come from the log score pag
                         header("Location: ../index.php?update_success=".$personId.$row["emailUsers"].$row["club"]); // for message and info
                         exit(); 
                     } else {
-                        mysqli_stmt_bind_param($stmt, "isssiidiisi", $personId, $ergDate, $eventType, $event1, $rate, $scoreDistance, $scoreTime, $dynamic, $weight, $ageCat, $_GET["scoreID"]); 
+                        mysqli_stmt_bind_param($stmt, "isssiidiisi", $personId, $ergDate, $eventType, $event1, $rate, $scoreDistance, $scoreTime, $dynamic, $weight, $ageCat, $scoreID); 
                         mysqli_stmt_execute($stmt);
                         header("Location: ../index.php?edit_success=".$personId.$row["emailUsers"].$row["club"]); // for message and info
                         exit();                  

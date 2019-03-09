@@ -14,39 +14,39 @@
                 $distOrTime = $_POST["distOrTime"]; // will be "distance" or "time"
             }
             if (isset($_GET["distOrTime"])) {
-                $distOrTime = $_GET["distOrTime"]; // if page returned because of error/edit
+                $distOrTime = strip_tags($_GET["distOrTime"]); // if page returned because of error/edit
             }
             $timeMin = "";
             if (isset($_GET["scoreMinutes"])) {
-                $timeMin = $_GET["scoreMinutes"]; // if page returned because of error/edit
+                $timeMin = strip_tags($_GET["scoreMinutes"]); // if page returned because of error/edit
             }
             $timeSec = "";
             if (isset($_GET["scoreSeconds"])) {
-                $timeSec = $_GET["scoreSeconds"]; // if page returned because of error/edit
+                $timeSec = strip_tags($_GET["scoreSeconds"]); // if page returned because of error/edit
             }
             $scoreDistance = "";
             if (isset($_GET["scoreDistance"])) {
-                $scoreDistance = $_GET["scoreDistance"]; // if page returned because of error/edit
+                $scoreDistance = strip_tags($_GET["scoreDistance"]); // if page returned because of error/edit
             }
             $event1 = "";
             if (isset($_GET["event1"])) {
-                $event1 = $_GET["event1"]; // if page returned because of error/edit
+                $event1 = strip_tags($_GET["event1"]); // if page returned because of error/edit
             }
             $rate = 0;
             if (isset($_GET["rate"])) {
-                $rate = $_GET["rate"]; // if page returned because of error/edit
+                $rate = strip_tags($_GET["rate"]); // if page returned because of error/edit
             }
             $dynamic = "";
             if (isset($_GET["dynamic"])) {
-                $dynamic = $_GET["dynamic"]; // if page returned because of error/edit
+                $dynamic = strip_tags($_GET["dynamic"]); // if page returned because of error/edit
             }
             $_SESSION["weight"] == 1 ? $weight = "Light" : $weight = "Heavy" ; // default to user's weight on their account
             if (isset($_GET["weight"])) {
-                $weight = $_GET["weight"]; // if page returned because of error/edit
+                $weight = strip_tags($_GET["weight"]); // if page returned because of error/edit
             }
             $ergDate = date("Y-m-d"); // today as default 
             if (isset($_GET["date"])) {
-                $ergDate = $_GET["date"]; // if page returned because of error/edit
+                $ergDate = strip_tags($_GET["date"]); // if page returned because of error/edit
             }
             $ergDate = date('d-M-Y', strtotime($ergDate)); // put in easier to read format on form
 
@@ -60,7 +60,7 @@
 
             $ageCat = "";
             if (isset($_GET["ageCat"])) {
-                $ageCat = $_GET["ageCat"];
+                $ageCat = strip_tags($_GET["ageCat"]);
             } else {
                 // work out age category based on DOB
                 // U23 19-22, SEN 23-26 (and above), a 27-35, b 36-42, c 43-49, d 50-54, e 55-59, f 60-64, g 65-69, h 70-74, i 75-79, j 80-
@@ -93,6 +93,10 @@
             $scoreID = "";
             if (isset($_GET["scoreID"])) {
                 $scoreID = $_GET["scoreID"];
+                if( !ctype_digit($scoreID) ) { // check to ensure only a number is created, i.e. no injection
+                    header("Location: index.php?error=invalidScoreID");
+                    exit();  
+                }
             }
 
             echo '<h4 id="SignUpTitle">'.$titleType.' Erg Score - '.$distOrTime.'</h4>';

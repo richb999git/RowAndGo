@@ -19,6 +19,8 @@
                     $errorMessage = "Database error when updating. Please try again.";
                 } else if ($_GET["error"] == "REPORT_ERROR") {
                     $errorMessage = "Database error when reporting. Please try again.";
+                } else if ($_GET["error"] == "invalidScoreID") {
+                    $errorMessage = "Invalid score ID";
                 } else { $errorMessage = "Error";} ?>
                     
                     <div class="row">
@@ -48,7 +50,7 @@
                                 <span class="white-text">Score update successful</span> 
                             </div>
                         </div>
-                    </div>';
+                    </div>
                     
             <?php
             } else if (isset($_GET["edit_success"])) { ?>
