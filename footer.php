@@ -16,7 +16,7 @@
     </div>
     <div class="footer-copyright">
     <div class="container">
-    © 2019 Richard Braunton
+    2019 Richard Braunton
     <img height=21px class="right" src="pics/rowing-machine-2.png" alt=""><a class="black-text text-lighten-4 right " href="http://www.concept2.com">Concept 2_</a>
     </div><h6>
     </div>

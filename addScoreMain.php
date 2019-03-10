@@ -10,11 +10,18 @@
         // test if coming from prior screen or returning with error. If not then access not allowed to page
         if (isset($_POST["distOrTime"]) || isset($_GET["error"]) || isset($_GET["edit"])) { 
 
+            // duplicates of arrays in seeLog.php. How do I pass to this file? Session variable or 
+            //$event2WRate = array("250m","500m","1000m","1500m","2000m","2000mR24","2000mR26","2000mR28","2500m","3000m","5000m","5000mR24","5000mR26","6000m","10000m","10000mR18","10000mR20","15000m","20000m","20000mR18","21097m","42195m","1min","2mins","3mins","4mins","5mins","6 mins","7mins","10mins","12mins","15mins","20mins","20minsR20","20minsR22","30mins","30minsR18","30minsR20","45mins","45minsR18","45minsR20","60mins","60minsR18","60minsR20");
+            //$ageDescFull = array("SEN","U23","Juniors","Masters","J18","J17","J16","J15","J14","J13","J12","J11","MastersA","MastersB","MastersC","MastersD","MastersE","MastersF","MastersG","MastersH","MastersI","MastersJ");
+            $event2WRate = $_SESSION["event2WRate"];
+            $ageDescFull = $_SESSION["ageDescFull"];
+
             if (isset($_POST["distOrTime"])) {
                 $distOrTime = $_POST["distOrTime"]; // will be "distance" or "time"
             }
             if (isset($_GET["distOrTime"])) {
                 $distOrTime = strip_tags($_GET["distOrTime"]); // if page returned because of error/edit
+                if ($distOrTime != "distance" && $distOrTime != "time") $distOrTime = "distance";  // check against query string misuse
             }
             $timeMin = "";
             if (isset($_GET["scoreMinutes"])) {
@@ -31,6 +38,9 @@
             $event1 = "";
             if (isset($_GET["event1"])) {
                 $event1 = strip_tags($_GET["event1"]); // if page returned because of error/edit
+                if (!in_array( $event1, $event2WRate )) { // check if a valid entry has been made  // check against query string misuse
+                    $event1 = "";
+                }
             }
             $rate = 0;
             if (isset($_GET["rate"])) {
@@ -57,9 +67,9 @@
                 $titleType = "Add";
                 $edit = "n";
             }
-
+            
             $ageCat = "";
-            if (isset($_GET["ageCat"])) {
+            if (isset($_GET["ageCat"]) && in_array( $ageCat, $ageDescFull )) {  // check against query string misuse
                 $ageCat = strip_tags($_GET["ageCat"]);
             } else {
                 // work out age category based on DOB
@@ -220,7 +230,7 @@
                                     <div class="input-field col s6">
                                         <select name="rate" required>';
                                     
-            if ($rate != "" && $rate != "Free rate" && $rate !=0) {
+            if ($rate != "" && $rate != "Free rate" && $rate !=0 & ($rate >=18 && $rate <=32)) {
                                 echo '      <option value="'.$rate.'">'.$rate.' spm</option>
                                             <option value="Free rate">Free rate</option>';
             } else {
@@ -362,7 +372,7 @@
                         <div class="row">
                             <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce20">';
             
-            if ($edit == "n") {
+            if ($edit != "y") {
                 echo '
                                 <div class="input-field col s6">
                                     <button class="btn btn100" type="submit" name="log-submit">LOG SCORE</button>

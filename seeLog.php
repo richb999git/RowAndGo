@@ -55,10 +55,9 @@ if (isset($_SESSION["userId"])) {
     $TIME_DIST_COL = "scoreDistance";
     $SPLIT_COL = "split";
 
+    $event2WRate = $_SESSION["event2WRate"];
+    $ageDescFull = $_SESSION["ageDescFull"];
     //$event2NoRate = array("250m","500m","1000m","1500m","2000m","2500m","3000m","5000m","6000m","10000m","12000m","15000m","20000m","21097m","42195m","1min","2mins","3mins","4mins","5mins","6 mins","7mins","10mins","12mins","15mins", "20mins","25mins","30mins","40mins","45mins","50mins","60mins","90mins","120mins");
-    $event2WRate = array("250m","500m","1000m","1500m","2000m","2000mR24","2000mR26","2000mR28","2500m","3000m","5000m","5000mR24","5000mR26","6000m","10000m","10000mR18","10000mR20","15000m","20000m","20000mR18","21097m","42195m","1min","2mins","3mins","4mins","5mins","6 mins","7mins","10mins","12mins","15mins","20mins","20minsR20","20minsR22","30mins","30minsR18","30minsR20","45mins","45minsR18","45minsR20","60mins","60minsR18","60minsR20");
-    $ageDescFull = array("SEN","U23","Juniors","Masters","J18","J17","J16","J15","J14","J13","J12","J11","MastersA","MastersB","MastersC","MastersD","MastersE","MastersF","MastersG","MastersH","MastersI","MastersJ");
-    $ageDescSmall = array("SEN","U23","Juniors","Masters");
 
     $sortType = $DATE_COL; // default
     if(isset($_GET["sortType"])) {      // returned when pagination used
