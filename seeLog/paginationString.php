@@ -6,22 +6,21 @@ if (isset($linesPerPage)) {
     //////////////////////////////////////////////////////////  spinner
     require "seeLog/sqlSpinner.php";
 
+    // Very complicated to use prepared statements. SQL statements are complicated and change.
+    // User input is from drop down so SQL injection risk is small. All input is checked or cleaned.
+    // Would have to have ? for all WHERE and HAVING options and the weight and age categories have dynamic code
+    // Therefore I would probably need to have more than one statement to deal with weight and age variation combinations
+    // $result = mysqli_query($conn, $sql);
     
-
-    ///>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> spinner?
-    $result = mysqli_query($conn, $sql);
-    /* 
     if (mysqli_query($conn, $sql)) {
-        $result = mysqli_query($conn, $sql);  // No need to use prepared statements. SQL injection is not a risk. No user text can be entered.
+        $result = mysqli_query($conn, $sql);  
     } else {
         //echo "Error deleting record: " . mysqli_error($conn);
         mysqli_close($conn);
         header("Location: index.php?error=REPORT_ERROR");
         exit(); 
     }
-    /* */
-
-
+    
     $noOfLines = mysqli_num_rows($result);
 
     $maxPagesEitherSide = 3; // 3 is max to comfortable fit on mobile screen (3 + selection + 3 = 7 numbers in pagination control) when numbers get large

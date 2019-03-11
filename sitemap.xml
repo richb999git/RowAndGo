@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://floating-waters-36472.herokuapp.com/</loc>
+  <lastmod>2019-03-10T22:52:06+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://floating-waters-36472.herokuapp.com/index.php</loc>
+  <lastmod>2019-03-10T22:52:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://floating-waters-36472.herokuapp.com/index.php?error=notloggedin</loc>
+  <lastmod>2019-03-10T22:52:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://floating-waters-36472.herokuapp.com/contact.php</loc>
+  <lastmod>2019-03-10T22:52:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://floating-waters-36472.herokuapp.com/signup.php</loc>
+  <lastmod>2019-03-10T22:52:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://floating-waters-36472.herokuapp.com/login.php</loc>
+  <lastmod>2019-03-10T22:52:06+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+
+</urlset>
