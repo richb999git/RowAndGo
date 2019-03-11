@@ -8,7 +8,7 @@
 
         <title>Row&Go! - Erg score tracking</title>
         <meta charset="utf-8">
-        <meta name="description" content="Rowing app for recording your rowing machine erg scores and comparing to others. Row and Go!">
+        <meta name="description" content="(Test app) Rowing app for recording your rowing machine erg scores and comparing to others. Row and Go!">
 
         <!-- stops auto resizing on mobile when moving to lanscape -->
         <meta name=viewport content="width=device-width, initial-scale=1 user-scalable=yes, maximum-scale=1.6, minimum-scale=0.6 "> 
