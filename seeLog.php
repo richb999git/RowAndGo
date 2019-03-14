@@ -32,8 +32,12 @@ if (isset($_SESSION["userId"])) {
         if ($whichErgs != "Mine" && $whichErgs != "Club" && $whichErgs != "All") {
             $whichErgs = "All";
         }
-        $reportType = $_GET["reportType"]; // Calendar, BestAll, BestYear
-        if ($reportType != "Calendar" && $reportType != "BestAll" && $reportType != "BestYear") {
+        if(isset($_GET["reportType"])) {
+            $reportType = $_GET["reportType"]; // Calendar, BestAll, BestYear
+            if ($reportType != "Calendar" && $reportType != "BestAll" && $reportType != "BestYear") {
+                $reportType = "Calendar";
+            }
+        } else {
             $reportType = "Calendar";
         }
     }

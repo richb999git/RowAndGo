@@ -126,11 +126,11 @@ if (isset($sortDir)) {
 
 
 ////////////////-------------------- SQL query ------------------------------------------
-    // echo ", sql = ".$sql;
-    // echo "<br/>**where***:$where";
-    // echo "<br/>**userOrClub***:$userOrClub";
-    // if (isset($thisYear)) echo "<br/>**thisYear***:$thisYear";
-    // echo "<br/>**having***:$having";
+    echo ", sql = ".$sql;
+    echo "<br/>**where***:$where";
+    echo "<br/>**userOrClub***:$userOrClub";
+    if (isset($thisYear)) echo "<br/>**thisYear***:$thisYear";
+    echo "<br/>**having***:$having";
 
 } else {
     header("Location: ../index.php?error=nodirectaccess");

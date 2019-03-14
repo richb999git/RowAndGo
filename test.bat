@@ -1,0 +1,1 @@
+vendor\bin\phpunit test --colors=always --verbose

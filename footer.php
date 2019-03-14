@@ -4,6 +4,7 @@
         <div class="col l6 s12">
         <h5 class="white-text"><img height="17px" src="pics/rowing_double.png"/>Row&Go!</h5>
         <p class="grey-text text-lighten-4">MIT License</p>
+        <p class="grey-text text-lighten-4">Non commercial app - just for testing</p>
         </div>
         <div class="col l4 offset-l2 s12">
         <h5 class="white-text">Links</h5>
