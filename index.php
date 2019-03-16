@@ -68,11 +68,11 @@
             }
             ?>
                 <div class="center-align">
-                    <img width=100% src="pics/r2.jpg" alt="personRowing">
-                    <h4>Log your training scores and compare with other rowers!</h4>
+                    <img width=100% src="pics/row&go_front.jpg" alt="Row&Go! Rower going through his paces on the erg!">
+                    <h2>Row&Go! Log your erg scores and compare with other rowers!</h2>
                 </div>
         <br/>
-        <div class="center-align"><img width=95% id="screenshot" src="pics/screen5.png" alt=""></div>
+        <div class="center-align"><img width=95% id="screenshot" src="pics/row&go_example.png" alt="example screen shot of Row&Go!"></div>
         <br/>
     </main>
     
