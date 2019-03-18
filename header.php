@@ -6,9 +6,9 @@
 <html lang="en" dir="ltr" xml:lang="en"> <!-- prevents Chrome thinking pages are in Luxembourgish! -->
     <head>
 
-        <title>Row&Go! - Erg score tracking and compare to other rowers!</title>
+        <title>Row&Go! - Track your erg score and compare to other rowers! Rowing machine training motivation! Simple to use training log.</title>
         <meta charset="utf-8">
-        <meta name="description" content="(Test app) Rowing app for recording your rowing machine erg scores and comparing to others. Row&Go!">
+        <meta name="description" content="Rowing app for recording your rowing machine erg scores and comparing to others. Row&Go!">
 
         <!-- stops auto resizing on mobile when moving to lanscape -->
         <meta name=viewport content="width=device-width, initial-scale=1 user-scalable=yes, maximum-scale=1.6, minimum-scale=0.6 "> 
