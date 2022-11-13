@@ -22,7 +22,7 @@ if (isset($_POST["log-submit"])) { // check user has come from the log score pag
     }
 
     $scoreID = "";
-    if (isset($_GET["scoreID"])) {
+    if (isset($_GET["scoreID"]) && $_GET["scoreID"] != "") {
         $scoreID = $_GET["scoreID"];
         if( !ctype_digit($scoreID) ) { // check to ensure only a number is created, i.e. no injection
             header("Location: ../index.php?error=invalidScoreID");
