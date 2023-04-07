@@ -93,5 +93,3 @@
 
     </body>
 </html>
-
-<!-- <a href="#" class="right">Logged in as: '.$_SESSION["userEmail"].'</a>'; -->
