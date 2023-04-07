@@ -4,7 +4,6 @@
 <main>
     <?php
         if (isset($_GET["error"])) {
-
             if ($_GET["error"] == "notloggedin") {
                 $errorMessage = "You need to be logged in!";
             } else if ($_GET["error"] == "DELETE_OK") {

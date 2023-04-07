@@ -73,7 +73,6 @@
 
     <?php
     require "seeLog/sqlSpinner.php";
-
     } else {
         // header("Location: index.php?error=notloggedin");
         // exit();

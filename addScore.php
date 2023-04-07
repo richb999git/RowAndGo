@@ -1,11 +1,9 @@
 <?php
-    require "header.php";
+    // require "header.php";
 ?>
-
 <?php
     if (isset($_SESSION["userId"])) {
 ?>
-    
         <main>
             <img width=100% src="pics/header2.jpg" alt="rowing 8 header">
             <h4 id="SignUpTitle">Add Erg Score</h4>
