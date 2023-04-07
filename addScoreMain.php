@@ -402,8 +402,14 @@
             ';
 
         } else {
-            header("Location: index.php?error=nodirectaccess");
-            exit();
+            // header("Location: index.php?error=nodirectaccess");
+            // exit();
+            if (headers_sent()) {
+                die("Redirect failed. Please click on this link: <a href=...>");
+            }
+            else{
+                exit(header("Location: index.php?error=nodirectaccess"));
+            }
         }
 
     ?>
