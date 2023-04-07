@@ -1,4 +1,3 @@
-
 <?php
 if(!isset($_SESSION))
 {
@@ -31,5 +30,3 @@ if (isset($_SESSION["userId"])) {
     header("Location: index.php?error=notloggedin");
     exit(); 
 }
-
-
