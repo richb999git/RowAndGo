@@ -1,14 +1,21 @@
 <?php
+    if(!isset($_SESSION))
+    {
+        session_start();
+    }
+
+    if (!isset($_SESSION["userId"])) {
+        exit(header("Location: index.php?error=notloggedin"));
+    }
+?>
+<?php
     require "header.php";
 ?>
 
-<img width=100% src="pics/header2.jpg" alt="rowing 8 header">
-
-<?php
-    if (isset($_SESSION["userId"])) { ?>
+    <img width=100% src="pics/header2.jpg" alt="rowing 8 header">
 
     <!-- // get method used so that back button works. Data is not sensitive. -->
-     
+
     <h4 id="SignUpTitle">View Erg Scores</h4>
     <div class="row">
         <br/>
@@ -70,20 +77,6 @@
 
         </form>
     </div>
-
-    <?php
-    require "seeLog/sqlSpinner.php";
-    } else {
-        // header("Location: index.php?error=notloggedin");
-        // exit();
-        if (headers_sent()) {
-            die("Redirect failed. Please click on this link: <a href=...>");
-        }
-        else{
-            exit(header("Location: index.php?error=notloggedin"));
-        }
-    }
-?>
 
 <?php
     require "footer.php";
