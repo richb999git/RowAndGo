@@ -2,7 +2,10 @@
 if (isset($_POST["signup-submit"])) { // check user has come from the signup page
     
     require "dbh.inc.php";
-    session_start();
+    if(!isset($_SESSION))
+    {
+        session_start();
+    }
     // may not be right - may use POST button
     // ascertain if we need to add or edit the user account
     if (isset($_GET["edit"])) {

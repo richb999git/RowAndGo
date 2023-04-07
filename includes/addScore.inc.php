@@ -2,7 +2,10 @@
 if (isset($_POST["log-submit"])) { // check user has come from the log score page
     
     require "dbh.inc.php";
-    session_start();
+    if(!isset($_SESSION))
+    {
+        session_start();
+    }
     // field "event1" is name of exercise - either in ditance or time (minutes). e.g. 2000m or 30minutes
     // field "time1" is the time take for the event if it is in meters (otherwise shown as 0)
     // field "distance" is the distance travelled for the event if it is in minutes (otherwise shown as 0)
