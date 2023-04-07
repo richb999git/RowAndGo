@@ -85,17 +85,17 @@ if (isset($event2)) {
 
 
     // only show overall ages catagories on mobile/tablet (doesn't work well with a large list)
-    echo       '<a class="dropdown-trigger-filters btn-small red lighten-2 hide-on-large-only tooltipped" data-position="top" data-tooltip="reduced filter (mobile)" href="#" data-target="ageCat2">Age - ';
-    if ($ageCat == 99 || $ageCat == "") { echo 'All</a>'; } 
-    else {
-        echo $ageCat.'</a>';
-    }
-    echo       '<ul id="ageCat2" class="dropdown-content">';  
-    echo           '<li><a href="'.$_SERVER["PHP_SELF"].'?ageCat=99'.$ageQ.'">All</a></li>';
-    for ($i = 0; $i < count($ageDescSmall); $i++) {
-        echo       '<li><a href="'.$_SERVER["PHP_SELF"].'?ageCat='.$ageDescSmall[$i].$ageQ.'">'.$ageDescSmall[$i].'</a></li>';
-    }
-    echo       '</ul>';
+    // echo       '<a class="dropdown-trigger-filters btn-small red lighten-2 hide-on-large-only tooltipped" data-position="top" data-tooltip="reduced filter (mobile)" href="#" data-target="ageCat2">Age - ';
+    // if ($ageCat == 99 || $ageCat == "") { echo 'All</a>'; } 
+    // else {
+    //     echo $ageCat.'</a>';
+    // }
+    // echo       '<ul id="ageCat2" class="dropdown-content">';  
+    // echo           '<li><a href="'.$_SERVER["PHP_SELF"].'?ageCat=99'.$ageQ.'">All</a></li>';
+    // for ($i = 0; $i < count($ageDescSmall); $i++) {
+    //     echo       '<li><a href="'.$_SERVER["PHP_SELF"].'?ageCat='.$ageDescSmall[$i].$ageQ.'">'.$ageDescSmall[$i].'</a></li>';
+    // }
+    // echo       '</ul>';
 
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////    Erg Type filter
