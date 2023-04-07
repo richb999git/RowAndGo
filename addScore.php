@@ -1,7 +1,20 @@
 <?php
-    // require "header.php";
+    if(!isset($_SESSION))
+    {
+        session_start();
+    }
+
+    if (!isset($_SESSION["userId"])) {
+        if (headers_sent()) {
+            die("Redirect failed. Please click on this link: <a href=...>");
+        }
+        else{
+            exit(header("Location: index.php?error=notloggedin"));
+        }
+    }
 ?>
 <?php
+    require "header.php";
     if (isset($_SESSION["userId"])) {
 ?>
         <main>
