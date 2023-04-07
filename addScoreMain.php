@@ -1,7 +1,6 @@
 <?php
     require "header.php";
 ?>
-
     <main>
     <img width=100% src="pics/header2.jpg" alt="rowing 8 header">
     <?php
@@ -67,7 +66,7 @@
                 $titleType = "Add";
                 $edit = "n";
             }
-            
+
             $ageCat = "";
             if (isset($_GET["ageCat"]) && in_array( $ageCat, $ageDescFull )) {  // check against query string misuse
                 $ageCat = strip_tags($_GET["ageCat"]);
@@ -105,7 +104,7 @@
                 $scoreID = $_GET["scoreID"];
                 if( !ctype_digit($scoreID) ) { // check to ensure only a number is created, i.e. no injection
                     header("Location: index.php?error=invalidScoreID");
-                    exit();  
+                    exit();
                 }
             }
 
@@ -119,7 +118,7 @@
                 }
             }
 
-            echo ' 
+            echo '
                 <div class="row">
                         <br/>
                         <form class="col s10 m6 l4 " action="includes/addScore.inc.php?edit='.$edit.'&scoreID='.$scoreID.'" method="post">
@@ -136,13 +135,13 @@
                             <div class="row">
                                 <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce40">
                                     <select name="event1">';  // can't use required because it is effectively selected automatically with "Select..."
-                                    
+
             if ($event1 != "") {
                             echo '<option value="'.$event1.'">'.$event1.'</option>';
             } else {
                             echo '<option value="" disable selected>Select distance...</option>';
-            }            
-                                    
+            }
+
             echo '                            
                                     <option value="100m">100m</option>
                                     <option value="250m">250m</option>
@@ -178,7 +177,7 @@
                                 </div>
                             </div>
                         </div>
-                ';    
+                ';
             } else {
                 echo '
                             <div class="row">
@@ -190,7 +189,7 @@
                 } else {
                                 echo '<option value="" disabled selected>Select...</option>';
                 }
-                echo '                          
+                echo '
                                         <option value="1min">1min</option>
                                         <option value="2mins">2mins</option>
                                         <option value="3mins">3mins</option>
@@ -222,14 +221,14 @@
                                 </div>
                             </div>
                 ';
-            }           
+            }
 
             echo '
-                            <div class="row">    
+                            <div class="row">
                                 <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce40">
                                     <div class="input-field col s6">
                                         <select name="rate" required>';
-                                    
+
             if ($rate != "" && $rate != "Free rate" && $rate !=0 & ($rate >=18 && $rate <=32)) {
                                 echo '      <option value="'.$rate.'">'.$rate.' spm</option>
                                             <option value="Free rate">Free rate</option>';
@@ -256,22 +255,22 @@
                                             <option value="32">32 spm</option>
                                         </select>
                                         <label>Free rate or capped?</label>
-                                    </div> 
-                                    
+                                    </div>
+
                                     <div class="input-field col s6">
-                                        <select name="ageCat" required>'; 
-            
+                                        <select name="ageCat" required>';
+
             if ($ageCat != "") {
                                 $ageCatD = $ageCat;
                                 if (substr($ageCat, 0, 1) == "V") {
                                     $ageCatD = "Masters ".substr($ageCat,-1);
-                                }  
+                                }
                                 echo '      <option value="'.$ageCat.'">'.$ageCatD.'</option>
                                             <option value="SEN">SEN</option>';
             } else {
                                 echo '      <option value="SEN">SEN</option>';
             }
-            echo '      
+            echo '
                                             <option value="U23">U23</option>
                                             <option value="VTA">Masters A</option>
                                             <option value="VTB">Masters B</option>
@@ -290,13 +289,13 @@
                                             <option value="J14">J14</option>
                                             <option value="J13">J13</option>
                                             <option value="J12">J12</option>
-                                            <option value="J11">J11</option>                                            
+                                            <option value="J11">J11</option>
                                         </select>
                                         <label>Age Category</label>
                                     </div>
 
                                 </div>
-                            </div>     
+                            </div>
 
             ';
 
@@ -305,28 +304,28 @@
                         <div class="col offset-s1">
                             <p>
                             <label>';
-            
+
             if ( $dynamic != "Dynamic" ) {
                 echo '
                                         <input name="dynamic" class="with-gap" type="radio" value="Standard" checked/>
                                         <span>Standard Erg</span>
                                     </label>
-        
+
                                     <label>
                                         <input name="dynamic" class="with-gap" type="radio" value="Dynamic" />
                                         <span>Dynamic Erg</span>
                                     </label>';
-        
+
                 } else {
                     echo '
                                         <input name="dynamic" class="with-gap" type="radio" value="Standard"/>
                                         <span>Standard Erg</span>
                                     </label>
-        
+
                                     <label>
                                         <input name="dynamic" class="with-gap" type="radio" value="Dynamic" checked />
                                         <span>Dynamic Erg</span>
-                                    </label>';                
+                                    </label>';
                 }
             echo '
                             </p>
@@ -339,29 +338,29 @@
                         <div class="col offset-s1">
                             <p>
                             <label>';
-            
-            $ageCat[0] == "J" ? $weightDisableString = "disabled" :  $weightDisableString = "";                            
+
+            $ageCat[0] == "J" ? $weightDisableString = "disabled" :  $weightDisableString = "";
             if ( $weight != "Light" ) {
                 echo '
                                         <input name="weight" class="with-gap" type="radio" value="Heavy" checked '.$weightDisableString.'/>
                                         <span>Heavy weight</span>
                                     </label>
-        
+
                                     <label>
                                         <input name="weight" class="with-gap" type="radio" value="Light"  '.$weightDisableString.'/>
                                         <span>Light weight</span>
                                     </label>';
-        
+
                 } else {
                     echo '
                                         <input name="weight" class="with-gap" type="radio" value="Heavy" '.$weightDisableString.'/>
                                         <span>Heavy weight</span>
                                     </label>
-        
+
                                     <label>
                                         <input name="weight" class="with-gap" type="radio" value="Light" checked  '.$weightDisableString.'/>
                                         <span>Light weight</span>
-                                    </label>';                
+                                    </label>';
                 }
             echo '
                             </p>
@@ -371,7 +370,7 @@
 
                         <div class="row">
                             <div class="input-field col s12 offset-s1 offset-m6 offset-l12 marginReduce20">';
-            
+
             if ($edit != "y") {
                 echo '
                                 <div class="input-field col s6">
@@ -401,10 +400,10 @@
 
             </div>
             ';
-        
+
         } else {
             header("Location: index.php?error=nodirectaccess");
-            exit(); 
+            exit();
         }
 
     ?>
