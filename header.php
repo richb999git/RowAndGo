@@ -4,7 +4,6 @@
         session_start();
     }
 ?>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr" xml:lang="en"> <!-- prevents Chrome thinking pages are in Luxembourgish! -->
     <head>
