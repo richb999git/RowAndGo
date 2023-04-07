@@ -39,12 +39,19 @@
             <br><br><br><br><br><br><br>
 
         </main>
-        
 
-<?php   
+<?php
+    // } else {
+    //     header("Location: index.php?error=notloggedin");
+    //     exit();
+    // }
     } else {
-        header("Location: index.php?error=notloggedin");
-        exit(); 
+        if (headers_sent()) {
+            die("Redirect failed. Please click on this link: <a href=...>");
+        }
+        else{
+            exit(header("Location: index.php?error=notloggedin"));
+        }
     }
 ?>
 
