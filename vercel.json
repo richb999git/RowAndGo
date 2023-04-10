@@ -5,6 +5,14 @@
     },
     "routes": [
         {
+            "src": "/includes/(.*)",
+            "dest": "/includes/"
+        },
+        {
+            "src": "/seeLog/(.*)",
+            "dest": "/seeLog/"
+        },
+        {
             "src": "/pics/(.*)",
             "dest": "/pics/"
         },
