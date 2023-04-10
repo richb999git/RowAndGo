@@ -17,9 +17,9 @@
 // } else {
 //     require __DIR__ . '/../index.php';
 // }
-
+echo $_SERVER['REQUEST_URI'];
 if ($_SERVER['REQUEST_URI'] === '/' || $_SERVER['REQUEST_URI'] === '') {
     require __DIR__ . '/../index.php';
 } else {
-    require __DIR__ . '/../' . $_SERVER['REQUEST_URI'] . '.php';
+    require __DIR__ . '/../' . $_SERVER['REQUEST_URI'];
 }
