@@ -5,8 +5,12 @@
     },
     "routes": [
         {
-        "src": "/(.*)",
-        "dest": "/api/index.php"
+            "src": "/pics/(.*)",
+            "dest": "/pics/"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/api/index.php"
         }
     ],
     "env": {
