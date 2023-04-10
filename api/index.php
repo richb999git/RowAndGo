@@ -9,7 +9,7 @@ if (substr($_SERVER['REQUEST_URI'], 0, 8) === '/contact') {
 } else  if (substr($_SERVER['REQUEST_URI'], 0, 7) === '/signup') {
     require __DIR__ . '/../signup.php';
 } else  if (substr($_SERVER['REQUEST_URI'], 0, 9) === '/addScore') {
-    require __DIR__ . '/../addscore.php';
+    require __DIR__ . '/../addScore.php';
 } else  if (substr($_SERVER['REQUEST_URI'], 0, 11) === '/viewScores') {
     require __DIR__ . '/../viewScores.php';
 } else  if (substr($_SERVER['REQUEST_URI'], 0, 16) === '/downloadResults') {
