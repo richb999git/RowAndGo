@@ -14,6 +14,8 @@ if (substr($_SERVER['REQUEST_URI'], 0, 8) === '/contact') {
     require __DIR__ . '/../viewScores.php';
 } else  if (substr($_SERVER['REQUEST_URI'], 0, 16) === '/downloadResults') {
     require __DIR__ . '/../downloadResults.php';
+} else  if (substr($_SERVER['REQUEST_URI'], 0, 19) === '/includes/login.inc') {
+    require __DIR__ . '/../includes/login.inc.php';
 } else {
     require __DIR__ . '/../index.php';
 }
