@@ -8,7 +8,7 @@ if (substr($_SERVER['REQUEST_URI'], 0, 8) === '/contact') {
     require __DIR__ . '/../login.php';
 } else  if (substr($_SERVER['REQUEST_URI'], 0, 7) === '/signup') {
     require __DIR__ . '/../signup.php';
-} else  if (substr($_SERVER['REQUEST_URI'], 0, 9) === '/addscore') {
+} else  if (substr($_SERVER['REQUEST_URI'], 0, 9) === '/addScore') {
     require __DIR__ . '/../addscore.php';
 } else  if (substr($_SERVER['REQUEST_URI'], 0, 11) === '/viewScores') {
     require __DIR__ . '/../viewScores.php';
