@@ -1,7 +1,6 @@
 <?php
 
 // Forward Vercel requests to normal index.php
-
 if (substr($_SERVER['REQUEST_URI'], 0, 8) === '/contact') {
     require __DIR__ . '/../contact.php';
 } else  if (substr($_SERVER['REQUEST_URI'], 0, 6) === '/login') {
